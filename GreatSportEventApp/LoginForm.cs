@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp
@@ -19,15 +12,15 @@ namespace GreatSportEventApp
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(@"АХАХАХАХАХАХХАХА!!!");
+            if (string.IsNullOrWhiteSpace(textLogin.Text) || string.IsNullOrWhiteSpace(textPassword.Text))
+                MessageBox.Show(@"Пустой логин или пароль!");
+            else
+                MessageBox.Show(@"Подключение к базе данных!");
         }
 
         private void textPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                buttonLogin_Click(sender,e);
-            }
+            if (e.KeyCode == Keys.Enter) buttonLogin_Click(sender, e);
         }
     }
 }
