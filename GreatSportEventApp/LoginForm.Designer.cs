@@ -43,12 +43,12 @@
             this.textLogin.Font = new System.Drawing.Font("Arial Narrow", 14.25F);
             this.textLogin.Location = new System.Drawing.Point(118, 66);
             this.textLogin.Name = "textLogin";
-            this.textLogin.Size = new System.Drawing.Size(177, 29);
+            this.textLogin.Size = new System.Drawing.Size(185, 29);
             this.textLogin.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 14.25F);
+            this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 29);
@@ -67,7 +67,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 14.25F);
+            this.label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(12, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 29);
@@ -82,16 +82,16 @@
             this.textPassword.Location = new System.Drawing.Point(118, 111);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
-            this.textPassword.Size = new System.Drawing.Size(177, 29);
+            this.textPassword.Size = new System.Drawing.Size(185, 29);
             this.textPassword.TabIndex = 4;
             this.textPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textPassword_KeyDown);
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Font = new System.Drawing.Font("Arial", 14.25F);
+            this.buttonLogin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonLogin.Location = new System.Drawing.Point(168, 159);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(127, 29);
+            this.buttonLogin.Size = new System.Drawing.Size(135, 29);
             this.buttonLogin.TabIndex = 5;
             this.buttonLogin.Text = "Войти";
             this.buttonLogin.UseVisualStyleBackColor = true;
@@ -99,7 +99,8 @@
             // 
             // LoginForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(315, 202);
             this.Controls.Add(this.buttonLogin);
@@ -114,7 +115,7 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login | Great Sport Event";
+            this.Text = "Вход | Спортивное мероприятие";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
