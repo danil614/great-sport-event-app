@@ -5,18 +5,20 @@ namespace GreatSportEventApp
 {
     public partial class LoginForm : Form
     {
-        public string Login { get; private set; }
-        public string Password { get; private set; }
-        
         public LoginForm()
         {
             InitializeComponent();
         }
 
+        public string Login { get; private set; }
+        public string Password { get; private set; }
+
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textLogin.Text) || string.IsNullOrWhiteSpace(textPassword.Text))
+            {
                 MessageBox.Show(@"Пустой логин или пароль!");
+            }
             else
             {
                 Login = textLogin.Text;
