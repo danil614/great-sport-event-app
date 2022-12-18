@@ -16,5 +16,18 @@ namespace GreatSportEventApp
         {
             InitializeComponent();
         }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"АХАХАХАХАХАХХАХА!!!");
+        }
+
+        private void textPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonLogin_Click(sender,e);
+            }
+        }
     }
 }
