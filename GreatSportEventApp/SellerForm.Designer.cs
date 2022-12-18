@@ -34,6 +34,7 @@ namespace GreatSportEventApp
             this.dataViewers = new System.Windows.Forms.DataGridView();
             this.labelTitle = new System.Windows.Forms.Label();
             this.buttonAddViewer = new System.Windows.Forms.Button();
+            this.buttonChangeViewer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@ namespace GreatSportEventApp
             this.dataViewers.ReadOnly = true;
             this.dataViewers.Size = new System.Drawing.Size(981, 573);
             this.dataViewers.TabIndex = 0;
+            this.dataViewers.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataViewers_CellMouseDoubleClick);
             // 
             // labelTitle
             // 
@@ -70,11 +72,23 @@ namespace GreatSportEventApp
             this.buttonAddViewer.UseVisualStyleBackColor = true;
             this.buttonAddViewer.Click += new System.EventHandler(this.buttonAddViewer_Click);
             // 
+            // buttonChangeViewer
+            // 
+            this.buttonChangeViewer.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonChangeViewer.Location = new System.Drawing.Point(211, 625);
+            this.buttonChangeViewer.Name = "buttonChangeViewer";
+            this.buttonChangeViewer.Size = new System.Drawing.Size(192, 40);
+            this.buttonChangeViewer.TabIndex = 3;
+            this.buttonChangeViewer.Text = "Изменить зрителя";
+            this.buttonChangeViewer.UseVisualStyleBackColor = true;
+            this.buttonChangeViewer.Click += new System.EventHandler(this.buttonChangeViewer_Click);
+            // 
             // SellerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1007, 691);
+            this.Controls.Add(this.buttonChangeViewer);
             this.Controls.Add(this.buttonAddViewer);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.dataViewers);
@@ -89,6 +103,8 @@ namespace GreatSportEventApp
             ((System.ComponentModel.ISupportInitialize)(this.dataViewers)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Button buttonChangeViewer;
 
         private System.Windows.Forms.Button buttonAddViewer;
 

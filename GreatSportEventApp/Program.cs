@@ -13,11 +13,11 @@ namespace GreatSportEventApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             //////
-            var sellerForm1 = new SellerForm();
-            Application.Run(sellerForm1);
-            return;
+            //var sellerForm1 = new SellerForm();
+            //Application.Run(sellerForm1);
+            //return;
             //////
 
             // Открываем форму входа
@@ -28,14 +28,14 @@ namespace GreatSportEventApp
             {
                 // Получаем режим доступа по логину и паролю
                 var accessMode = Query.GetAccessMode(loginForm.Login, loginForm.Password, out var isConnected);
-                
+
                 if (!isConnected)
                 {
                     MessageBox.Show(@"Отсутствует подключение!");
                     Application.Exit();
                     return;
                 }
-                
+
                 // Создаем форму продавца
                 var sellerForm = new SellerForm();
 

@@ -12,7 +12,7 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        /// Обновляет список зрителей.
+        ///     Обновляет список зрителей.
         /// </summary>
         private void UpdateListViewers()
         {
@@ -28,16 +28,47 @@ namespace GreatSportEventApp
             {
                 dataViewers.DataSource = listViewers;
             }
-            
+
             // Растягиваем колонки
             dataViewers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void buttonAddViewer_Click(object sender, EventArgs e)
         {
-            var addingPerson = new AddingPerson();
-            addingPerson.ShowDialog();
+            var personForm = new PersonForm(false);
+            personForm.ShowDialog();
             UpdateListViewers();
+        }
+
+        private void buttonChangeViewer_Click(object sender, EventArgs e)
+        {
+            if (dataViewers.CurrentRow == null) return;
+
+            var currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
+            var person = Query.GetViewerById(out var isConnected, currentRowId);
+
+            if (!isConnected)
+            {
+                MessageBox.Show(@"Отсутствует подключение!");
+            }
+            else
+            {
+                var personForm = new PersonForm(true);
+                personForm.IdPerson = (int)person["viewer_id"];
+                personForm.Surname = (string)person["surname"];
+                personForm.NamePerson = (string)person["name"];
+                personForm.Patronymic = (string)person["patronymic"];
+                personForm.Gender = (string)person["gender_name"];
+                personForm.PhoneNumber = (string)person["phone_number"];
+                personForm.BirthDate = (DateTime)person["birth_date"];
+                personForm.ShowDialog();
+                UpdateListViewers();
+            }
+        }
+
+        private void dataViewers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            buttonChangeViewer_Click(sender, e);
         }
     }
 }

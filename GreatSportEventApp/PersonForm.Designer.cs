@@ -2,7 +2,7 @@
 
 namespace GreatSportEventApp
 {
-    partial class AddingPerson
+    partial class PersonForm
     {
         /// <summary>
         /// Required designer variable.
@@ -191,7 +191,7 @@ namespace GreatSportEventApp
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "AddingPerson";
+            this.Name = "PersonForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление зрителя | Спортивное мероприятие";
             this.ResumeLayout(false);

@@ -5,7 +5,7 @@ namespace GreatSportEventApp
     public static class Query
     {
         /// <summary>
-        /// Получает режим доступа по логину и паролю.
+        ///     Получает режим доступа по логину и паролю.
         /// </summary>
         public static string GetAccessMode(string login, string password, out bool isConnected)
         {
@@ -20,16 +20,13 @@ namespace GreatSportEventApp
 
             isConnected = true;
 
-            if (dataTable.Rows.Count == 1)
-            {
-                return (string)dataTable.Rows[0][0];
-            }
+            if (dataTable.Rows.Count == 1) return (string)dataTable.Rows[0][0];
 
             return "";
         }
 
         /// <summary>
-        /// Получает всех зрителей.
+        ///     Получает всех зрителей.
         /// </summary>
         public static DataTable GetListViewers(out bool isConnected)
         {
@@ -39,27 +36,45 @@ namespace GreatSportEventApp
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
-            
+
             return dataTable;
         }
 
         /// <summary>
-        /// Вставляет новую запись в зрителей.
+        ///     Вставляет новую запись в зрителей.
         /// </summary>
-        public static bool InsertViewer(string surname, string name, string patronymic, string genderName, string phoneNumber, string birthDate)
+        public static bool InsertViewer(string surname, string name, string patronymic, string genderName,
+            string phoneNumber, string birthDate)
         {
             var query =
-                $"INSERT INTO Viewers (surname, name, patronymic, gender_id, phone_number, birth_date)" +
+                "INSERT INTO Viewers (surname, name, patronymic, gender_id, phone_number, birth_date)" +
                 $"SELECT '{surname}', '{name}', '{patronymic}', Gender.gender_id, '{phoneNumber}', '{birthDate}'" +
                 $"FROM Gender WHERE gender_name='{genderName}'";
-            
+
             var isConnected = DatabaseConnection.RunQuery(query);
-            
+
             return isConnected;
         }
         
         /// <summary>
-        /// Получает все полы.
+        ///     Изменяет зрителя по id
+        /// </summary>
+        public static bool UpdateViewer(int id, string surname, string name, string patronymic, string genderName,
+            string phoneNumber, string birthDate)
+        {
+            var query =
+                $"UPDATE Viewers SET surname='{surname}', name='{name}', patronymic='{patronymic}', " +
+                $"gender_id=(SELECT gender_id FROM Gender WHERE gender_name='{genderName}'), " +
+                $"phone_number='{phoneNumber}', birth_date='{birthDate}'" +
+                $"WHERE viewer_id={id}";
+
+            var isConnected = DatabaseConnection.RunQuery(query);
+
+            return isConnected;
+        }
+
+        /// <summary>
+        ///     Получает все полы.
         /// </summary>
         public static DataTable GetListGender(out bool isConnected)
         {
@@ -67,8 +82,26 @@ namespace GreatSportEventApp
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
-            
+
             return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает зрителя по id.
+        /// </summary>
+        public static DataRow GetViewerById(out bool isConnected, int id)
+        {
+            var query =
+                "SELECT viewer_id, surname, name, patronymic, " +
+                "(SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS gender_name," +
+                $"phone_number, birth_date FROM Viewers WHERE viewer_id={id}";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (dataTable != null && dataTable.Rows.Count == 1) return dataTable.Rows[0];
+
+            return null;
         }
     }
 }
