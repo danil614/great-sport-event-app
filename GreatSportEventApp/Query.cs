@@ -4,14 +4,25 @@ namespace GreatSportEventApp
 {
     public static class Query
     {
-        public static DataTable GetAccessMode(string login, string password)
+        /// <summary>
+        /// Получает режим доступа по логину и паролю.
+        /// </summary>
+        public static string GetAccessMode(string login, string password)
         {
             var query = $"SELECT access_mode FROM Users WHERE login='{login}' AND password=md5('{password}')";
-            var data = DatabaseConnection.GetDataTable(query);
+            var dataTable = DatabaseConnection.GetDataTable(query);
 
-            return data;
+            if (dataTable.Rows.Count == 1)
+            {
+                return (string)dataTable.Rows[0][0];
+            }
+
+            return "";
         }
 
+        /// <summary>
+        /// Получает всех зрителей.
+        /// </summary>
         public static DataTable GetListViewers()
         {
             const string query = "SELECT viewer_id, CONCAT(surname, ' ', name, ' ', patronymic) AS full_name," +

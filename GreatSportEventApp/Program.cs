@@ -14,11 +14,32 @@ namespace GreatSportEventApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Открываем форму входа
             var loginForm = new LoginForm();
             Application.Run(loginForm);
 
-            MessageBox.Show(loginForm.Login + @" " + loginForm.Password);
-            Query.GetAccessMode(loginForm.Login, loginForm.Password);
+            if (!(string.IsNullOrWhiteSpace(loginForm.Login) || string.IsNullOrWhiteSpace(loginForm.Password)))
+            {
+                // Получаем режим доступа по логину и паролю
+                var accessMode = Query.GetAccessMode(loginForm.Login, loginForm.Password);
+                
+                // Создаем форму продавца
+                var sellerForm = new SellerForm();
+
+                switch (accessMode)
+                {
+                    case "1":
+                        MessageBox.Show(@"АХАХАХАХАХ ВЫ АДМИН!!!");
+                        break;
+                    case "2":
+                        //Application.Run(sellerForm);
+                        MessageBox.Show(@"ъуъуъуъуъ ВЫ КаССИИРРР!!!");
+                        break;
+                    default:
+                        MessageBox.Show($@"НЕТУУУ {accessMode}");
+                        break;
+                }
+            }
         }
     }
 }
