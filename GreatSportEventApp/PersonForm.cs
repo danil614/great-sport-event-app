@@ -19,28 +19,25 @@ namespace GreatSportEventApp
 
             if (IsChanging)
             {
-                Text = @"Изменение зрителя | Спортивное мероприятие";
+                base.Text = @"Изменение зрителя | Спортивное мероприятие";
                 labelTitle.Text = @"Изменение зрителя";
             }
         }
         
-        public int IdPerson { get; set; }
+        public int PersonId { get; set; }
 
         public string Surname
         {
-            get => textSurname.Text;
             set => textSurname.Text = value;
         }
 
-        public string NamePerson
+        public string PersonName
         {
-            get => textName.Text;
             set => textName.Text = value;
         }
 
         public string Patronymic
         {
-            get => textPatronymic.Text;
             set => textPatronymic.Text = value;
         }
 
@@ -51,17 +48,15 @@ namespace GreatSportEventApp
 
         public string PhoneNumber
         {
-            get => textPhoneNumber.Text;
             set => textPhoneNumber.Text = value;
         }
 
         public DateTime BirthDate
         {
-            get => dateBirth.Value;
             set => dateBirth.Value = value;
         }
 
-        public bool IsChanging { get; set; }
+        private bool IsChanging { get; set; }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -71,7 +66,7 @@ namespace GreatSportEventApp
             
             if (IsChanging)
             {
-                isConnected = Query.UpdateViewer(IdPerson, textSurname.Text, textName.Text,
+                isConnected = Query.UpdateViewer(PersonId, textSurname.Text, textName.Text,
                     textPatronymic.Text, comboGender.Text, textPhoneNumber.Text, birthDateString);
             }
             else

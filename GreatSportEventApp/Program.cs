@@ -15,9 +15,9 @@ namespace GreatSportEventApp
             Application.SetCompatibleTextRenderingDefault(false);
 
             //////
-            //var sellerForm1 = new SellerForm();
-            //Application.Run(sellerForm1);
-            //return;
+            var testForm = new OrganizerForm();
+            Application.Run(testForm);
+            return;
             //////
 
             // Открываем форму входа

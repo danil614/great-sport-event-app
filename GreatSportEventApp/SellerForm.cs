@@ -54,12 +54,12 @@ namespace GreatSportEventApp
             else
             {
                 var personForm = new PersonForm(true);
-                personForm.IdPerson = (int)person["viewer_id"];
-                personForm.Surname = (string)person["surname"];
-                personForm.NamePerson = (string)person["name"];
-                personForm.Patronymic = (string)person["patronymic"];
-                personForm.Gender = (string)person["gender_name"];
-                personForm.PhoneNumber = (string)person["phone_number"];
+                personForm.PersonId = currentRowId;
+                personForm.Surname = person["surname"].ToString();
+                personForm.PersonName = person["name"].ToString();
+                personForm.Patronymic = person["patronymic"].ToString();
+                personForm.Gender = person["gender_name"].ToString();
+                personForm.PhoneNumber = person["phone_number"].ToString();
                 personForm.BirthDate = (DateTime)person["birth_date"];
                 personForm.ShowDialog();
                 UpdateListViewers();
