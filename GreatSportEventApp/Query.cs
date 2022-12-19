@@ -32,7 +32,8 @@ namespace GreatSportEventApp
         {
             const string query = "SELECT viewer_id AS 'Номер', CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО'," +
                                  "(SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS 'Пол'," +
-                                 "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения' FROM Viewers";
+                                 "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения', " +
+                                 "number_purchases AS 'Количество покупок' FROM Viewers";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
