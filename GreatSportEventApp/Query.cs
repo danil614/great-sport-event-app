@@ -142,7 +142,7 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListCities(out bool isConnected)
         {
-            const string query = "SELECT city_name FROM Cities";
+            const string query = "SELECT city_name FROM Cities ORDER BY city_name";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -155,7 +155,7 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListTypes(out bool isConnected)
         {
-            const string query = "SELECT location_type_name FROM Location_types";
+            const string query = "SELECT location_type_name FROM Location_types ORDER BY location_type_name DESC";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
