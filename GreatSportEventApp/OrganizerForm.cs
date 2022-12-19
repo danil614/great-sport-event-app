@@ -18,8 +18,9 @@ namespace GreatSportEventApp
         {
             // Получаем запрос со зрителями
             var listLocations = Query.GetListLocations(out var isConnected);
+            var listLocationsGroup = Query.GetListLocationsGroup(out var isConnectedGroup);
 
-            if (!isConnected)
+            if (!isConnected || !isConnectedGroup)
             {
                 MessageBox.Show(@"Отсутствует подключение!");
                 Close();
@@ -27,10 +28,12 @@ namespace GreatSportEventApp
             else
             {
                 dataLocations.DataSource = listLocations;
+                dataLocationsGroup.DataSource = listLocationsGroup;
             }
 
             // Растягиваем колонки
             dataLocations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataLocationsGroup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void buttonAddLocation_Click(object sender, EventArgs e)

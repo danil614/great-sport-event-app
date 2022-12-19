@@ -9,7 +9,7 @@ namespace GreatSportEventApp
         /// </summary>
         public static string GetAccessMode(string login, string password, out bool isConnected)
         {
-            var query = $"SELECT access_mode FROM Users WHERE login='{login}' AND password=md5('{password}')";
+            var query = $"CALL get_access_mode('{login}', '{password}')";
             var dataTable = DatabaseConnection.GetDataTable(query);
 
             if (dataTable == null)
@@ -41,6 +41,22 @@ namespace GreatSportEventApp
         }
         
         /// <summary>
+        ///     Получает все билеты.
+        /// </summary>
+        public static DataTable GetListTickets(out bool isConnected)
+        {
+            const string query = "SELECT ticket_id AS 'Номер', " +
+                                 "(SELECT CONCAT(surname, ' ', name, ' ', patronymic) " +
+                                 "FROM Viewers WHERE viewer_id = Tickets.viewer_id) AS 'Зритель'," +
+                                 "sale_date_time AS 'Дата продажи', seat_name AS 'Дата Место', price AS 'Цена' FROM Tickets";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+        
+        /// <summary>
         ///     Получает все места расположения.
         /// </summary>
         public static DataTable GetListLocations(out bool isConnected)
@@ -50,6 +66,56 @@ namespace GreatSportEventApp
                                  "address AS 'Адрес', (SELECT location_type_name FROM Location_types " +
                                  "WHERE location_type_id = Locations.location_type_id) AS 'Тип места', " +
                                  "capacity AS 'Вместимость' FROM Locations";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+        
+        /// <summary>
+        ///     Получает все места расположения c группировкой.
+        /// </summary>
+        public static DataTable GetListLocationsGroup(out bool isConnected)
+        {
+            const string query = "SELECT location_id AS 'Номер', " +
+                                 "(SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS 'Город', " + 
+                                 "COUNT(*) AS 'Количество', AVG(capacity) AS 'Средняя вместимость' " +
+                                 "FROM Locations GROUP BY Locations.city_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+        
+        /// <summary>
+        ///     Получает всех пользователей.
+        /// </summary>
+        public static DataTable GetListUsers(out bool isConnected)
+        {
+            const string query = 
+                "SELECT login AS 'Логин', access_mode AS 'Режим доступа', " +
+                "CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО', " +
+                "(SELECT gender_name FROM Gender WHERE gender_id = Employees.gender_id) AS 'Пол', " +
+                "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения' " +
+                "FROM Users INNER JOIN Employees USING(employee_id) " +
+                "UNION " +
+                "SELECT login AS 'Логин', access_mode AS 'Режим доступа', " +
+                "CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО', " +
+                "(SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS 'Пол', " +
+                "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения' " +
+                "FROM Users INNER JOIN Viewers USING(viewer_id)" +
+                "UNION " +
+                "SELECT login AS 'Логин', access_mode AS 'Режим доступа', " +
+                "CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО', " +
+                "(SELECT gender_name FROM Gender WHERE gender_id = Athletes.gender_id) AS 'Пол', " +
+                "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения' " +
+                "FROM Users INNER JOIN Athletes USING(athlete_id)"+
+                "UNION " +
+                "SELECT login AS 'Логин', access_mode AS 'Режим доступа', " +
+                "'' AS 'ФИО', '' AS 'Пол', '' AS 'Номер телефона', '' AS 'Дата рождения' " +
+                "FROM Users WHERE athlete_id IS NULL AND employee_id IS NULL AND viewer_id IS NULL";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -91,6 +157,32 @@ namespace GreatSportEventApp
         }
         
         /// <summary>
+        ///     Вставляет новую запись в пользователей.
+        /// </summary>
+        public static bool InsertUser(string login, string password, string mode)
+        {
+            var query =
+                $"INSERT INTO Users (login, password, access_mode) VALUES ('{login}', md5('{password}'), '{mode}')";
+
+            var isConnected = DatabaseConnection.RunQuery(query);
+
+            return isConnected;
+        }
+        
+        /// <summary>
+        ///     Вставляет новую запись в билеты.
+        /// </summary>
+        public static bool InsertTicket(int viewerId, string seat, decimal price)
+        {
+            var query =
+                $"INSERT INTO Tickets (viewer_id, seat_name, price) VALUES({viewerId}, '{seat}', {price})";
+
+            var isConnected = DatabaseConnection.RunQuery(query);
+
+            return isConnected;
+        }
+        
+        /// <summary>
         ///     Изменяет место по id.
         /// </summary>
         public static bool UpdateLocation(int id, string name, string city, string address, string type,
@@ -118,6 +210,20 @@ namespace GreatSportEventApp
                 $"gender_id=(SELECT gender_id FROM Gender WHERE gender_name='{genderName}'), " +
                 $"phone_number='{phoneNumber}', birth_date='{birthDate}'" +
                 $"WHERE viewer_id={id}";
+
+            var isConnected = DatabaseConnection.RunQuery(query);
+
+            return isConnected;
+        }
+        
+        /// <summary>
+        ///     Изменяет пользователя по логину.
+        /// </summary>
+        public static bool UpdateUser(string login, string password, string mode)
+        {
+            var query = 
+                $"UPDATE Users SET password=md5('{password}'), access_mode='{mode}' " +
+                $"WHERE login='{login}'";
 
             var isConnected = DatabaseConnection.RunQuery(query);
 
@@ -197,6 +303,31 @@ namespace GreatSportEventApp
             if (dataTable != null && dataTable.Rows.Count == 1) return dataTable.Rows[0];
 
             return null;
+        }
+        
+        /// <summary>
+        ///     Получает пользователя по логину.
+        /// </summary>
+        public static DataRow GetUserByLogin(out bool isConnected, string login)
+        {
+            var query = $"SELECT access_mode FROM Users WHERE login='{login}'";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (dataTable != null && dataTable.Rows.Count == 1) return dataTable.Rows[0];
+
+            return null;
+        }
+        
+        /// <summary>
+        ///     Удаляет пользователя по логину.
+        /// </summary>
+        public static bool DeleteUserByLogin(string login)
+        {
+            var query = $"DELETE FROM Users WHERE login='{login}'";
+            var isConnected = DatabaseConnection.RunQuery(query);
+            return isConnected;
         }
     }
 }

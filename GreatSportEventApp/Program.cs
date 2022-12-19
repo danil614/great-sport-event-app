@@ -15,9 +15,9 @@ namespace GreatSportEventApp
             Application.SetCompatibleTextRenderingDefault(false);
 
             //////
-            var testForm = new OrganizerForm();
-            Application.Run(testForm);
-            return;
+            //var testForm = new AdminForm();
+            //Application.Run(testForm);
+            //return;
             //////
 
             // Открываем форму входа
@@ -35,20 +35,27 @@ namespace GreatSportEventApp
                     Application.Exit();
                     return;
                 }
-
+                
+                // Создаем форму организатора
+                var organizerForm = new OrganizerForm();
                 // Создаем форму продавца
                 var sellerForm = new SellerForm();
+                //Создаем форму администратора
+                var adminForm = new AdminForm();
 
                 switch (accessMode)
                 {
                     case "1":
-                        MessageBox.Show(@"АХАХАХАХАХ ВЫ АДМИН!!!");
+                        Application.Run(adminForm);
                         break;
                     case "2":
                         Application.Run(sellerForm);
                         break;
+                    case "3":
+                        Application.Run(organizerForm);
+                        break;
                     default:
-                        MessageBox.Show($@"НЕТУУУ {accessMode}");
+                        MessageBox.Show($@"Неправильный логин или пароль!");
                         break;
                 }
             }

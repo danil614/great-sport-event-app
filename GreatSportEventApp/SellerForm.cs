@@ -18,8 +18,9 @@ namespace GreatSportEventApp
         {
             // Получаем запрос со зрителями
             var listViewers = Query.GetListViewers(out var isConnected);
+            var listTickets = Query.GetListTickets(out var isConnectedTickets);
 
-            if (!isConnected)
+            if (!isConnected || !isConnectedTickets)
             {
                 MessageBox.Show(@"Отсутствует подключение!");
                 Close();
@@ -27,10 +28,12 @@ namespace GreatSportEventApp
             else
             {
                 dataViewers.DataSource = listViewers;
+                dataTickets.DataSource = listTickets;
             }
 
             // Растягиваем колонки
             dataViewers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataTickets.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void buttonAddViewer_Click(object sender, EventArgs e)
@@ -69,6 +72,29 @@ namespace GreatSportEventApp
         private void dataViewers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             buttonChangeViewer_Click(sender, e);
+        }
+
+        private void buttonSelect_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = tabPage2;
+        }
+
+        private void buttonCreateTicket_Click(object sender, EventArgs e)
+        {
+            if (dataViewers.CurrentRow == null) return;
+            var currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
+            decimal.TryParse(textPrice.Text, out var price);
+            var isConnected = Query.InsertTicket(currentRowId, textSeat.Text, price);
+            
+            if (!isConnected)
+            {
+                MessageBox.Show(@"Отсутствует подключение!");
+            }
+
+            textPrice.Text = "";
+            textSeat.Text = "";
+            
+            UpdateListViewers();
         }
     }
 }
