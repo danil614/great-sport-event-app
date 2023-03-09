@@ -135,7 +135,11 @@ namespace GreatSportEventApp
             // comboMode
             // 
             this.comboMode.FormattingEnabled = true;
-            this.comboMode.Items.AddRange(new object[] { "1", "2", "3", "4" });
+            this.comboMode.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
             this.comboMode.Location = new System.Drawing.Point(634, 541);
             this.comboMode.Name = "comboMode";
             this.comboMode.Size = new System.Drawing.Size(77, 26);
@@ -156,6 +160,7 @@ namespace GreatSportEventApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(903, 644);
             this.Controls.Add(this.buttonDeleteUser);
             this.Controls.Add(this.comboMode);
@@ -169,7 +174,6 @@ namespace GreatSportEventApp
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.dataUsers);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -179,6 +183,7 @@ namespace GreatSportEventApp
             ((System.ComponentModel.ISupportInitialize)(this.dataUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Button buttonDeleteUser;

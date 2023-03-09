@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp
 {
-    public partial class AdminForm : Form
+    public partial class AdminForm : DockContent
     {
         public AdminForm()
         {
