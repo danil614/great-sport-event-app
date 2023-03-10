@@ -21,16 +21,7 @@ namespace GreatSportEventApp
             mainDockPanel.Theme = new VS2015LightTheme();
         }
 
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void опрограммеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var aboutForm = new AboutForm();
-            aboutForm.ShowDialog();
-        }
+        #region MainToolStrip
 
         private void LoginToolStripButton_Click(object sender, EventArgs e)
         {
@@ -54,7 +45,7 @@ namespace GreatSportEventApp
                 var organizerForm = new OrganizerForm();
                 // Создаем форму продавца
                 var sellerForm = new SellerForm();
-                //Создаем форму администратора
+                // Создаем форму администратора
                 var adminForm = new AdminForm();
 
                 switch (accessMode)
@@ -63,10 +54,10 @@ namespace GreatSportEventApp
                         adminForm.Show(mainDockPanel, DockState.Document);
                         break;
                     case "2":
-                        Application.Run(sellerForm);
+                        sellerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     case "3":
-                        Application.Run(organizerForm);
+                        organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     default:
                         MessageBox.Show($@"Неправильный логин или пароль!");
@@ -74,5 +65,19 @@ namespace GreatSportEventApp
                 }
             }
         }
+
+        private void TreeFormToolStripButton_Click(object sender, EventArgs e)
+        {
+            var treeForm = new TreeForm();
+            treeForm.Show(mainDockPanel, DockState.Document);
+        }
+
+        private void AboutFormToolStripButton_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
+        }
+
+        #endregion
     }
 }

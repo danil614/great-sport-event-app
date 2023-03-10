@@ -221,10 +221,10 @@ namespace GreatSportEventApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1035, 720);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -238,6 +238,7 @@ namespace GreatSportEventApp
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTickets)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.TextBox textPrice;

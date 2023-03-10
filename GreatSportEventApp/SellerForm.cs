@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp
 {
-    public partial class SellerForm : Form
+    public partial class SellerForm : DockContent
     {
         public SellerForm()
         {
