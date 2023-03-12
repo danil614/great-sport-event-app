@@ -34,13 +34,13 @@ namespace GreatSportEventApp
             this.CreateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.MainTreeView = new System.Windows.Forms.TreeView();
             this.MainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainImageList = new System.Windows.Forms.ImageList(this.components);
-            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.MainToolStrip.SuspendLayout();
             this.MainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,15 @@ namespace GreatSportEventApp
             this.DeleteToolStripButton.Size = new System.Drawing.Size(71, 22);
             this.DeleteToolStripButton.Text = "Удалить";
             this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
+            // 
+            // UpdateToolStripButton
+            // 
+            this.UpdateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.update;
+            this.UpdateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
+            this.UpdateToolStripButton.Size = new System.Drawing.Size(81, 22);
+            this.UpdateToolStripButton.Text = "Обновить";
+            this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
             // MainTreeView
             // 
@@ -132,14 +141,6 @@ namespace GreatSportEventApp
             this.MainImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this.MainImageList.ImageSize = new System.Drawing.Size(16, 16);
             this.MainImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // UpdateToolStripButton
-            // 
-            this.UpdateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.update;
-            this.UpdateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
-            this.UpdateToolStripButton.Size = new System.Drawing.Size(81, 22);
-            this.UpdateToolStripButton.Text = "Обновить";
             // 
             // TreeForm
             // 

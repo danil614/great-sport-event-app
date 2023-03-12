@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GreatSportEventApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,6 +54,19 @@ namespace GreatSportEventApp
             if (MainTreeView.SelectedNode != null && MainTreeView.SelectedNode.Level == 1)
             {
 
+            }
+        }
+
+        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        {
+            using (var context = new GreatSportEventContext())
+            {
+                var sportEvents = context.SportEvents;
+
+                foreach (var sportEvent in sportEvents)
+                {
+                    MainTreeView.Nodes.Add(sportEvent.Description);
+                }
             }
         }
 
