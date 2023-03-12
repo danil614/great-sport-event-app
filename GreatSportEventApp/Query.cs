@@ -89,7 +89,32 @@ namespace GreatSportEventApp
 
             return dataTable;
         }
-        
+
+        /// <summary>
+        ///     Получает все спортивные мероприятия строкой.
+        /// </summary>
+        public static DataTable GetListSportEventsString(out bool isConnected)
+        {
+            const string query = @"SELECT
+                                    sport_event_id AS id,
+                                    CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
+                                    Locations.location_name, ', начало: ',
+                                    DATE_FORMAT(sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
+                                    TIME_FORMAT(duration, '%H ч. %i мин.')) AS name,
+                                    (SELECT Teams.team_id FROM Teams, Participation_events
+                                     WHERE Teams.team_id = Participation_events.team_id AND Participation_events.sport_event_id = Sport_events.sport_event_id
+                                     LIMIT 1) AS teams
+                                    FROM
+                                    Sport_events, Cities, Locations, Types
+                                    WHERE
+                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
         /// <summary>
         ///     Получает всех пользователей.
         /// </summary>

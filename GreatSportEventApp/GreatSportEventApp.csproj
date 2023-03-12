@@ -115,6 +115,7 @@
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\GreatSportEventContext.cs" />
+    <Compile Include="Entities\Locations.cs" />
     <Compile Include="Entities\SportEvent.cs" />
     <Compile Include="LocationForm.cs">
       <SubType>Form</SubType>

@@ -20,7 +20,33 @@ namespace GreatSportEventApp
 
         private void TreeForm_Load(object sender, EventArgs e)
         {
+            UpdateTreeView();
+        }
 
+        private void UpdateTreeView()
+        {
+            using (var context = new GreatSportEventContext())
+            {
+                var sportEvents = Query.GetListSportEventsString(out bool isConnected).AsEnumerable();
+
+                if (!isConnected)
+                {
+                    MessageBox.Show(@"Отсутствует подключение!");
+                    return;
+                }
+
+                foreach (var sportEvent in sportEvents)
+                {
+                    var node = new TreeNode(sportEvent["name"].ToString());
+                    node.Tag = sportEvent["id"];
+
+                    if (!(sportEvent["teams"] is DBNull))
+                    {
+                        node.Nodes.Add("Temp");
+                    }
+                    MainTreeView.Nodes.Add(node);
+                }
+            }
         }
 
         private void MainContextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -28,13 +54,13 @@ namespace GreatSportEventApp
             if (MainTreeView.SelectedNode == null)
             {
                 CreateToolStripMenuItem.Enabled = false;
-                EditToolStripMenuItem.Enabled   = false;
+                EditToolStripMenuItem.Enabled = false;
                 DeleteToolStripMenuItem.Enabled = false;
             }
             else
             {
                 CreateToolStripMenuItem.Enabled = true;
-                EditToolStripMenuItem.Enabled   = true;
+                EditToolStripMenuItem.Enabled = true;
                 DeleteToolStripMenuItem.Enabled = true;
             }
         }
@@ -61,20 +87,8 @@ namespace GreatSportEventApp
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            //using (var connection = new MySqlConnection(DatabaseConnection.GetConnectionString()))
-            //{
-                //connection.Open();
-                using (var context = new GreatSportEventContext())
-                {
-                    //context.
-                    var sportEvents = context.SportEvents;
-
-                    foreach (var sportEvent in sportEvents)
-                    {
-                        MainTreeView.Nodes.Add(sportEvent.ToString());
-                    }
-                }
-            //}
+            MainTreeView.Nodes.Clear();
+            UpdateTreeView();
         }
 
         #endregion

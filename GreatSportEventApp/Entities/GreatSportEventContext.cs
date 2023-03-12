@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 namespace GreatSportEventApp.Entities
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    class GreatSportEventContext : DbContext
+    public class GreatSportEventContext : DbContext
     {
         private static readonly string connectionString = DatabaseConnection.GetConnectionString();
 
         public DbSet<SportEvent> SportEvents { get; set; }
+
+        public DbSet<Locations> Locations { get; set; }
 
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)
