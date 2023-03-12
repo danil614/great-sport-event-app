@@ -62,11 +62,11 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListLocations(out bool isConnected)
         {
-            const string query = "SELECT location_id AS 'Номер', location_name AS 'Название', " +
-                                 "(SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS 'Город', " +
-                                 "address AS 'Адрес', (SELECT location_type_name FROM Location_types " +
-                                 "WHERE location_type_id = Locations.location_type_id) AS 'Тип места', " +
-                                 "capacity AS 'Вместимость' FROM Locations";
+            const string query = @"SELECT location_id AS 'Номер', location_name AS 'Название',
+                                 (SELECT city_name FROM Cities WHERE Cities.city_id = Locations.city_id) AS 'Город',
+                                 address AS 'Адрес',
+                                 (SELECT type_name FROM Types WHERE Types.type_id = Locations.location_type_id) AS 'Тип места',
+                                 capacity AS 'Вместимость' FROM Locations";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -211,7 +211,7 @@ namespace GreatSportEventApp
             var query =
                 "INSERT INTO Locations (location_name, city_id, address, location_type_id, capacity, description) " +
                 $"SELECT '{name}', (SELECT city_id FROM Cities WHERE city_name='{city}'), " +
-                $"'{address}', (SELECT location_type_id FROM Location_types WHERE location_type_name='{type}'), " +
+                $"'{address}', (SELECT type_id FROM Types WHERE type_name='{type}'), " +
                 $"'{capacity}', '{description}'";
 
             var isConnected = DatabaseConnection.RunQuery(query);
@@ -254,7 +254,7 @@ namespace GreatSportEventApp
             var query = 
                 $"UPDATE Locations SET location_name='{name}', " +
                 $"city_id=(SELECT city_id FROM Cities WHERE city_name='{city}'), address='{address}', " +
-                $"location_type_id=(SELECT location_type_id FROM Location_types WHERE location_type_name='{type}'), " +
+                $"location_type_id=(SELECT type_id FROM Types WHERE type_name='{type}'), " +
                 $"capacity='{capacity}', description='{description}' WHERE location_id={id}";
 
             var isConnected = DatabaseConnection.RunQuery(query);
@@ -324,7 +324,7 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListTypes(out bool isConnected)
         {
-            const string query = "SELECT location_type_name FROM Location_types ORDER BY location_type_name DESC";
+            const string query = "SELECT type_name FROM Types ORDER BY type_name DESC";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -357,7 +357,7 @@ namespace GreatSportEventApp
         {
             var query =
                 "SELECT location_name, (SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS city_name, address, " +
-                "(SELECT location_type_name FROM Location_types WHERE location_type_id = Locations.location_type_id) AS location_type, " +
+                "(SELECT type_name FROM Types WHERE type_id = Locations.location_type_id) AS location_type, " +
                 $"capacity, description FROM Locations WHERE location_id={id}";
 
             var dataTable = DatabaseConnection.GetDataTable(query);

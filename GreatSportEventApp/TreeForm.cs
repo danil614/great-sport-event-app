@@ -8,10 +8,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp
 {
-    public partial class TreeForm : WeifenLuo.WinFormsUI.Docking.DockContent
+    public partial class TreeForm : DockContent
     {
         public TreeForm()
         {
@@ -21,11 +22,11 @@ namespace GreatSportEventApp
         private void TreeForm_Load(object sender, EventArgs e)
         {
             UpdateTreeView();
-            MainTreeView_SetActivity(null, null);
         }
 
         private void UpdateTreeView()
         {
+            MainTreeView.Nodes.Clear();
             var sportEvents = Query.GetListSportEventsString(out bool isConnected).AsEnumerable();
 
             if (!isConnected)
@@ -46,6 +47,8 @@ namespace GreatSportEventApp
                 }
                 MainTreeView.Nodes.Add(node);
             }
+
+            MainTreeViewSetActivity();
         }
 
         #region Операции с базой данных
@@ -70,9 +73,7 @@ namespace GreatSportEventApp
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            MainTreeView.Nodes.Clear();
             UpdateTreeView();
-            MainTreeView_SetActivity(null, null);
         }
 
         #endregion
@@ -95,20 +96,18 @@ namespace GreatSportEventApp
             }
         }
 
-        private void MainTreeView_SetActivity(object sender, TreeViewEventArgs e)
+        private void MainTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (MainTreeView.SelectedNode == null)
-            {
-                CreateToolStripButton.Enabled = false;
-                EditToolStripButton.Enabled = false;
-                DeleteToolStripButton.Enabled = false;
-            }
-            else
-            {
-                CreateToolStripButton.Enabled = true;
-                EditToolStripButton.Enabled = true;
-                DeleteToolStripButton.Enabled = true;
-            }
+            MainTreeViewSetActivity();
+        }
+
+        private void MainTreeViewSetActivity()
+        {
+            var isEnabled = MainTreeView.SelectedNode != null;
+
+            CreateToolStripButton.Enabled = isEnabled;
+            EditToolStripButton.Enabled = isEnabled;
+            DeleteToolStripButton.Enabled = isEnabled;
         }
 
         #endregion

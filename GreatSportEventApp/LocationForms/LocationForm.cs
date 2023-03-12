@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.LocationForms
 {
     public partial class LocationForm : Form
     {
@@ -21,7 +21,7 @@ namespace GreatSportEventApp
 
             if (IsChanging)
             {
-                base.Text = @"Изменение места | Спортивное мероприятие";
+                Text = @"Изменение места";
                 labelTitle.Text = @"Изменение места";
             }
         }
@@ -35,7 +35,11 @@ namespace GreatSportEventApp
 
             var dataTable = Query.GetListCities(out var isConnected);
 
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                MessageBox.Show(@"Отсутствует подключение!");
+                return;
+            }
 
             foreach (DataRow row in dataTable.Rows) comboCity.Items.Add(row[0]);
         }
@@ -49,7 +53,11 @@ namespace GreatSportEventApp
 
             var dataTable = Query.GetListTypes(out var isConnected);
 
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected) 
+            { 
+                MessageBox.Show(@"Отсутствует подключение!");
+                return;
+            }
 
             foreach (DataRow row in dataTable.Rows) comboType.Items.Add(row[0]);
         }
@@ -89,7 +97,7 @@ namespace GreatSportEventApp
 
         private bool IsChanging { get; }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             bool isConnected;
             
@@ -104,7 +112,11 @@ namespace GreatSportEventApp
                     comboType.Text, Capacity, textDescription.Text);
             }
             
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                MessageBox.Show(@"Отсутствует подключение!");
+                return;
+            }
 
             Close();
         }

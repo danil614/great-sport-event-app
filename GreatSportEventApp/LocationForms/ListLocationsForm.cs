@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
-using GreatSportEventApp.LocationForms;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.LocationForms
 {
-    public partial class OrganizerForm : DockContent
+    public partial class ListLocationsForm : DockContent
     {
-        public OrganizerForm()
+        public ListLocationsForm()
         {
             InitializeComponent();
             UpdateListLocations();
@@ -20,9 +19,8 @@ namespace GreatSportEventApp
         {
             // Получаем запрос со зрителями
             var listLocations = Query.GetListLocations(out var isConnected);
-            var listLocationsGroup = Query.GetListLocationsGroup(out var isConnectedGroup);
 
-            if (!isConnected || !isConnectedGroup)
+            if (!isConnected)
             {
                 MessageBox.Show(@"Отсутствует подключение!");
                 Close();
@@ -30,22 +28,28 @@ namespace GreatSportEventApp
             else
             {
                 dataLocations.DataSource = listLocations;
-                dataLocationsGroup.DataSource = listLocationsGroup;
+                dataLocations.Columns["Номер"].Visible = false;
             }
 
             // Растягиваем колонки
             dataLocations.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataLocationsGroup.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            DataLocations_Click(null, null);
         }
 
-        private void buttonAddLocation_Click(object sender, EventArgs e)
+        private void DataLocations_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            EditToolStripButton_Click(sender, e);
+        }
+
+        private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
             var locationForm = new LocationForm(false);
             locationForm.ShowDialog();
             UpdateListLocations();
         }
 
-        private void buttonChangeLocation_Click(object sender, EventArgs e)
+        private void EditToolStripButton_Click(object sender, EventArgs e)
         {
             if (dataLocations.CurrentRow == null) return;
 
@@ -71,9 +75,28 @@ namespace GreatSportEventApp
             }
         }
 
-        private void dataLocations_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            buttonChangeLocation_Click(sender, e);
+
+        }
+
+        private void UpdateToolStripButton_Click(object sender, EventArgs e)
+        {
+            UpdateListLocations();
+        }
+
+        private void DataLocations_Click(object sender, EventArgs e)
+        {
+            var isEnabled = dataLocations.CurrentRow != null;
+
+            CreateToolStripButton.Enabled = isEnabled;
+            EditToolStripButton.Enabled = isEnabled;
+            DeleteToolStripButton.Enabled = isEnabled;
+        }
+
+        private void DataLocations_CurrentCellChanged(object sender, EventArgs e)
+        {
+            DataLocations_Click(null, null);
         }
     }
 }

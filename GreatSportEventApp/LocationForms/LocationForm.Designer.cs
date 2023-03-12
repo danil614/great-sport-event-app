@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.LocationForms
 {
     partial class LocationForm
     {
@@ -148,7 +148,7 @@ namespace GreatSportEventApp
             this.buttonSave.TabIndex = 14;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // comboType
             // 
@@ -193,9 +193,10 @@ namespace GreatSportEventApp
             this.MinimizeBox = false;
             this.Name = "LocationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Добавление места | Спортивное мероприятие";
+            this.Text = "Добавление места";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.TextBox textDescription;

@@ -1,4 +1,4 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.LocationForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +71,12 @@ namespace GreatSportEventApp
         {
             var treeForm = new TreeForm();
             treeForm.Show(mainDockPanel, DockState.Document);
+        }
+
+        private void ListLocationsFormToolStripButton_Click(object sender, EventArgs e)
+        {
+            var locationsForm = new ListLocationsForm();
+            locationsForm.Show(mainDockPanel, DockState.Document);
         }
 
         private void AboutFormToolStripButton_Click(object sender, EventArgs e)
