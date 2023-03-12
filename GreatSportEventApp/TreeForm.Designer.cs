@@ -35,12 +35,12 @@ namespace GreatSportEventApp
             this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.MainTreeView = new System.Windows.Forms.TreeView();
             this.MainContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainImageList = new System.Windows.Forms.ImageList(this.components);
+            this.MainTreeView = new System.Windows.Forms.TreeView();
             this.MainToolStrip.SuspendLayout();
             this.MainContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -93,15 +93,6 @@ namespace GreatSportEventApp
             this.UpdateToolStripButton.Text = "Обновить";
             this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
-            // MainTreeView
-            // 
-            this.MainTreeView.ContextMenuStrip = this.MainContextMenuStrip;
-            this.MainTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainTreeView.Location = new System.Drawing.Point(0, 25);
-            this.MainTreeView.Name = "MainTreeView";
-            this.MainTreeView.Size = new System.Drawing.Size(733, 414);
-            this.MainTreeView.TabIndex = 1;
-            // 
             // MainContextMenuStrip
             // 
             this.MainContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -142,6 +133,17 @@ namespace GreatSportEventApp
             this.MainImageList.ImageSize = new System.Drawing.Size(16, 16);
             this.MainImageList.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // MainTreeView
+            // 
+            this.MainTreeView.ContextMenuStrip = this.MainContextMenuStrip;
+            this.MainTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTreeView.Location = new System.Drawing.Point(0, 25);
+            this.MainTreeView.Name = "MainTreeView";
+            this.MainTreeView.Size = new System.Drawing.Size(733, 414);
+            this.MainTreeView.TabIndex = 1;
+            this.MainTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.MainTreeView_BeforeExpand);
+            this.MainTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MainTreeView_SetActivity);
+            // 
             // TreeForm
             // 
             this.ClientSize = new System.Drawing.Size(733, 439);
@@ -166,12 +168,12 @@ namespace GreatSportEventApp
         private System.Windows.Forms.ToolStripButton CreateToolStripButton;
         private System.Windows.Forms.ToolStripButton EditToolStripButton;
         private System.Windows.Forms.ToolStripButton DeleteToolStripButton;
-        private System.Windows.Forms.TreeView MainTreeView;
         private System.Windows.Forms.ImageList MainImageList;
         private System.Windows.Forms.ContextMenuStrip MainContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem CreateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton UpdateToolStripButton;
+        private System.Windows.Forms.TreeView MainTreeView;
     }
 }

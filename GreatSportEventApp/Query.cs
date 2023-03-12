@@ -96,7 +96,7 @@ namespace GreatSportEventApp
         public static DataTable GetListSportEventsString(out bool isConnected)
         {
             const string query = @"SELECT
-                                    sport_event_id AS id,
+                                    Sport_events.sport_event_id AS id,
                                     CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
                                     Locations.location_name, ', начало: ',
                                     DATE_FORMAT(sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
@@ -107,7 +107,44 @@ namespace GreatSportEventApp
                                     FROM
                                     Sport_events, Cities, Locations, Types
                                     WHERE
-                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id";
+                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                                    ORDER BY Sport_events.sport_event_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает команды по индексу спортивного мероприятия.
+        /// </summary>
+        public static DataTable GetListTeamsBySportEvent(out bool isConnected, int SportEventId)
+        {
+            string query = $@"SELECT Teams.team_id AS id, CONCAT(Teams.team_name, ', рейтинг: ', Teams.rating) AS name,
+                              (SELECT Athletes.athlete_id FROM Athletes WHERE Athletes.team_id = Teams.team_id LIMIT 1) AS athletes
+                              FROM Teams, Participation_events
+                              WHERE Teams.team_id = Participation_events.team_id AND Participation_events.sport_event_id = {SportEventId}
+                              ORDER BY Teams.team_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает спортсменоы по индексу команды.
+        /// </summary>
+        public static DataTable GetListAthletesByTeam(out bool isConnected, int TeamId)
+        {
+            string query = $@"SELECT Athletes.athlete_id as id,
+                              CONCAT((SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Athletes.position_id), ': ',
+                              Athletes.surname, ' ', Athletes.name, ' ', Athletes.patronymic, ', дата рождения: ',
+                              DATE_FORMAT(Athletes.birth_date, '%d.%m.%Y')) AS name
+                              FROM Athletes
+                              WHERE Athletes.team_id = {TeamId}
+                              ORDER BY Athletes.athlete_id";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
