@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.BasicForms
 {
     public partial class LoginForm : Form
     {

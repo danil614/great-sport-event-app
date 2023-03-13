@@ -20,31 +20,19 @@ namespace GreatSportEventApp.Entities
         public int LocationId { get; set; }
 
         [Required]
+        [Column("type_id")]
+        public int TypeId { get; set; }
+
+        [Required]
         [Column("sport_event_date_time")]
         [DataType(DataType.DateTime)]
         public DateTime DateTime { get; set; }
 
         [Required]
         [Column("duration")]
-        [DataType(DataType.DateTime)]
-        public DateTime Duration { get; set; }
+        public TimeSpan Duration { get; set; }
 
-        [NotMapped]
         [Column("description")]
-        [StringLength(maximumLength: 200)]
         public string Description { get; set; }
-
-        [NotMapped]
-        [Column("location_name")]
-        public string LocationName { get; set; }
-
-        [NotMapped]
-        [Column("city_name")]
-        public string CityName { get; set; }
-
-        public override string ToString()
-        {
-            return $"{CityName}, {LocationName}, начало: {DateTime:dd.MM.yyyy HH:mm}, длительность: {Duration.ToShortTimeString()}";
-        }
     }
 }

@@ -117,6 +117,31 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает спортивное мероприятие по индексу.
+        /// </summary>
+        public static DataRow GetSportEventById(out bool isConnected, int SportEventId)
+        {
+            string query =       $@"SELECT Types.type_name AS type_name,
+                                    CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
+                                    Locations.location_id AS location_id,
+                                    Sport_events.sport_event_date_time AS dateTimeEvent,
+                                    Sport_events.duration AS duration,
+                                    Sport_events.description AS description
+                                    FROM
+                                    Sport_events, Cities, Locations, Types
+                                    WHERE Sport_events.sport_event_id = {SportEventId} AND
+                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                                    ORDER BY Sport_events.sport_event_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (dataTable != null && dataTable.Rows.Count == 1) return dataTable.Rows[0];
+
+            return null;
+        }
+
+        /// <summary>
         ///     Получает команды по индексу спортивного мероприятия.
         /// </summary>
         public static DataTable GetListTeamsBySportEvent(out bool isConnected, int SportEventId)
@@ -150,6 +175,18 @@ namespace GreatSportEventApp
             isConnected = dataTable != null;
 
             return dataTable;
+        }
+
+        public static int GetTypeIdByName(out bool isConnected, string typeName)
+        {
+            string query = $@"SELECT type_id FROM Types WHERE type_name = '{typeName}'";
+            
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (dataTable != null && dataTable.Rows.Count == 1) return (int)dataTable.Rows[0]["type_id"];
+
+            return -1;
         }
 
         /// <summary>

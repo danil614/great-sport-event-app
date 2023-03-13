@@ -6,10 +6,19 @@ namespace GreatSportEventApp.LocationForms
 {
     public partial class ListLocationsForm : DockContent
     {
-        public ListLocationsForm()
+        public DataGridViewRow SelectedLocation { get; set; }
+
+        public ListLocationsForm(bool isSelectionMode)
         {
             InitializeComponent();
             UpdateListLocations();
+
+            if (!isSelectionMode)
+            {
+                SelectToolStripButton.Visible = false;
+            }
+
+            SelectedLocation = null;
         }
 
         /// <summary>
@@ -97,6 +106,20 @@ namespace GreatSportEventApp.LocationForms
         private void DataLocations_CurrentCellChanged(object sender, EventArgs e)
         {
             DataLocations_Click(null, null);
+        }
+
+        private void SelectToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (dataLocations.CurrentRow == null)
+            {
+                MessageBox.Show(@"Выделите нужную строку с местом расположения!");
+                return;
+            }
+            else
+            {
+                SelectedLocation = dataLocations.CurrentRow;
+                Close();
+            }
         }
     }
 }

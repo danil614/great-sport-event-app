@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.BasicForms
 {
     public partial class MainForm : Form
     {
@@ -75,7 +75,7 @@ namespace GreatSportEventApp
 
         private void ListLocationsFormToolStripButton_Click(object sender, EventArgs e)
         {
-            var locationsForm = new ListLocationsForm();
+            var locationsForm = new ListLocationsForm(false);
             locationsForm.Show(mainDockPanel, DockState.Document);
         }
 

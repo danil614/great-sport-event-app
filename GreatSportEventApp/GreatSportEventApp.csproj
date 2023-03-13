@@ -102,10 +102,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs">
+    <Compile Include="BasicForms\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutForm.Designer.cs">
+    <Compile Include="BasicForms\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminForm.cs">
@@ -123,10 +123,10 @@
     <Compile Include="LocationForms\LocationForm.Designer.cs">
       <DependentUpon>LocationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="BasicForms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="BasicForms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LocationForms\ListLocationsForm.cs">
@@ -147,10 +147,10 @@
     <Compile Include="PersonForm.Designer.cs">
       <DependentUpon>PersonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginForm.cs">
+    <Compile Include="BasicForms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginForm.Designer.cs">
+    <Compile Include="BasicForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
@@ -163,13 +163,19 @@
     <Compile Include="SellerForm.Designer.cs">
       <DependentUpon>SellerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TreeForm.cs">
+    <Compile Include="BasicForms\TreeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TreeForm.Designer.cs">
+    <Compile Include="BasicForms\TreeForm.Designer.cs">
       <DependentUpon>TreeForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutForm.resx">
+    <Compile Include="SportEventForms\SportEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SportEventForms\SportEventForm.Designer.cs">
+      <DependentUpon>SportEventForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BasicForms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
@@ -178,7 +184,7 @@
     <EmbeddedResource Include="LocationForms\LocationForm.resx">
       <DependentUpon>LocationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="BasicForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LocationForms\ListLocationsForm.resx">
@@ -190,7 +196,7 @@
     <EmbeddedResource Include="PersonForm.resx">
       <DependentUpon>PersonForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
+    <EmbeddedResource Include="BasicForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -206,8 +212,11 @@
     <EmbeddedResource Include="SellerForm.resx">
       <DependentUpon>SellerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TreeForm.resx">
+    <EmbeddedResource Include="BasicForms\TreeForm.resx">
       <DependentUpon>TreeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SportEventForms\SportEventForm.resx">
+      <DependentUpon>SportEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -237,6 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

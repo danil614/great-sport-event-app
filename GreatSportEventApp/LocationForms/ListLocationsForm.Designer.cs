@@ -35,14 +35,15 @@ namespace GreatSportEventApp.LocationForms
             this.labelTitle = new System.Windows.Forms.Label();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.CreateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.SelectToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CreateToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataLocations)).BeginInit();
             this.MainToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +84,7 @@ namespace GreatSportEventApp.LocationForms
             this.MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectToolStripButton,
             this.toolStripSeparator1,
             this.CreateToolStripButton,
             this.toolStripSeparator2,
@@ -103,61 +105,78 @@ namespace GreatSportEventApp.LocationForms
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // CreateToolStripButton
-            // 
-            this.CreateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.create;
-            this.CreateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CreateToolStripButton.Name = "CreateToolStripButton";
-            this.CreateToolStripButton.Size = new System.Drawing.Size(77, 22);
-            this.CreateToolStripButton.Text = "Создать";
-            this.CreateToolStripButton.Click += new System.EventHandler(this.CreateToolStripButton_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // EditToolStripButton
-            // 
-            this.EditToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.edit;
-            this.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditToolStripButton.Name = "EditToolStripButton";
-            this.EditToolStripButton.Size = new System.Drawing.Size(85, 22);
-            this.EditToolStripButton.Text = "Изменить";
-            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // DeleteToolStripButton
-            // 
-            this.DeleteToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.delete;
-            this.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteToolStripButton.Name = "DeleteToolStripButton";
-            this.DeleteToolStripButton.Size = new System.Drawing.Size(76, 22);
-            this.DeleteToolStripButton.Text = "Удалить";
-            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // UpdateToolStripButton
-            // 
-            this.UpdateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.update;
-            this.UpdateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
-            this.UpdateToolStripButton.Size = new System.Drawing.Size(85, 22);
-            this.UpdateToolStripButton.Text = "Обновить";
-            this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // SelectToolStripButton
+            // 
+            this.SelectToolStripButton.AutoSize = false;
+            this.SelectToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SelectToolStripButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.SelectToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.select;
+            this.SelectToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.SelectToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SelectToolStripButton.Name = "SelectToolStripButton";
+            this.SelectToolStripButton.Size = new System.Drawing.Size(200, 22);
+            this.SelectToolStripButton.Text = "Выбрать";
+            this.SelectToolStripButton.Click += new System.EventHandler(this.SelectToolStripButton_Click);
+            // 
+            // CreateToolStripButton
+            // 
+            this.CreateToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CreateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.create;
+            this.CreateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CreateToolStripButton.Name = "CreateToolStripButton";
+            this.CreateToolStripButton.Size = new System.Drawing.Size(82, 22);
+            this.CreateToolStripButton.Text = "Создать";
+            this.CreateToolStripButton.Click += new System.EventHandler(this.CreateToolStripButton_Click);
+            // 
+            // EditToolStripButton
+            // 
+            this.EditToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EditToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.edit;
+            this.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditToolStripButton.Name = "EditToolStripButton";
+            this.EditToolStripButton.Size = new System.Drawing.Size(91, 22);
+            this.EditToolStripButton.Text = "Изменить";
+            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
+            // 
+            // DeleteToolStripButton
+            // 
+            this.DeleteToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DeleteToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.delete;
+            this.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteToolStripButton.Name = "DeleteToolStripButton";
+            this.DeleteToolStripButton.Size = new System.Drawing.Size(81, 22);
+            this.DeleteToolStripButton.Text = "Удалить";
+            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
+            // 
+            // UpdateToolStripButton
+            // 
+            this.UpdateToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UpdateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.update;
+            this.UpdateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UpdateToolStripButton.Name = "UpdateToolStripButton";
+            this.UpdateToolStripButton.Size = new System.Drawing.Size(92, 22);
+            this.UpdateToolStripButton.Text = "Обновить";
+            this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
             // ListLocationsForm
             // 
@@ -193,5 +212,6 @@ namespace GreatSportEventApp.LocationForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton SelectToolStripButton;
     }
 }

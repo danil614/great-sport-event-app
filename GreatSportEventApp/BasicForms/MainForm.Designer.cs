@@ -1,5 +1,5 @@
 ﻿
-namespace GreatSportEventApp
+namespace GreatSportEventApp.BasicForms
 {
     partial class MainForm
     {

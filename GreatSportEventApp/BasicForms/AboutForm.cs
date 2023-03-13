@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.BasicForms
 {
     partial class AboutForm : Form
     {

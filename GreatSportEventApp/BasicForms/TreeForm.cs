@@ -1,4 +1,5 @@
 ﻿using GreatSportEventApp.Entities;
+using GreatSportEventApp.SportEventForms;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.BasicForms
 {
     public partial class TreeForm : DockContent
     {
@@ -55,20 +56,39 @@ namespace GreatSportEventApp
 
         private void CreateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var currentNode = MainTreeView.SelectedNode;
+            if (currentNode != null)
+            {
+                switch (currentNode.Level)
+                {
+                    case 0:
+                        // Изменяем спортивное мероприятие
+                        var sportEventForm = new SportEventForm(false, -1);
+                        sportEventForm.ShowDialog();
+                        break;
+                }
+            }
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var currentNode = MainTreeView.SelectedNode;
+            if (currentNode != null)
+            {
+                switch (currentNode.Level)
+                {
+                    case 0:
+                        // Изменяем спортивное мероприятие
+                        var sportEventForm = new SportEventForm(true, (int)currentNode.Tag);
+                        sportEventForm.ShowDialog();
+                        break;
+                }
+            }
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            if (MainTreeView.SelectedNode != null && MainTreeView.SelectedNode.Level == 1)
-            {
 
-            }
         }
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
