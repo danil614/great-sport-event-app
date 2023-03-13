@@ -54,6 +54,21 @@ namespace GreatSportEventApp.BasicForms
 
         #region Операции с базой данных
 
+        private void CreateToolStripButton_Click(object sender, EventArgs e)
+        {
+            // Создаем спортивное мероприятие
+            var sportEventForm = new SportEventForm(false, -1);
+            sportEventForm.ShowDialog();
+
+            if (sportEventForm.SportEventId != -1)
+            {
+                var node = new TreeNode(sportEventForm.SportEventString);
+                node.Tag = sportEventForm.SportEventId;
+                node.Checked = false;
+                MainTreeView.Nodes.Add(node);
+            }
+        }
+
         private void CreateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var currentNode = MainTreeView.SelectedNode;
@@ -62,9 +77,12 @@ namespace GreatSportEventApp.BasicForms
                 switch (currentNode.Level)
                 {
                     case 0:
-                        // Изменяем спортивное мероприятие
-                        var sportEventForm = new SportEventForm(false, -1);
-                        sportEventForm.ShowDialog();
+                        // Создаем команду для участия в спортивном мероприятия
+                        break;
+                    case 1:
+                        // Создаем спортсменов в команду
+                        break;
+                    default:
                         break;
                 }
             }
@@ -81,6 +99,14 @@ namespace GreatSportEventApp.BasicForms
                         // Изменяем спортивное мероприятие
                         var sportEventForm = new SportEventForm(true, (int)currentNode.Tag);
                         sportEventForm.ShowDialog();
+                        if (sportEventForm.SportEventString != "")
+                            currentNode.Text = sportEventForm.SportEventString;
+                        break;
+                    case 1:
+                        // Изменяем команду
+                        break;
+                    case 2:
+                        // Изменяем спортсмена
                         break;
                 }
             }

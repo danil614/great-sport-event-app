@@ -117,6 +117,30 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает спортивное мероприятие строкой по индексу.
+        /// </summary>
+        public static string GetListSportEventStringById(out bool isConnected, int SportEventId)
+        {
+            string query =       $@"SELECT
+                                    CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
+                                    Locations.location_name, ', начало: ',
+                                    DATE_FORMAT(Sport_events.sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
+                                    TIME_FORMAT(Sport_events.duration, '%H ч. %i мин.')) AS name
+                                    FROM
+                                    Sport_events, Cities, Locations, Types
+                                    WHERE
+                                    Sport_events.sport_event_id = {SportEventId} AND
+                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                                    ORDER BY Sport_events.sport_event_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (isConnected && dataTable.Rows.Count == 1) return dataTable.Rows[0]["name"].ToString();
+            return "";
+        }
+
+        /// <summary>
         ///     Получает спортивное мероприятие по индексу.
         /// </summary>
         public static DataRow GetSportEventById(out bool isConnected, int SportEventId)

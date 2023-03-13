@@ -11,11 +11,15 @@ namespace GreatSportEventApp.SportEventForms
         private int sportEventId;
         private int locationId;
 
+        public string SportEventString { get; set; }
+        public int SportEventId { get => sportEventId; set => sportEventId = value; }
+
         public SportEventForm(bool isChanging, int _sportEventId)
         {
             InitializeComponent();
 
             sportEventId = _sportEventId;
+            SportEventString = "";
 
             // Запрещаем редактирование типа места
             comboType.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -33,6 +37,7 @@ namespace GreatSportEventApp.SportEventForms
 
             duration.Format = DateTimePickerFormat.Custom;
             duration.CustomFormat = "HH:mm";
+            duration.ShowUpDown = true;
         }
 
         private void GetSportEventById(int sportEventId)
@@ -108,6 +113,9 @@ namespace GreatSportEventApp.SportEventForms
                 sportEvent.Duration = new TimeSpan(duration.Value.Hour, duration.Value.Minute, 0);
                 sportEvent.Description = textDescription.Text;
                 context.SaveChanges();
+
+                SportEventId = sportEvent.Id;
+                SportEventString = Query.GetListSportEventStringById(out isConnected, SportEventId);
             }
 
             if (!isConnected)
