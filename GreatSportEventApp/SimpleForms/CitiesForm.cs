@@ -1,19 +1,19 @@
 ﻿using GreatSportEventApp.Entities;
+using MySql.Data.MySqlClient;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.SimpleForms
 {
     public partial class CitiesForm : DockContent
     {
-        private City oldCity;
-
         public CitiesForm()
         {
             InitializeComponent();
             UpdateListCities();
-            oldCity = null;
+            dataView.EditMode = DataGridViewEditMode.EditOnKeystroke;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace GreatSportEventApp
         private void DataView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dataView.CurrentRow == null) return;
-            // Тут надо запретить смену id---------------------------
+
             using (var context = new GreatSportEventContext())
             {
                 string name = dataView.CurrentRow.Cells[1].Value.ToString();
@@ -63,15 +63,15 @@ namespace GreatSportEventApp
 
                 if (isIdFill && name != "")
                 {
-                    var city = context.Cities.Find(oldCity.Id);
+                    var city = context.Cities.Find(id);
 
                     if (city is null)
                     {
                         city = new City();
+                        city.Id = id;
                         context.Cities.Add(city);
                     }
 
-                    city.Id = id;
                     city.Name = name;
                     context.SaveChanges();
 
@@ -82,16 +82,61 @@ namespace GreatSportEventApp
 
         private void DataView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            oldCity = null;
+            if (dataView.CurrentRow == null) return;
+
+            string stringId = dataView.CurrentRow.Cells[0].Value.ToString();
+            if (e.ColumnIndex == 0 && stringId != "")
+            {
+                MessageBox.Show(@"Нельзя менять id города!");
+                e.Cancel = true;
+            }
+        }
+
+        private void CreateToolStripButton_Click(object sender, EventArgs e)
+        {
+            int n = dataView.Rows.Count;
+            dataView.CurrentCell = dataView.Rows[n - 1].Cells[0];
+            dataView.BeginEdit(true);
+        }
+        private void EditToolStripButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewCell cell = dataView.CurrentRow.Cells[1];
+            dataView.CurrentCell = cell;
+            dataView.BeginEdit(true);
+        }
+
+        private void DeleteToolStripButton_Click(object sender, EventArgs e)
+        {
             if (dataView.CurrentRow == null) return;
 
             using (var context = new GreatSportEventContext())
             {
+                string name = dataView.CurrentRow.Cells[1].Value.ToString();
                 bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
 
-                if (isIdFill)
+                if (isIdFill && name != "")
                 {
-                    oldCity = context.Cities.Find(id);
+                    var city = context.Cities.Find(id);
+
+                    if (city is null)
+                    {
+                        MessageBox.Show(@"Невозможно удалить запись!");
+                    }
+                    else
+                    {
+                        context.Cities.Remove(city);
+
+                        try
+                        {
+                            context.SaveChanges();
+                        }
+                        catch (DbUpdateException)
+                        {
+                            MessageBox.Show(@"Невозможно удалить запись!");
+                        }
+
+                        UpdateListCities();
+                    }
                 }
             }
         }

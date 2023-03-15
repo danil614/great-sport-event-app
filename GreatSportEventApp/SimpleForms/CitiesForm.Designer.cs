@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.SimpleForms
 {
     partial class CitiesForm
     {
@@ -110,6 +110,7 @@ namespace GreatSportEventApp
             this.CreateToolStripButton.Name = "CreateToolStripButton";
             this.CreateToolStripButton.Size = new System.Drawing.Size(82, 22);
             this.CreateToolStripButton.Text = "Создать";
+            this.CreateToolStripButton.Click += new System.EventHandler(this.CreateToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
@@ -124,6 +125,7 @@ namespace GreatSportEventApp
             this.EditToolStripButton.Name = "EditToolStripButton";
             this.EditToolStripButton.Size = new System.Drawing.Size(91, 22);
             this.EditToolStripButton.Text = "Изменить";
+            this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
@@ -138,6 +140,7 @@ namespace GreatSportEventApp
             this.DeleteToolStripButton.Name = "DeleteToolStripButton";
             this.DeleteToolStripButton.Size = new System.Drawing.Size(81, 22);
             this.DeleteToolStripButton.Text = "Удалить";
+            this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
             // 
             // toolStripSeparator4
             // 

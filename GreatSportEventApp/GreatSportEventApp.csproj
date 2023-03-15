@@ -120,10 +120,10 @@
     <Compile Include="Entities\ParticipationEvent.cs" />
     <Compile Include="Entities\SportEvent.cs" />
     <Compile Include="Entities\Team.cs" />
-    <Compile Include="CitiesForm.cs">
+    <Compile Include="SimpleForms\CitiesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CitiesForm.Designer.cs">
+    <Compile Include="SimpleForms\CitiesForm.Designer.cs">
       <DependentUpon>CitiesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LocationForms\LocationForm.cs">
@@ -197,7 +197,7 @@
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CitiesForm.resx">
+    <EmbeddedResource Include="SimpleForms\CitiesForm.resx">
       <DependentUpon>CitiesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LocationForms\LocationForm.resx">

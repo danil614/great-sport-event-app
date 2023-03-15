@@ -1,4 +1,5 @@
 ﻿using GreatSportEventApp.LocationForms;
+using GreatSportEventApp.SimpleForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -88,7 +89,7 @@ namespace GreatSportEventApp.BasicForms
         private void CitiesToolStripButton_Click(object sender, EventArgs e)
         {
             var citiesForm = new CitiesForm();
-            citiesForm.ShowDialog();
+            citiesForm.Show(mainDockPanel, DockState.Document);
         }
 
         #endregion
