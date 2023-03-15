@@ -11,7 +11,6 @@ namespace GreatSportEventApp.Entities
     [Table("Participation_events")]
     public class ParticipationEvent
     {
-        //[Key, Column("sport_event_id"), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column("sport_event_id", Order = 0)]
         public int SportEventId { get; set; }
 

@@ -85,6 +85,12 @@ namespace GreatSportEventApp.BasicForms
             aboutForm.ShowDialog();
         }
 
+        private void CitiesToolStripButton_Click(object sender, EventArgs e)
+        {
+            var citiesForm = new CitiesForm();
+            citiesForm.ShowDialog();
+        }
+
         #endregion
     }
 }

@@ -424,7 +424,20 @@ namespace GreatSportEventApp
 
             return dataTable;
         }
-        
+
+        /// <summary>
+        ///     Получает все города.
+        /// </summary>
+        public static DataTable GetListCitiesAndId(out bool isConnected)
+        {
+            const string query = "SELECT city_id AS 'Код ОКТМО', city_name AS 'Название' FROM Cities ORDER BY city_name";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
         /// <summary>
         ///     Получает все типы мест.
         /// </summary>

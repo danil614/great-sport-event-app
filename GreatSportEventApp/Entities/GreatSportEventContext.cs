@@ -20,16 +20,27 @@ namespace GreatSportEventApp.Entities
 
         public DbSet<ParticipationEvent> ParticipationEvents { get; set; }
 
+        public DbSet<City> Cities { get; set; }
+
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)
         {
+            Database.SetInitializer(new Initializer());
             Database.Log = delegate (string message) { Console.Write(message); };
         }
 
         public GreatSportEventContext()
                : base(connectionString)
         {
+            Database.SetInitializer(new Initializer());
             Database.Log = delegate (string message) { Console.Write(message); };
+        }
+    }
+
+    public class Initializer : IDatabaseInitializer<GreatSportEventContext>
+    {
+        public void InitializeDatabase(GreatSportEventContext context)
+        {
         }
     }
 }

@@ -31,16 +31,18 @@ namespace GreatSportEventApp.BasicForms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LoginToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.TreeFormToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ListLocationsFormToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.AboutFormToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.CitiesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.MainToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +57,8 @@ namespace GreatSportEventApp.BasicForms
             this.toolStripSeparator2,
             this.ListLocationsFormToolStripButton,
             this.toolStripSeparator7,
+            this.CitiesToolStripButton,
+            this.toolStripSeparator4,
             this.AboutFormToolStripButton,
             this.toolStripSeparator3});
             this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
@@ -63,6 +67,11 @@ namespace GreatSportEventApp.BasicForms
             this.MainToolStrip.Size = new System.Drawing.Size(1137, 25);
             this.MainToolStrip.TabIndex = 1;
             this.MainToolStrip.Text = "mainToolStrip";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // LoginToolStripButton
             // 
@@ -87,6 +96,11 @@ namespace GreatSportEventApp.BasicForms
             this.TreeFormToolStripButton.Size = new System.Drawing.Size(157, 22);
             this.TreeFormToolStripButton.Text = "Спортивные мероприятия";
             this.TreeFormToolStripButton.Click += new System.EventHandler(this.TreeFormToolStripButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // ListLocationsFormToolStripButton
             // 
@@ -113,6 +127,11 @@ namespace GreatSportEventApp.BasicForms
             this.AboutFormToolStripButton.Text = "Спр&авка";
             this.AboutFormToolStripButton.Click += new System.EventHandler(this.AboutFormToolStripButton_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // mainDockPanel
             // 
             this.mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,20 +141,20 @@ namespace GreatSportEventApp.BasicForms
             this.mainDockPanel.Size = new System.Drawing.Size(1137, 690);
             this.mainDockPanel.TabIndex = 2;
             // 
-            // toolStripSeparator1
+            // CitiesToolStripButton
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.CitiesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CitiesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CitiesToolStripButton.Image")));
+            this.CitiesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CitiesToolStripButton.Name = "CitiesToolStripButton";
+            this.CitiesToolStripButton.Size = new System.Drawing.Size(50, 22);
+            this.CitiesToolStripButton.Text = "Города";
+            this.CitiesToolStripButton.Click += new System.EventHandler(this.CitiesToolStripButton_Click);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // MainForm
             // 
@@ -170,5 +189,7 @@ namespace GreatSportEventApp.BasicForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton CitiesToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
