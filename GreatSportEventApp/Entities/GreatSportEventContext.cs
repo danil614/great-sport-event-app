@@ -16,7 +16,7 @@ namespace GreatSportEventApp.Entities
 
         public DbSet<SportEvent> SportEvents { get; set; }
 
-        // public DbSet<Locations> Locations { get; set; }
+        public DbSet<Team> Teams { get; set; }
 
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)

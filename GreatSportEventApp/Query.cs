@@ -91,9 +91,9 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        ///     Получает все спортивные мероприятия строкой.
+        ///     Получает все спортивные мероприятия.
         /// </summary>
-        public static DataTable GetListSportEventsString(out bool isConnected)
+        public static DataTable GetListSportEvents(out bool isConnected)
         {
             const string query = @"SELECT
                                     Sport_events.sport_event_id AS id,
@@ -119,7 +119,7 @@ namespace GreatSportEventApp
         /// <summary>
         ///     Получает спортивное мероприятие строкой по индексу.
         /// </summary>
-        public static string GetListSportEventStringById(out bool isConnected, int SportEventId)
+        public static string GetSportEventStringById(out bool isConnected, int SportEventId)
         {
             string query =       $@"SELECT
                                     CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
@@ -166,6 +166,30 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает команду по индексу.
+        /// </summary>
+        public static DataRow GetTeamById(out bool isConnected, int teamId)
+        {
+            string query =       $@"SELECT Teams.team_name AS team_name,
+                                    CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
+                                    Teams.location_id AS location_id,
+                                    Teams.rating AS rating,
+                                    Teams.description AS description
+                                    FROM
+                                    Teams, Cities, Locations
+                                    WHERE Teams.team_id = {teamId} AND
+                                    Cities.city_id = Locations.city_id AND Locations.location_id = Teams.location_id
+                                    ORDER BY Teams.team_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (dataTable != null && dataTable.Rows.Count == 1) return dataTable.Rows[0];
+
+            return null;
+        }
+
+        /// <summary>
         ///     Получает команды по индексу спортивного мероприятия.
         /// </summary>
         public static DataTable GetListTeamsBySportEvent(out bool isConnected, int SportEventId)
@@ -180,6 +204,23 @@ namespace GreatSportEventApp
             isConnected = dataTable != null;
 
             return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает строку команды по индексу.
+        /// </summary>
+        public static string GetTeamStringById(out bool isConnected, int teamId)
+        {
+            string query = $@"SELECT CONCAT(Teams.team_name, ', рейтинг: ', Teams.rating) AS name
+                              FROM Teams
+                              WHERE Teams.team_id = {teamId}
+                              ORDER BY Teams.team_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (isConnected && dataTable.Rows.Count == 1) return dataTable.Rows[0]["name"].ToString();
+            return "";
         }
 
         /// <summary>

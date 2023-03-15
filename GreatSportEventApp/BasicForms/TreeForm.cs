@@ -1,5 +1,6 @@
 ﻿using GreatSportEventApp.Entities;
 using GreatSportEventApp.SportEventForms;
+using GreatSportEventApp.TeamForms;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace GreatSportEventApp.BasicForms
         private void UpdateTreeView()
         {
             MainTreeView.Nodes.Clear();
-            var sportEvents = Query.GetListSportEventsString(out bool isConnected).AsEnumerable();
+            var sportEvents = Query.GetListSportEvents(out bool isConnected).AsEnumerable();
 
             if (!isConnected)
             {
@@ -104,6 +105,10 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case 1:
                         // Изменяем команду
+                        var teamForm = new TeamForm(true, (int)currentNode.Tag);
+                        teamForm.ShowDialog();
+                        if (teamForm.TeamString != "")
+                            currentNode.Text = teamForm.TeamString;
                         break;
                     case 2:
                         // Изменяем спортсмена
@@ -128,18 +133,11 @@ namespace GreatSportEventApp.BasicForms
 
         private void MainContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            if (MainTreeView.SelectedNode == null)
-            {
-                CreateToolStripMenuItem.Enabled = false;
-                EditToolStripMenuItem.Enabled = false;
-                DeleteToolStripMenuItem.Enabled = false;
-            }
-            else
-            {
-                CreateToolStripMenuItem.Enabled = true;
-                EditToolStripMenuItem.Enabled = true;
-                DeleteToolStripMenuItem.Enabled = true;
-            }
+            var isEnabled = MainTreeView.SelectedNode != null;
+
+            CreateToolStripMenuItem.Enabled = isEnabled;
+            EditToolStripMenuItem.Enabled = isEnabled;
+            DeleteToolStripMenuItem.Enabled = isEnabled;
         }
 
         private void MainTreeView_AfterSelect(object sender, TreeViewEventArgs e)

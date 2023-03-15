@@ -31,6 +31,7 @@ namespace GreatSportEventApp.LocationForms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textAddress = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -45,6 +46,8 @@ namespace GreatSportEventApp.LocationForms
             this.buttonSave = new System.Windows.Forms.Button();
             this.comboType = new System.Windows.Forms.ComboBox();
             this.textDescription = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +65,7 @@ namespace GreatSportEventApp.LocationForms
             this.textAddress.Name = "textAddress";
             this.textAddress.Size = new System.Drawing.Size(418, 26);
             this.textAddress.TabIndex = 3;
+            this.textAddress.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
             // 
             // labelTitle
             // 
@@ -87,6 +91,7 @@ namespace GreatSportEventApp.LocationForms
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(418, 26);
             this.textName.TabIndex = 1;
+            this.textName.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
             // 
             // textCapacity
             // 
@@ -94,6 +99,7 @@ namespace GreatSportEventApp.LocationForms
             this.textCapacity.Name = "textCapacity";
             this.textCapacity.Size = new System.Drawing.Size(127, 26);
             this.textCapacity.TabIndex = 5;
+            this.textCapacity.Validating += new System.ComponentModel.CancelEventHandler(this.TextCapacity_Validating);
             // 
             // label3
             // 
@@ -166,6 +172,11 @@ namespace GreatSportEventApp.LocationForms
             this.textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textDescription.Size = new System.Drawing.Size(418, 219);
             this.textDescription.TabIndex = 6;
+            this.textDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextDescription_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // LocationForm
             // 
@@ -194,6 +205,7 @@ namespace GreatSportEventApp.LocationForms
             this.Name = "LocationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление места";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +227,7 @@ namespace GreatSportEventApp.LocationForms
         private System.Windows.Forms.Label labelTitle;
 
         #endregion
+
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

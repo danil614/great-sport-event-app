@@ -1,6 +1,7 @@
 ﻿using GreatSportEventApp.Entities;
 using GreatSportEventApp.LocationForms;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -115,7 +116,7 @@ namespace GreatSportEventApp.SportEventForms
                 context.SaveChanges();
 
                 SportEventId = sportEvent.Id;
-                SportEventString = Query.GetListSportEventStringById(out isConnected, SportEventId);
+                SportEventString = Query.GetSportEventStringById(out isConnected, SportEventId);
             }
 
             if (!isConnected)
@@ -126,5 +127,14 @@ namespace GreatSportEventApp.SportEventForms
 
             Close();
         }
+
+        #region Validating
+
+        private void TextDescription_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetTextLengthError(sender, errorProvider1, 60000);
+        }
+
+        #endregion
     }
 }

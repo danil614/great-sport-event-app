@@ -115,8 +115,9 @@
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\GreatSportEventContext.cs" />
-    <Compile Include="Entities\Locations.cs" />
+    <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\SportEvent.cs" />
+    <Compile Include="Entities\Team.cs" />
     <Compile Include="LocationForms\LocationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +176,13 @@
     <Compile Include="SportEventForms\SportEventForm.Designer.cs">
       <DependentUpon>SportEventForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamForms\TeamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamForms\TeamForm.Designer.cs">
+      <DependentUpon>TeamForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidatingControls.cs" />
     <EmbeddedResource Include="BasicForms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SportEventForms\SportEventForm.resx">
       <DependentUpon>SportEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamForms\TeamForm.resx">
+      <DependentUpon>TeamForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

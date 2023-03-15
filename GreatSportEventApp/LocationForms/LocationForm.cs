@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -120,5 +121,24 @@ namespace GreatSportEventApp.LocationForms
 
             Close();
         }
+
+        #region Validating
+
+        private void TextCapacity_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetIntError(sender, errorProvider1);
+        }
+
+        private void TextLength_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetTextLengthError(sender, errorProvider1, 60);
+        }
+
+        private void TextDescription_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetTextLengthError(sender, errorProvider1, 60000);
+        }
+
+        #endregion
     }
 }

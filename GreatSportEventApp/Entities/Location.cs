@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GreatSportEventApp.Entities
 {
     [Table("Locations")]
-    public class Locations
+    public class Location
     {
         [Key]
         [Column("location_id")]
