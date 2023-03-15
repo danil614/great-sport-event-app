@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Entities\GreatSportEventContext.cs" />
     <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\ParticipationEvent.cs" />
     <Compile Include="Entities\SportEvent.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="LocationForms\LocationForm.cs">

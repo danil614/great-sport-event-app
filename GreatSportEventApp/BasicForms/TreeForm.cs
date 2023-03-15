@@ -79,6 +79,16 @@ namespace GreatSportEventApp.BasicForms
                 {
                     case 0:
                         // Создаем команду для участия в спортивном мероприятия
+                        var teamForm = new TeamForm(false, -1, (int)currentNode.Tag);
+                        teamForm.ShowDialog();
+
+                        if (teamForm.TeamId != -1)
+                        {
+                            var node = new TreeNode(teamForm.TeamString);
+                            node.Tag = teamForm.TeamId;
+                            node.Checked = false;
+                            currentNode.Nodes.Add(node);
+                        }
                         break;
                     case 1:
                         // Создаем спортсменов в команду
@@ -105,7 +115,7 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case 1:
                         // Изменяем команду
-                        var teamForm = new TeamForm(true, (int)currentNode.Tag);
+                        var teamForm = new TeamForm(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
                         teamForm.ShowDialog();
                         if (teamForm.TeamString != "")
                             currentNode.Text = teamForm.TeamString;

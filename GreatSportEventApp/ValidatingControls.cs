@@ -25,7 +25,7 @@ namespace GreatSportEventApp
             var textBox = (TextBox)sender;
             errorProvider.SetError(textBox, "");
 
-            if (!int.TryParse(textBox.Text, out int result) || result <= 0)
+            if (!int.TryParse(textBox.Text, out int result) || result < 0)
             {
                 errorProvider.SetError(textBox, "Ожидается положительное число!");
             }

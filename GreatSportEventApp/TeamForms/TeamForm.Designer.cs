@@ -44,6 +44,8 @@ namespace GreatSportEventApp.TeamForms
             this.textTeamName = new System.Windows.Forms.TextBox();
             this.textRating = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.textScore = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@ namespace GreatSportEventApp.TeamForms
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(13, 151);
+            this.label6.Location = new System.Drawing.Point(13, 183);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(132, 26);
             this.label6.TabIndex = 13;
@@ -103,7 +105,7 @@ namespace GreatSportEventApp.TeamForms
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSave.Location = new System.Drawing.Point(469, 389);
+            this.buttonSave.Location = new System.Drawing.Point(469, 419);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(129, 37);
             this.buttonSave.TabIndex = 14;
@@ -113,7 +115,7 @@ namespace GreatSportEventApp.TeamForms
             // 
             // textDescription
             // 
-            this.textDescription.Location = new System.Drawing.Point(177, 151);
+            this.textDescription.Location = new System.Drawing.Point(177, 183);
             this.textDescription.Multiline = true;
             this.textDescription.Name = "textDescription";
             this.textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -151,11 +153,30 @@ namespace GreatSportEventApp.TeamForms
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(13, 151);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 26);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Счет:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textScore
+            // 
+            this.textScore.Location = new System.Drawing.Point(177, 151);
+            this.textScore.Name = "textScore";
+            this.textScore.Size = new System.Drawing.Size(139, 26);
+            this.textScore.TabIndex = 21;
+            this.textScore.Validating += new System.ComponentModel.CancelEventHandler(this.TextScore_Validating);
+            // 
             // TeamForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 444);
+            this.ClientSize = new System.Drawing.Size(644, 467);
+            this.Controls.Add(this.textScore);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.textRating);
             this.Controls.Add(this.textTeamName);
             this.Controls.Add(this.SelectLocationButton);
@@ -195,5 +216,7 @@ namespace GreatSportEventApp.TeamForms
         private System.Windows.Forms.TextBox textTeamName;
         private System.Windows.Forms.TextBox textRating;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox textScore;
+        private System.Windows.Forms.Label label2;
     }
 }

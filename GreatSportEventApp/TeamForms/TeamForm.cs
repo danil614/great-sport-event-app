@@ -11,16 +11,18 @@ namespace GreatSportEventApp.TeamForms
     public partial class TeamForm : Form
     {
         private int teamId;
+        private int sportEventId;
         private int locationId;
 
         public string TeamString { get; set; }
         public int TeamId { get => teamId; set => teamId = value; }
 
-        public TeamForm(bool isChanging, int _teamId)
+        public TeamForm(bool isChanging, int _teamId, int _sportEventId)
         {
             InitializeComponent();
 
             teamId = _teamId;
+            sportEventId = _sportEventId;
             TeamString = "";
 
             if (isChanging)
@@ -33,7 +35,7 @@ namespace GreatSportEventApp.TeamForms
 
         private void GetTeamById(int teamId)
         {
-            var dataTable = Query.GetTeamById(out var isConnected, teamId);
+            var dataTable = Query.GetTeamById(out var isConnected, teamId, sportEventId);
 
             if (!isConnected)
             {
@@ -45,6 +47,7 @@ namespace GreatSportEventApp.TeamForms
             textLocationName.Text = dataTable["location_full_name"].ToString();
             locationId = (int)dataTable["location_id"];
             textRating.Text = dataTable["rating"].ToString();
+            textScore.Text = dataTable["score"].ToString();
             textDescription.Text = dataTable["description"].ToString();
         }
         
@@ -63,13 +66,20 @@ namespace GreatSportEventApp.TeamForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
+            int.TryParse(textRating.Text, out int rating);
+            if (locationId == 0 || textTeamName.Text == "")
+            {
+                MessageBox.Show(@"Неправильно заполнены поля!");
+                return;
+            }
+
             bool isConnected;
 
             using (var context = new GreatSportEventContext())
             {
                 Team team;
 
-                if (teamId == -1)
+                if (teamId == -1) // При создании новой команды
                 {
                     team = new Team();
                     context.Teams.Add(team);
@@ -81,15 +91,15 @@ namespace GreatSportEventApp.TeamForms
 
                 team.LocationId = locationId;
                 team.Name = textTeamName.Text;
-
-                int.TryParse(textRating.Text, out int rating);
                 team.Rating = rating;
 
                 team.Description = textDescription.Text;
                 context.SaveChanges();
 
-                TeamId = team.Id;
-                TeamString = Query.GetTeamStringById(out isConnected, TeamId);
+                teamId = team.Id;
+                UpdateParticipationEvent(context);
+
+                TeamString = Query.GetTeamStringById(out isConnected, teamId, sportEventId);
             }
 
             if (!isConnected)
@@ -99,6 +109,23 @@ namespace GreatSportEventApp.TeamForms
             }
 
             Close();
+        }
+
+        private void UpdateParticipationEvent(GreatSportEventContext context)
+        {
+            var paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
+            if (paticipationEvent is null)
+            {
+                paticipationEvent = new ParticipationEvent();
+            }
+
+            paticipationEvent.SportEventId = sportEventId;
+            paticipationEvent.TeamId = teamId;
+
+            int.TryParse(textScore.Text, out int score);
+            paticipationEvent.Score = score;
+
+            context.SaveChanges();
         }
 
         #region Validating
@@ -114,6 +141,11 @@ namespace GreatSportEventApp.TeamForms
         }
 
         private void TextRating_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetIntError(sender, errorProvider1);
+        }
+
+        private void TextScore_Validating(object sender, CancelEventArgs e)
         {
             ValidatingControls.SetIntError(sender, errorProvider1);
         }
