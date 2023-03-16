@@ -78,7 +78,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             this.textRating.Location = new System.Drawing.Point(166, 279);
             this.textRating.Name = "textRating";
-            this.textRating.Size = new System.Drawing.Size(146, 26);
+            this.textRating.Size = new System.Drawing.Size(146, 30);
             this.textRating.TabIndex = 5;
             this.textRating.Validating += new System.ComponentModel.CancelEventHandler(this.TextRating_Validating);
             // 
@@ -87,7 +87,7 @@ namespace GreatSportEventApp.PersonForms
             this.comboPosition.FormattingEnabled = true;
             this.comboPosition.Location = new System.Drawing.Point(166, 247);
             this.comboPosition.Name = "comboPosition";
-            this.comboPosition.Size = new System.Drawing.Size(255, 26);
+            this.comboPosition.Size = new System.Drawing.Size(255, 31);
             this.comboPosition.TabIndex = 2;
             // 
             // label5
@@ -138,7 +138,7 @@ namespace GreatSportEventApp.PersonForms
             this.textPhoneNumber.Location = new System.Drawing.Point(167, 183);
             this.textPhoneNumber.Mask = "+7 (999) 999-99-99";
             this.textPhoneNumber.Name = "textPhoneNumber";
-            this.textPhoneNumber.Size = new System.Drawing.Size(185, 26);
+            this.textPhoneNumber.Size = new System.Drawing.Size(213, 30);
             this.textPhoneNumber.TabIndex = 27;
             // 
             // label7
@@ -155,7 +155,7 @@ namespace GreatSportEventApp.PersonForms
             this.dateBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateBirth.Location = new System.Drawing.Point(166, 215);
             this.dateBirth.Name = "dateBirth";
-            this.dateBirth.Size = new System.Drawing.Size(147, 26);
+            this.dateBirth.Size = new System.Drawing.Size(147, 30);
             this.dateBirth.TabIndex = 25;
             this.dateBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
@@ -182,7 +182,7 @@ namespace GreatSportEventApp.PersonForms
             this.comboGender.FormattingEnabled = true;
             this.comboGender.Location = new System.Drawing.Point(166, 151);
             this.comboGender.Name = "comboGender";
-            this.comboGender.Size = new System.Drawing.Size(146, 26);
+            this.comboGender.Size = new System.Drawing.Size(146, 31);
             this.comboGender.TabIndex = 22;
             // 
             // label10
@@ -198,7 +198,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             this.textPatronymic.Location = new System.Drawing.Point(166, 119);
             this.textPatronymic.Name = "textPatronymic";
-            this.textPatronymic.Size = new System.Drawing.Size(255, 26);
+            this.textPatronymic.Size = new System.Drawing.Size(255, 30);
             this.textPatronymic.TabIndex = 20;
             this.textPatronymic.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
             // 
@@ -206,7 +206,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             this.textName.Location = new System.Drawing.Point(166, 87);
             this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(255, 26);
+            this.textName.Size = new System.Drawing.Size(255, 30);
             this.textName.TabIndex = 19;
             this.textName.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
             // 
@@ -223,7 +223,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             this.textSurname.Location = new System.Drawing.Point(166, 55);
             this.textSurname.Name = "textSurname";
-            this.textSurname.Size = new System.Drawing.Size(255, 26);
+            this.textSurname.Size = new System.Drawing.Size(255, 30);
             this.textSurname.TabIndex = 17;
             this.textSurname.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
             // 
@@ -236,9 +236,9 @@ namespace GreatSportEventApp.PersonForms
             this.label12.Text = "Фамилия:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PersonForm
+            // AthleteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(608, 603);
             this.Controls.Add(this.textPhoneNumber);
@@ -266,7 +266,7 @@ namespace GreatSportEventApp.PersonForms
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PersonForm";
+            this.Name = "AthleteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление спортсмена";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

@@ -93,7 +93,7 @@ namespace GreatSportEventApp.SportEventForms
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             var typeId = Query.GetTypeIdByName(out bool isConnected, comboType.Text);
-            if (typeId == -1 || locationId == 0 || duration.Value.Hour == 0 || duration.Value.Minute == 0)
+            if (typeId == -1 || locationId == 0 || (duration.Value.Hour == 0 && duration.Value.Minute == 0))
             {
                 MessageBox.Show(@"Неправильно заполнены поля!");
                 return;

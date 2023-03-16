@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -144,7 +145,115 @@ namespace GreatSportEventApp.BasicForms
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
+            var currentNode = MainTreeView.SelectedNode;
+            if (currentNode != null)
+            {
+                switch (currentNode.Level)
+                {
+                    case 0:
+                        // Удаляем спортивное мероприятие
+                        DeleteSportEventById((int)currentNode.Tag);
+                        break;
+                    case 1:
+                        // Удаляем команду
+                        DeleteTeamById((int)currentNode.Tag, (int)currentNode.Parent.Tag, currentNode.Nodes.Count);
+                        break;
+                    case 2:
+                        // Изменяем спортсмена
+                        DeleteAthleteById((int)currentNode.Tag);
+                        break;
+                }
+            }
+        }
 
+        private void DeleteSportEventById(int sportEventId)
+        {
+            using (var context = new GreatSportEventContext())
+            {
+                var sportEvent = context.SportEvents.Find(sportEventId);
+
+                if (sportEvent is null)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+
+                context.SportEvents.Remove(sportEvent);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+            }
+
+            MainTreeView.SelectedNode.Remove();
+        }
+
+        private void DeleteTeamById(int teamId, int sportEventId, int numberChildren)
+        {
+            if (numberChildren > 0)
+            {
+                MessageBox.Show(@"Невозможно удалить запись!");
+                return;
+            }
+
+            using (var context = new GreatSportEventContext())
+            {
+                var paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
+
+                if (paticipationEvent is null)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+
+                context.ParticipationEvents.Remove(paticipationEvent);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+            }
+
+            MainTreeView.SelectedNode.Remove();
+        }
+
+        private void DeleteAthleteById(int athleteId)
+        {
+            using (var context = new GreatSportEventContext())
+            {
+                var athlete = context.Athletes.Find(athleteId);
+
+                if (athlete is null)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+
+                context.Athletes.Remove(athlete);
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (DbUpdateException)
+                {
+                    MessageBox.Show(@"Невозможно удалить запись!");
+                    return;
+                }
+            }
+
+            MainTreeView.SelectedNode.Remove();
         }
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
