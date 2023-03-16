@@ -47,7 +47,7 @@ namespace GreatSportEventApp.Entities
         public int PositionId { get; set; }
 
         [Column("rating")]
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
 
         [Column("description")]
         public string Description { get; set; }

@@ -22,7 +22,7 @@ namespace GreatSportEventApp.PersonForms
             athleteId = _athleteId;
             AthleteString = "";
 
-            // Запрещаем редактирование города и типа места
+            // Запрещаем редактирование пола и должности
             comboGender.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPosition.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -52,10 +52,10 @@ namespace GreatSportEventApp.PersonForms
                 textSurname.Text = athlete.Surname;
                 textName.Text = athlete.Name;
                 textPatronymic.Text = athlete.Patronymic;
-                comboGender.SelectedItem = athlete.GenderId; // ---check!!!
+                comboGender.SelectedValue = athlete.GenderId;
                 textPhoneNumber.Text = athlete.PhoneNumber;
                 dateBirth.Value = athlete.BithDate;
-                comboPosition.SelectedItem = athlete.PositionId; // ---check!!!
+                comboPosition.SelectedValue = athlete.PositionId;
                 textRating.Text = athlete.Rating.ToString();
                 textDescription.Text = athlete.Description;
 
@@ -95,22 +95,12 @@ namespace GreatSportEventApp.PersonForms
             }
 
             comboPosition.DataSource = dataTable;
-            comboPosition.DisplayMember = "position_id";
-            comboPosition.ValueMember = "position_name";
+            comboPosition.DisplayMember = "position_name";
+            comboPosition.ValueMember = "position_id";
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            //textSurname.Text = athlete.Surname;
-            //textName.Text = athlete.Name;
-            //textPatronymic.Text = athlete.Patronymic;
-            //--comboGender.SelectedItem = athlete.GenderId; // ---check!!!
-            //!!! textPhoneNumber.Text = athlete.PhoneNumber;  // ---check!!!
-            //dateBirth.Value = athlete.BithDate;
-            //--comboPosition.SelectedItem = athlete.PositionId; // ---check!!!
-            //textRating.Text = athlete.Rating.ToString();
-            //textDescription.Text = athlete.Description;
-
             if (textSurname.Text == "" || textName.Text == "" ||
                 textPatronymic.Text == "" || textPhoneNumber.Text == "")
             {
@@ -135,23 +125,13 @@ namespace GreatSportEventApp.PersonForms
                     athlete = context.Athletes.Find(athleteId);
                 }
 
-                //textSurname.Text = athlete.Surname;
-                //textName.Text = athlete.Name;
-                //textPatronymic.Text = athlete.Patronymic;
-                //comboGender.SelectedItem = athlete.GenderId; // ---check!!!
-                //textPhoneNumber.Text = athlete.PhoneNumber;
-                //dateBirth.Value = athlete.BithDate;
-                //comboPosition.SelectedItem = athlete.PositionId; // ---check!!!
-                //textRating.Text = athlete.Rating.ToString();
-                //textDescription.Text = athlete.Description;
-
                 athlete.Surname = textSurname.Text;
                 athlete.Name = textName.Text;
                 athlete.Patronymic = textPatronymic.Text;
-                // athlete.GenderId = comboGender.SelectedItem; ---
+                athlete.GenderId = (int)comboGender.SelectedValue;
                 athlete.PhoneNumber = textPhoneNumber.Text;
                 athlete.BithDate = dateBirth.Value;
-                // athlete.PositionId = comboPosition.SelectedItem; ---
+                athlete.PositionId = (int)comboPosition.SelectedValue;
 
                 int.TryParse(textRating.Text, out int rating);
                 athlete.Rating = rating;
