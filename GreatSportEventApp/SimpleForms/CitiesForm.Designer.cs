@@ -53,11 +53,12 @@ namespace GreatSportEventApp.SimpleForms
             this.dataView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataView.Location = new System.Drawing.Point(0, 65);
+            this.dataView.Location = new System.Drawing.Point(0, 71);
             this.dataView.Margin = new System.Windows.Forms.Padding(4);
             this.dataView.MultiSelect = false;
             this.dataView.Name = "dataView";
-            this.dataView.Size = new System.Drawing.Size(809, 445);
+            this.dataView.RowHeadersWidth = 51;
+            this.dataView.Size = new System.Drawing.Size(809, 439);
             this.dataView.TabIndex = 0;
             this.dataView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.DataView_CellBeginEdit);
             this.dataView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataView_CellValueChanged);
@@ -81,6 +82,7 @@ namespace GreatSportEventApp.SimpleForms
             this.MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this.MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.CreateToolStripButton,
@@ -93,14 +95,14 @@ namespace GreatSportEventApp.SimpleForms
             this.toolStripSeparator5});
             this.MainToolStrip.Location = new System.Drawing.Point(0, 40);
             this.MainToolStrip.Name = "MainToolStrip";
-            this.MainToolStrip.Size = new System.Drawing.Size(809, 25);
+            this.MainToolStrip.Size = new System.Drawing.Size(809, 31);
             this.MainToolStrip.TabIndex = 5;
             this.MainToolStrip.Text = "MainToolStrip";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // CreateToolStripButton
             // 
@@ -108,14 +110,14 @@ namespace GreatSportEventApp.SimpleForms
             this.CreateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.create;
             this.CreateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CreateToolStripButton.Name = "CreateToolStripButton";
-            this.CreateToolStripButton.Size = new System.Drawing.Size(82, 22);
+            this.CreateToolStripButton.Size = new System.Drawing.Size(101, 28);
             this.CreateToolStripButton.Text = "Создать";
             this.CreateToolStripButton.Click += new System.EventHandler(this.CreateToolStripButton_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // EditToolStripButton
             // 
@@ -123,14 +125,14 @@ namespace GreatSportEventApp.SimpleForms
             this.EditToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.edit;
             this.EditToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditToolStripButton.Name = "EditToolStripButton";
-            this.EditToolStripButton.Size = new System.Drawing.Size(91, 22);
+            this.EditToolStripButton.Size = new System.Drawing.Size(113, 28);
             this.EditToolStripButton.Text = "Изменить";
             this.EditToolStripButton.Click += new System.EventHandler(this.EditToolStripButton_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
             // 
             // DeleteToolStripButton
             // 
@@ -138,14 +140,14 @@ namespace GreatSportEventApp.SimpleForms
             this.DeleteToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.delete;
             this.DeleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteToolStripButton.Name = "DeleteToolStripButton";
-            this.DeleteToolStripButton.Size = new System.Drawing.Size(81, 22);
+            this.DeleteToolStripButton.Size = new System.Drawing.Size(102, 28);
             this.DeleteToolStripButton.Text = "Удалить";
             this.DeleteToolStripButton.Click += new System.EventHandler(this.DeleteToolStripButton_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
             // 
             // UpdateToolStripButton
             // 
@@ -153,14 +155,14 @@ namespace GreatSportEventApp.SimpleForms
             this.UpdateToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.update;
             this.UpdateToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UpdateToolStripButton.Name = "UpdateToolStripButton";
-            this.UpdateToolStripButton.Size = new System.Drawing.Size(92, 22);
+            this.UpdateToolStripButton.Size = new System.Drawing.Size(115, 28);
             this.UpdateToolStripButton.Text = "Обновить";
             this.UpdateToolStripButton.Click += new System.EventHandler(this.UpdateToolStripButton_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // CitiesForm
             // 

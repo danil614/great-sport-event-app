@@ -346,5 +346,34 @@ namespace GreatSportEventApp.BasicForms
 
             }
         }
+
+        private void MainTreeView_DragDrop(object sender, DragEventArgs e)
+        {
+            int j;
+            j = 100;
+        }
+
+        private void MainTreeView_DragEnter(object sender, DragEventArgs e)
+        {
+            int j;
+            j = 100;
+        }
+
+        private void MainTreeView_DragLeave(object sender, EventArgs e)
+        {
+            int j;
+            j = 100;
+        }
+
+        private void MainTreeView_DragOver(object sender, DragEventArgs e)
+        {
+            int j;
+            j = 100;
+        }
+
+        private void MainTreeView_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.Move);
+        }
     }
 }

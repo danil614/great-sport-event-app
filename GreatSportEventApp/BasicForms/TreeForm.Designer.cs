@@ -40,6 +40,8 @@ namespace GreatSportEventApp.BasicForms
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CreateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.EditToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.DeleteToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -47,8 +49,6 @@ namespace GreatSportEventApp.BasicForms
             this.UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MainTreeView = new System.Windows.Forms.TreeView();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.MainContextMenuStrip.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -150,6 +150,17 @@ namespace GreatSportEventApp.BasicForms
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(152, 24);
+            this.toolStripLabel1.Text = "Текущая вершина:";
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
+            // 
             // EditToolStripButton
             // 
             this.EditToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.edit;
@@ -194,6 +205,7 @@ namespace GreatSportEventApp.BasicForms
             // 
             // MainTreeView
             // 
+            this.MainTreeView.AllowDrop = true;
             this.MainTreeView.ContextMenuStrip = this.MainContextMenuStrip;
             this.MainTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTreeView.Location = new System.Drawing.Point(0, 67);
@@ -201,18 +213,12 @@ namespace GreatSportEventApp.BasicForms
             this.MainTreeView.Size = new System.Drawing.Size(843, 396);
             this.MainTreeView.TabIndex = 4;
             this.MainTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.MainTreeView_BeforeExpand);
+            this.MainTreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.MainTreeView_ItemDrag);
             this.MainTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MainTreeView_AfterSelect);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(152, 24);
-            this.toolStripLabel1.Text = "Текущая вершина:";
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
+            this.MainTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragDrop);
+            this.MainTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragEnter);
+            this.MainTreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragOver);
+            this.MainTreeView.DragLeave += new System.EventHandler(this.MainTreeView_DragLeave);
             // 
             // TreeForm
             // 
