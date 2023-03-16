@@ -66,7 +66,6 @@ namespace GreatSportEventApp.TeamForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            int.TryParse(textRating.Text, out int rating);
             if (locationId == 0 || textTeamName.Text == "")
             {
                 MessageBox.Show(@"Неправильно заполнены поля!");
@@ -91,6 +90,8 @@ namespace GreatSportEventApp.TeamForms
 
                 team.LocationId = locationId;
                 team.Name = textTeamName.Text;
+
+                int.TryParse(textRating.Text, out int rating);
                 team.Rating = rating;
 
                 team.Description = textDescription.Text;
@@ -117,6 +118,7 @@ namespace GreatSportEventApp.TeamForms
             if (paticipationEvent is null)
             {
                 paticipationEvent = new ParticipationEvent();
+                context.ParticipationEvents.Add(paticipationEvent);
             }
 
             paticipationEvent.SportEventId = sportEventId;

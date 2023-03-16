@@ -177,7 +177,7 @@ namespace GreatSportEventApp.SportEventForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 471);
+            this.ClientSize = new System.Drawing.Size(624, 476);
             this.Controls.Add(this.SelectLocationButton);
             this.Controls.Add(this.duration);
             this.Controls.Add(this.dateTimeEvent);

@@ -1,4 +1,5 @@
 ﻿using GreatSportEventApp.Entities;
+using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SportEventForms;
 using GreatSportEventApp.TeamForms;
 using MySql.Data.MySqlClient;
@@ -92,6 +93,16 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case 1:
                         // Создаем спортсменов в команду
+                        var athleteForm = new AthleteForm(false, -1, (int)currentNode.Tag);
+                        athleteForm.ShowDialog();
+
+                        if (athleteForm.AthleteId != -1)
+                        {
+                            var node = new TreeNode(athleteForm.AthleteString);
+                            node.Tag = athleteForm.AthleteId;
+                            node.Checked = false;
+                            currentNode.Nodes.Add(node);
+                        }
                         break;
                     default:
                         break;
@@ -122,6 +133,10 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case 2:
                         // Изменяем спортсмена
+                        var athleteForm = new AthleteForm(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
+                        athleteForm.ShowDialog();
+                        if (athleteForm.AthleteString != "")
+                            currentNode.Text = athleteForm.AthleteString;
                         break;
                 }
             }

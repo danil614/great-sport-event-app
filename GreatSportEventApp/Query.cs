@@ -228,7 +228,7 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        ///     Получает спортсменоы по индексу команды.
+        ///     Получает спортсменов по индексу команды.
         /// </summary>
         public static DataTable GetListAthletesByTeam(out bool isConnected, int teamId)
         {
@@ -244,6 +244,25 @@ namespace GreatSportEventApp
             isConnected = dataTable != null;
 
             return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает строку спортсмена по индексу.
+        /// </summary>
+        public static string GetAthleteStringById(out bool isConnected, int athleteId)
+        {
+            string query = $@"SELECT CONCAT((SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Athletes.position_id), ': ',
+                              Athletes.surname, ' ', Athletes.name, ' ', Athletes.patronymic, ', дата рождения: ',
+                              DATE_FORMAT(Athletes.birth_date, '%d.%m.%Y')) AS name
+                              FROM Athletes
+                              WHERE Athletes.athlete_id = {athleteId}
+                              ORDER BY Athletes.athlete_id";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            if (isConnected && dataTable.Rows.Count == 1) return dataTable.Rows[0]["name"].ToString();
+            return "";
         }
 
         public static int GetTypeIdByName(out bool isConnected, string typeName)
@@ -411,7 +430,20 @@ namespace GreatSportEventApp
 
             return dataTable;
         }
-        
+
+        /// <summary>
+        ///     Получает все полы.
+        /// </summary>
+        public static DataTable GetListGenderAndId(out bool isConnected)
+        {
+            const string query = "SELECT gender_id, gender_name FROM Gender";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
         /// <summary>
         ///     Получает все города.
         /// </summary>
@@ -431,6 +463,19 @@ namespace GreatSportEventApp
         public static DataTable GetListCitiesAndId(out bool isConnected)
         {
             const string query = "SELECT city_id AS 'Код ОКТМО', city_name AS 'Название' FROM Cities ORDER BY city_name";
+
+            var dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает все должности.
+        /// </summary>
+        public static DataTable GetListPositions(out bool isConnected)
+        {
+            const string query = "SELECT position_id, position_name FROM Positions ORDER BY position_name";
 
             var dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;

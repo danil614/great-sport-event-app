@@ -22,6 +22,8 @@ namespace GreatSportEventApp.Entities
 
         public DbSet<City> Cities { get; set; }
 
+        public DbSet<Athlete> Athletes { get; set; }
+
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)
         {

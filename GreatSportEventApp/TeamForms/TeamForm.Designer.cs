@@ -105,7 +105,7 @@ namespace GreatSportEventApp.TeamForms
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSave.Location = new System.Drawing.Point(469, 419);
+            this.buttonSave.Location = new System.Drawing.Point(496, 418);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(129, 37);
             this.buttonSave.TabIndex = 14;
@@ -119,7 +119,7 @@ namespace GreatSportEventApp.TeamForms
             this.textDescription.Multiline = true;
             this.textDescription.Name = "textDescription";
             this.textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textDescription.Size = new System.Drawing.Size(421, 219);
+            this.textDescription.Size = new System.Drawing.Size(448, 219);
             this.textDescription.TabIndex = 6;
             this.textDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextDescription_Validating);
             // 
