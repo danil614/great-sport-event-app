@@ -92,6 +92,12 @@ namespace GreatSportEventApp.BasicForms
             citiesForm.Show(mainDockPanel, DockState.Document);
         }
 
+        private void PositionsToolStripButton_Click(object sender, EventArgs e)
+        {
+            var positionsForm = new PositionsForm();
+            positionsForm.Show(mainDockPanel, DockState.Document);
+        }
+
         #endregion
     }
 }

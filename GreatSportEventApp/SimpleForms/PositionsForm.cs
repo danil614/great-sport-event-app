@@ -7,22 +7,22 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp.SimpleForms
 {
-    public partial class CitiesForm : DockContent
+    public partial class PositionsForm : DockContent
     {
-        public CitiesForm()
+        public PositionsForm()
         {
             InitializeComponent();
-            UpdateListCities();
+            UpdateListPositions();
             dataView.EditMode = DataGridViewEditMode.EditOnKeystroke;
         }
 
         /// <summary>
-        ///     Обновляет список городов.
+        ///     Обновляет список должностей.
         /// </summary>
-        private void UpdateListCities()
+        private void UpdateListPositions()
         {
             // Получаем запрос со зрителями
-            var listCities = Query.GetListCitiesAndId(out var isConnected);
+            var listPositions = Query.GetListPositions(out var isConnected);
 
             if (!isConnected)
             {
@@ -31,71 +31,52 @@ namespace GreatSportEventApp.SimpleForms
             }
             else
             {
-                dataView.DataSource = listCities;
+                dataView.DataSource = listPositions;
             }
 
             // Растягиваем колонки
             dataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            dataView.Columns["position_id"].Visible = false;
+            dataView.Columns["position_name"].HeaderText = "Название";
         }
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            UpdateListCities();
-        }
-
-        private void DataView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                MessageBox.Show(@"Неправльно заполнен id города!");
-                return;
-            }
+            UpdateListPositions();
         }
 
         private void DataView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dataView.CurrentRow == null) return;
 
-            using (var context = new GreatSportEventContext())
+            long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+            string name = dataView.CurrentRow.Cells[1].Value.ToString();
+
+            if (name != "")
             {
-                string name = dataView.CurrentRow.Cells[1].Value.ToString();
-                bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
-
-                if (isIdFill && name != "")
+                using (var context = new GreatSportEventContext())
                 {
-                    var city = context.Cities.Find(id);
+                    var position = context.Positions.Find(id);
 
-                    if (city is null)
+                    if (position is null)
                     {
-                        city = new City();
-                        city.Id = id;
-                        context.Cities.Add(city);
+                        position = new Position();
+                        context.Positions.Add(position);
                     }
 
-                    city.Name = name;
+                    position.Name = name;
                     context.SaveChanges();
 
-                    UpdateListCities();
+                    UpdateListPositions();
                 }
-            }
-        }
-
-        private void DataView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (dataView.CurrentRow == null) return;
-
-            string stringId = dataView.CurrentRow.Cells[0].Value.ToString();
-            if (e.ColumnIndex == 0 && stringId != "")
-            {
-                MessageBox.Show(@"Нельзя менять id города!");
-                e.Cancel = true;
             }
         }
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
             int n = dataView.Rows.Count;
-            dataView.CurrentCell = dataView.Rows[n - 1].Cells[0];
+            dataView.CurrentCell = dataView.Rows[n - 1].Cells[1];
             dataView.BeginEdit(true);
         }
         private void EditToolStripButton_Click(object sender, EventArgs e)
@@ -111,20 +92,20 @@ namespace GreatSportEventApp.SimpleForms
 
             using (var context = new GreatSportEventContext())
             {
-                string name = dataView.CurrentRow.Cells[1].Value.ToString();
                 bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+                string name = dataView.CurrentRow.Cells[1].Value.ToString();
 
                 if (isIdFill && name != "")
                 {
-                    var city = context.Cities.Find(id);
+                    var position = context.Positions.Find(id);
 
-                    if (city is null)
+                    if (position is null)
                     {
                         MessageBox.Show(@"Невозможно удалить запись!");
                     }
                     else
                     {
-                        context.Cities.Remove(city);
+                        context.Positions.Remove(position);
 
                         try
                         {
@@ -135,7 +116,7 @@ namespace GreatSportEventApp.SimpleForms
                             MessageBox.Show(@"Невозможно удалить запись!");
                         }
 
-                        UpdateListCities();
+                        UpdateListPositions();
                     }
                 }
             }

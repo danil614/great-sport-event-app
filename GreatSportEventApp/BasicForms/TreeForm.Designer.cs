@@ -216,9 +216,6 @@ namespace GreatSportEventApp.BasicForms
             this.MainTreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.MainTreeView_ItemDrag);
             this.MainTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.MainTreeView_AfterSelect);
             this.MainTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragDrop);
-            this.MainTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragEnter);
-            this.MainTreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.MainTreeView_DragOver);
-            this.MainTreeView.DragLeave += new System.EventHandler(this.MainTreeView_DragLeave);
             // 
             // TreeForm
             // 

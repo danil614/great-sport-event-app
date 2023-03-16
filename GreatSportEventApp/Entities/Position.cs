@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace GreatSportEventApp.Entities
 {
-    [Table("Cities")]
-    public class City
+    [Table("Positions")]
+    public class Position
     {
-        [Key, Column("city_id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key, Column("position_id")]
         public long Id { get; set; }
 
         [Required]
-        [Column("city_name")]
+        [Column("position_name")]
         public string Name { get; set; }
     }
 }
