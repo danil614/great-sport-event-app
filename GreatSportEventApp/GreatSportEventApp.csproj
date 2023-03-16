@@ -198,6 +198,12 @@
     <Compile Include="SportEventForms\SportEventForm.Designer.cs">
       <DependentUpon>SportEventForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TeamForms\ListTeamsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamForms\ListTeamsForm.Designer.cs">
+      <DependentUpon>ListTeamsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TeamForms\TeamForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SportEventForms\SportEventForm.resx">
       <DependentUpon>SportEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamForms\ListTeamsForm.resx">
+      <DependentUpon>ListTeamsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeamForms\TeamForm.resx">
       <DependentUpon>TeamForm.cs</DependentUpon>
