@@ -9,17 +9,16 @@ namespace GreatSportEventApp.PersonForms
     public partial class AthleteForm : Form
     {
         private int teamId;
-        private int athleteId;
 
         public string AthleteString { get; set; }
-        public int AthleteId { get => athleteId; set => athleteId = value; }
+        public int AthleteId { get; set; }
 
         public AthleteForm(bool isChanging, int _athleteId, int _teamId)
         {
             InitializeComponent();
 
             teamId = _teamId;
-            athleteId = _athleteId;
+            AthleteId = _athleteId;
             AthleteString = "";
 
             // Запрещаем редактирование пола и должности
@@ -39,28 +38,26 @@ namespace GreatSportEventApp.PersonForms
 
         private void GetAthleteById()
         {
-            using (var context = new GreatSportEventContext())
+            using GreatSportEventContext context = new();
+            Athlete athlete = context.Athletes.Find(AthleteId);
+
+            if (athlete is null)
             {
-                var athlete = context.Athletes.Find(athleteId);
-
-                if (athlete is null)
-                {
-                    MessageBox.Show(@"Отсутствует подключение!");
-                    return;
-                }
-
-                textSurname.Text = athlete.Surname;
-                textName.Text = athlete.Name;
-                textPatronymic.Text = athlete.Patronymic;
-                comboGender.SelectedValue = athlete.GenderId;
-                textPhoneNumber.Text = athlete.PhoneNumber;
-                dateBirth.Value = athlete.BithDate;
-                comboPosition.SelectedValue = athlete.PositionId;
-                textRating.Text = athlete.Rating.ToString();
-                textDescription.Text = athlete.Description;
-
-                teamId = athlete.TeamId;
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+                return;
             }
+
+            textSurname.Text = athlete.Surname;
+            textName.Text = athlete.Name;
+            textPatronymic.Text = athlete.Patronymic;
+            comboGender.SelectedValue = athlete.GenderId;
+            textPhoneNumber.Text = athlete.PhoneNumber;
+            dateBirth.Value = athlete.BithDate;
+            comboPosition.SelectedValue = athlete.PositionId;
+            textRating.Text = athlete.Rating.ToString();
+            textDescription.Text = athlete.Description;
+
+            teamId = athlete.TeamId;
         }
 
         /// <summary>
@@ -70,9 +67,12 @@ namespace GreatSportEventApp.PersonForms
         {
             comboGender.Items.Clear();
 
-            var dataTable = Query.GetListGenderAndId(out var isConnected);
+            DataTable dataTable = Query.GetListGenderAndId(out bool isConnected);
 
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+            }
 
             comboGender.DataSource = dataTable;
             comboGender.DisplayMember = "gender_name";
@@ -86,11 +86,11 @@ namespace GreatSportEventApp.PersonForms
         {
             comboPosition.Items.Clear();
 
-            var dataTable = Query.GetListPositions(out var isConnected);
+            DataTable dataTable = Query.GetListPositions(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
@@ -104,25 +104,27 @@ namespace GreatSportEventApp.PersonForms
             if (textSurname.Text == "" || textName.Text == "" ||
                 textPatronymic.Text == "" || textPhoneNumber.Text == "")
             {
-                MessageBox.Show(@"Неправильно заполнены поля!");
+                _ = MessageBox.Show(@"Неправильно заполнены поля!");
                 return;
             }
 
             bool isConnected;
 
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
                 Athlete athlete;
 
-                if (athleteId == -1) // При создании нового спортсмена
+                if (AthleteId == -1) // При создании нового спортсмена
                 {
-                    athlete = new Athlete();
-                    athlete.TeamId = teamId;
-                    context.Athletes.Add(athlete);
+                    athlete = new Athlete
+                    {
+                        TeamId = teamId
+                    };
+                    _ = context.Athletes.Add(athlete);
                 }
                 else
                 {
-                    athlete = context.Athletes.Find(athleteId);
+                    athlete = context.Athletes.Find(AthleteId);
                 }
 
                 athlete.Surname = textSurname.Text;
@@ -133,20 +135,20 @@ namespace GreatSportEventApp.PersonForms
                 athlete.BithDate = dateBirth.Value;
                 athlete.PositionId = (int)comboPosition.SelectedValue;
 
-                int.TryParse(textRating.Text, out int rating);
+                _ = int.TryParse(textRating.Text, out int rating);
                 athlete.Rating = rating;
 
                 athlete.Description = textDescription.Text;
 
-                context.SaveChanges();
+                _ = context.SaveChanges();
 
-                athleteId = athlete.Id;
-                AthleteString = Query.GetAthleteStringById(out isConnected, athleteId);
+                AthleteId = athlete.Id;
+                AthleteString = Query.GetAthleteStringById(out isConnected, AthleteId);
             }
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 

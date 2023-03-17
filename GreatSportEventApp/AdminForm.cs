@@ -10,7 +10,7 @@ namespace GreatSportEventApp
         {
             InitializeComponent();
             UpdateListUsers();
-            
+
             // Запрещаем редактирование режима доступа
             comboMode.DropDownStyle = ComboBoxStyle.DropDownList;
         }
@@ -21,11 +21,11 @@ namespace GreatSportEventApp
         private void UpdateListUsers()
         {
             // Получаем запрос со зрителями
-            var listUsers = Query.GetListUsers(out var isConnected);
+            System.Data.DataTable listUsers = Query.GetListUsers(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 Close();
             }
             else
@@ -39,34 +39,37 @@ namespace GreatSportEventApp
 
         private void buttonAddUser_Click(object sender, EventArgs e)
         {
-            var isConnected = Query.InsertUser(textLogin.Text, textPassword.Text, comboMode.Text);
+            bool isConnected = Query.InsertUser(textLogin.Text, textPassword.Text, comboMode.Text);
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
             UpdateListUsers();
         }
 
         private void buttonChangeUser_Click(object sender, EventArgs e)
         {
-            var isConnected = Query.UpdateUser(textLogin.Text, textPassword.Text, comboMode.Text);
+            bool isConnected = Query.UpdateUser(textLogin.Text, textPassword.Text, comboMode.Text);
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
             UpdateListUsers();
         }
 
         private void dataUsers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dataUsers.CurrentRow == null) return;
+            if (dataUsers.CurrentRow == null)
+            {
+                return;
+            }
 
-            var currentRowLogin = dataUsers.CurrentRow.Cells[0].Value.ToString();
-            var user = Query.GetUserByLogin(out var isConnected, currentRowLogin);
+            string currentRowLogin = dataUsers.CurrentRow.Cells[0].Value.ToString();
+            System.Data.DataRow user = Query.GetUserByLogin(out bool isConnected, currentRowLogin);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
             else
             {
@@ -78,16 +81,19 @@ namespace GreatSportEventApp
 
         private void buttonDeleteUser_Click(object sender, EventArgs e)
         {
-            if (dataUsers.CurrentRow == null) return;
+            if (dataUsers.CurrentRow == null)
+            {
+                return;
+            }
 
-            var currentRowLogin = dataUsers.CurrentRow.Cells[0].Value.ToString();
-            var isConnected = Query.DeleteUserByLogin(currentRowLogin);
-            
+            string currentRowLogin = dataUsers.CurrentRow.Cells[0].Value.ToString();
+            bool isConnected = Query.DeleteUserByLogin(currentRowLogin);
+
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
-            
+
             UpdateListUsers();
         }
     }

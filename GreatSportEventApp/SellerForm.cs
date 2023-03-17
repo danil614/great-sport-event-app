@@ -18,12 +18,12 @@ namespace GreatSportEventApp
         private void UpdateListViewers()
         {
             // Получаем запрос со зрителями
-            var listViewers = Query.GetListViewers(out var isConnected);
-            var listTickets = Query.GetListTickets(out var isConnectedTickets);
+            System.Data.DataTable listViewers = Query.GetListViewers(out bool isConnected);
+            System.Data.DataTable listTickets = Query.GetListTickets(out bool isConnectedTickets);
 
             if (!isConnected || !isConnectedTickets)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 Close();
             }
             else
@@ -39,33 +39,38 @@ namespace GreatSportEventApp
 
         private void buttonAddViewer_Click(object sender, EventArgs e)
         {
-            var personForm = new PersonForm(false);
-            personForm.ShowDialog();
+            PersonForm personForm = new(false);
+            _ = personForm.ShowDialog();
             UpdateListViewers();
         }
 
         private void buttonChangeViewer_Click(object sender, EventArgs e)
         {
-            if (dataViewers.CurrentRow == null) return;
+            if (dataViewers.CurrentRow == null)
+            {
+                return;
+            }
 
-            var currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
-            var person = Query.GetViewerById(out var isConnected, currentRowId);
+            int currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
+            System.Data.DataRow person = Query.GetViewerById(out bool isConnected, currentRowId);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
             else
             {
-                var personForm = new PersonForm(true);
-                personForm.PersonId = currentRowId;
-                personForm.Surname = person["surname"].ToString();
-                personForm.PersonName = person["name"].ToString();
-                personForm.Patronymic = person["patronymic"].ToString();
-                personForm.Gender = person["gender_name"].ToString();
-                personForm.PhoneNumber = person["phone_number"].ToString();
-                personForm.BirthDate = (DateTime)person["birth_date"];
-                personForm.ShowDialog();
+                PersonForm personForm = new(true)
+                {
+                    PersonId = currentRowId,
+                    Surname = person["surname"].ToString(),
+                    PersonName = person["name"].ToString(),
+                    Patronymic = person["patronymic"].ToString(),
+                    Gender = person["gender_name"].ToString(),
+                    PhoneNumber = person["phone_number"].ToString(),
+                    BirthDate = (DateTime)person["birth_date"]
+                };
+                _ = personForm.ShowDialog();
                 UpdateListViewers();
             }
         }
@@ -82,19 +87,23 @@ namespace GreatSportEventApp
 
         private void buttonCreateTicket_Click(object sender, EventArgs e)
         {
-            if (dataViewers.CurrentRow == null) return;
-            var currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
-            decimal.TryParse(textPrice.Text, out var price);
-            var isConnected = Query.InsertTicket(currentRowId, textSeat.Text, price);
-            
+            if (dataViewers.CurrentRow == null)
+            {
+                return;
+            }
+
+            int currentRowId = (int)dataViewers.CurrentRow.Cells[0].Value;
+            _ = decimal.TryParse(textPrice.Text, out decimal price);
+            bool isConnected = Query.InsertTicket(currentRowId, textSeat.Text, price);
+
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
 
             textPrice.Text = "";
             textSeat.Text = "";
-            
+
             UpdateListViewers();
         }
     }

@@ -2,15 +2,11 @@
 using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SportEventForms;
 using GreatSportEventApp.TeamForms;
-using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Infrastructure;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -31,25 +27,27 @@ namespace GreatSportEventApp.BasicForms
         private void UpdateTreeView()
         {
             MainTreeView.Nodes.Clear();
-            var sportEvents = Query.GetListSportEvents(out bool isConnected).AsEnumerable();
+            EnumerableRowCollection<DataRow> sportEvents = Query.GetListSportEvents(out bool isConnected).AsEnumerable();
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
-            foreach (var sportEvent in sportEvents)
+            foreach (DataRow sportEvent in sportEvents)
             {
-                var node = new TreeNode(sportEvent["name"].ToString());
-                node.Tag = sportEvent["id"];
-                node.Checked = false;
-
-                if (!(sportEvent["teams"] is DBNull))
+                TreeNode node = new(sportEvent["name"].ToString())
                 {
-                    node.Nodes.Add("Temp");
+                    Tag = sportEvent["id"],
+                    Checked = false
+                };
+
+                if (sportEvent["teams"] is not DBNull)
+                {
+                    _ = node.Nodes.Add("Temp");
                 }
-                MainTreeView.Nodes.Add(node);
+                _ = MainTreeView.Nodes.Add(node);
             }
 
             MainTreeViewSetActivity();
@@ -60,49 +58,55 @@ namespace GreatSportEventApp.BasicForms
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
             // Создаем спортивное мероприятие
-            var sportEventForm = new SportEventForm(false, -1);
-            sportEventForm.ShowDialog();
+            SportEventForm sportEventForm = new(false, -1);
+            _ = sportEventForm.ShowDialog();
 
             if (sportEventForm.SportEventId != -1)
             {
-                var node = new TreeNode(sportEventForm.SportEventString);
-                node.Tag = sportEventForm.SportEventId;
-                node.Checked = false;
-                MainTreeView.Nodes.Add(node);
+                TreeNode node = new(sportEventForm.SportEventString)
+                {
+                    Tag = sportEventForm.SportEventId,
+                    Checked = false
+                };
+                _ = MainTreeView.Nodes.Add(node);
             }
         }
 
         private void CreateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var currentNode = MainTreeView.SelectedNode;
+            TreeNode currentNode = MainTreeView.SelectedNode;
             if (currentNode != null)
             {
                 switch (currentNode.Level)
                 {
                     case 0:
                         // Создаем команду для участия в спортивном мероприятия
-                        var teamForm = new TeamForm(false, -1, (int)currentNode.Tag);
-                        teamForm.ShowDialog();
+                        TeamForm teamForm = new(false, -1, (int)currentNode.Tag);
+                        _ = teamForm.ShowDialog();
 
                         if (teamForm.TeamId != -1)
                         {
-                            var node = new TreeNode(teamForm.TeamString);
-                            node.Tag = teamForm.TeamId;
-                            node.Checked = false;
-                            currentNode.Nodes.Add(node);
+                            TreeNode node = new(teamForm.TeamString)
+                            {
+                                Tag = teamForm.TeamId,
+                                Checked = false
+                            };
+                            _ = currentNode.Nodes.Add(node);
                         }
                         break;
                     case 1:
                         // Создаем спортсменов в команду
-                        var athleteForm = new AthleteForm(false, -1, (int)currentNode.Tag);
-                        athleteForm.ShowDialog();
+                        AthleteForm athleteForm = new(false, -1, (int)currentNode.Tag);
+                        _ = athleteForm.ShowDialog();
 
                         if (athleteForm.AthleteId != -1)
                         {
-                            var node = new TreeNode(athleteForm.AthleteString);
-                            node.Tag = athleteForm.AthleteId;
-                            node.Checked = false;
-                            currentNode.Nodes.Add(node);
+                            TreeNode node = new(athleteForm.AthleteString)
+                            {
+                                Tag = athleteForm.AthleteId,
+                                Checked = false
+                            };
+                            _ = currentNode.Nodes.Add(node);
                         }
                         break;
                     default:
@@ -113,31 +117,40 @@ namespace GreatSportEventApp.BasicForms
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var currentNode = MainTreeView.SelectedNode;
+            TreeNode currentNode = MainTreeView.SelectedNode;
             if (currentNode != null)
             {
                 switch (currentNode.Level)
                 {
                     case 0:
                         // Изменяем спортивное мероприятие
-                        var sportEventForm = new SportEventForm(true, (int)currentNode.Tag);
-                        sportEventForm.ShowDialog();
+                        SportEventForm sportEventForm = new(true, (int)currentNode.Tag);
+                        _ = sportEventForm.ShowDialog();
                         if (sportEventForm.SportEventString != "")
+                        {
                             currentNode.Text = sportEventForm.SportEventString;
+                        }
+
                         break;
                     case 1:
                         // Изменяем команду
-                        var teamForm = new TeamForm(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
-                        teamForm.ShowDialog();
+                        TeamForm teamForm = new(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
+                        _ = teamForm.ShowDialog();
                         if (teamForm.TeamString != "")
+                        {
                             currentNode.Text = teamForm.TeamString;
+                        }
+
                         break;
                     case 2:
                         // Изменяем спортсмена
-                        var athleteForm = new AthleteForm(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
-                        athleteForm.ShowDialog();
+                        AthleteForm athleteForm = new(true, (int)currentNode.Tag, (int)currentNode.Parent.Tag);
+                        _ = athleteForm.ShowDialog();
                         if (athleteForm.AthleteString != "")
+                        {
                             currentNode.Text = athleteForm.AthleteString;
+                        }
+
                         break;
                 }
             }
@@ -145,7 +158,7 @@ namespace GreatSportEventApp.BasicForms
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            var currentNode = MainTreeView.SelectedNode;
+            TreeNode currentNode = MainTreeView.SelectedNode;
             if (currentNode != null)
             {
                 switch (currentNode.Level)
@@ -168,25 +181,25 @@ namespace GreatSportEventApp.BasicForms
 
         private void DeleteSportEventById(int sportEventId)
         {
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
-                var sportEvent = context.SportEvents.Find(sportEventId);
+                SportEvent sportEvent = context.SportEvents.Find(sportEventId);
 
                 if (sportEvent is null)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                context.SportEvents.Remove(sportEvent);
+                _ = context.SportEvents.Remove(sportEvent);
 
                 try
                 {
-                    context.SaveChanges();
+                    _ = context.SaveChanges();
                 }
                 catch (DbUpdateException)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
             }
@@ -198,29 +211,29 @@ namespace GreatSportEventApp.BasicForms
         {
             if (numberChildren > 0)
             {
-                MessageBox.Show(@"Невозможно удалить запись!");
+                _ = MessageBox.Show(@"Невозможно удалить запись!");
                 return;
             }
 
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
-                var paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
+                ParticipationEvent paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
 
                 if (paticipationEvent is null)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                context.ParticipationEvents.Remove(paticipationEvent);
+                _ = context.ParticipationEvents.Remove(paticipationEvent);
 
                 try
                 {
-                    context.SaveChanges();
+                    _ = context.SaveChanges();
                 }
                 catch (DbUpdateException)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
             }
@@ -230,25 +243,25 @@ namespace GreatSportEventApp.BasicForms
 
         private void DeleteAthleteById(int athleteId)
         {
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
-                var athlete = context.Athletes.Find(athleteId);
+                Athlete athlete = context.Athletes.Find(athleteId);
 
                 if (athlete is null)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                context.Athletes.Remove(athlete);
+                _ = context.Athletes.Remove(athlete);
 
                 try
                 {
-                    context.SaveChanges();
+                    _ = context.SaveChanges();
                 }
                 catch (DbUpdateException)
                 {
-                    MessageBox.Show(@"Невозможно удалить запись!");
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
             }
@@ -267,7 +280,7 @@ namespace GreatSportEventApp.BasicForms
 
         private void MainContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            var isEnabled = MainTreeView.SelectedNode != null;
+            bool isEnabled = MainTreeView.SelectedNode != null;
 
             CreateToolStripMenuItem.Enabled = isEnabled;
             EditToolStripMenuItem.Enabled = isEnabled;
@@ -281,7 +294,7 @@ namespace GreatSportEventApp.BasicForms
 
         private void MainTreeViewSetActivity()
         {
-            var isEnabled = MainTreeView.SelectedNode != null;
+            bool isEnabled = MainTreeView.SelectedNode != null;
 
             CreateToolStripButton.Enabled = isEnabled;
             EditToolStripButton.Enabled = isEnabled;
@@ -292,7 +305,7 @@ namespace GreatSportEventApp.BasicForms
 
         private void MainTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            var currentNode = e.Node;
+            TreeNode currentNode = e.Node;
             if (currentNode != null && !currentNode.Checked)
             {
                 currentNode.Nodes.Clear();
@@ -301,43 +314,47 @@ namespace GreatSportEventApp.BasicForms
                 switch (currentNode.Level)
                 {
                     case 0:
-                        var teams = Query.GetListTeamsBySportEvent(out bool isConnected, (int)currentNode.Tag).AsEnumerable();
+                        EnumerableRowCollection<DataRow> teams = Query.GetListTeamsBySportEvent(out bool isConnected, (int)currentNode.Tag).AsEnumerable();
 
                         if (!isConnected)
                         {
-                            MessageBox.Show(@"Отсутствует подключение!");
+                            _ = MessageBox.Show(@"Отсутствует подключение!");
                             return;
                         }
 
-                        foreach (var team in teams)
+                        foreach (DataRow team in teams)
                         {
-                            var node = new TreeNode(team["name"].ToString());
-                            node.Tag = team["id"];
-                            node.Checked = false;
-
-                            if (!(team["athletes"] is DBNull))
+                            TreeNode node = new(team["name"].ToString())
                             {
-                                node.Nodes.Add("Temp");
+                                Tag = team["id"],
+                                Checked = false
+                            };
+
+                            if (team["athletes"] is not DBNull)
+                            {
+                                _ = node.Nodes.Add("Temp");
                             }
 
-                            currentNode.Nodes.Add(node);
+                            _ = currentNode.Nodes.Add(node);
                         }
                         break;
                     case 1:
-                        var athletes = Query.GetListAthletesByTeam(out isConnected, (int)currentNode.Tag).AsEnumerable();
+                        EnumerableRowCollection<DataRow> athletes = Query.GetListAthletesByTeam(out isConnected, (int)currentNode.Tag).AsEnumerable();
 
                         if (!isConnected)
                         {
-                            MessageBox.Show(@"Отсутствует подключение!");
+                            _ = MessageBox.Show(@"Отсутствует подключение!");
                             return;
                         }
 
-                        foreach (var athlete in athletes)
+                        foreach (DataRow athlete in athletes)
                         {
-                            var node = new TreeNode(athlete["name"].ToString());
-                            node.Tag = athlete["id"];
-                            node.Checked = false;
-                            currentNode.Nodes.Add(node);
+                            TreeNode node = new(athlete["name"].ToString())
+                            {
+                                Tag = athlete["id"],
+                                Checked = false
+                            };
+                            _ = currentNode.Nodes.Add(node);
                         }
                         break;
                     default:
@@ -354,7 +371,7 @@ namespace GreatSportEventApp.BasicForms
 
         private void MainTreeView_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            DoDragDrop(e.Item, DragDropEffects.Move);
+            _ = DoDragDrop(e.Item, DragDropEffects.Move);
         }
     }
 }

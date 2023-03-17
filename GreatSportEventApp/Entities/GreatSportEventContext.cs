@@ -1,11 +1,7 @@
 ﻿using MySql.Data.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GreatSportEventApp.Entities
 {
@@ -30,14 +26,14 @@ namespace GreatSportEventApp.Entities
                : base(existingConnection, contextOwnsConnection)
         {
             Database.SetInitializer(new Initializer());
-            Database.Log = delegate (string message) { Console.Write(message); };
+            Database.Log = Console.Write;
         }
 
         public GreatSportEventContext()
                : base(connectionString)
         {
             Database.SetInitializer(new Initializer());
-            Database.Log = delegate (string message) { Console.Write(message); };
+            Database.Log = Console.Write;
         }
     }
 

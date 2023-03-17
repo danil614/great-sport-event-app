@@ -17,7 +17,7 @@ namespace GreatSportEventApp.BasicForms
         {
             if (string.IsNullOrWhiteSpace(textLogin.Text) || string.IsNullOrWhiteSpace(textPassword.Text))
             {
-                MessageBox.Show(@"Пустой логин или пароль!");
+                _ = MessageBox.Show(@"Пустой логин или пароль!");
             }
             else
             {
@@ -29,7 +29,10 @@ namespace GreatSportEventApp.BasicForms
 
         private void textPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) buttonLogin_Click(sender, e);
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonLogin_Click(sender, e);
+            }
         }
     }
 }

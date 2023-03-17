@@ -4,24 +4,22 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
-using GreatSportEventApp;
 
 namespace GreatSportEventApp.TeamForms
 {
     public partial class TeamForm : Form
     {
-        private int teamId;
-        private int sportEventId;
+        private readonly int sportEventId;
         private int locationId;
 
         public string TeamString { get; set; }
-        public int TeamId { get => teamId; set => teamId = value; }
+        public int TeamId { get; set; }
 
         public TeamForm(bool isChanging, int _teamId, int _sportEventId)
         {
             InitializeComponent();
 
-            teamId = _teamId;
+            TeamId = _teamId;
             sportEventId = _sportEventId;
             TeamString = "";
 
@@ -29,17 +27,17 @@ namespace GreatSportEventApp.TeamForms
             {
                 Text = @"Изменение команды";
                 labelTitle.Text = @"Изменение команды";
-                GetTeamById(teamId);
+                GetTeamById(TeamId);
             }
         }
 
         private void GetTeamById(int teamId)
         {
-            var dataTable = Query.GetTeamById(out var isConnected, teamId, sportEventId);
+            DataRow dataTable = Query.GetTeamById(out bool isConnected, teamId, sportEventId);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
@@ -50,15 +48,18 @@ namespace GreatSportEventApp.TeamForms
             textScore.Text = dataTable["score"].ToString();
             textDescription.Text = dataTable["description"].ToString();
         }
-        
+
         private void SelectLocationButton_Click(object sender, EventArgs e)
         {
-            var listLocationsForm = new ListLocationsForm(true);
-            listLocationsForm.ShowDialog();
+            ListLocationsForm listLocationsForm = new(true);
+            _ = listLocationsForm.ShowDialog();
 
-            var selectedLocation = listLocationsForm.SelectedLocation;
+            DataGridViewRow selectedLocation = listLocationsForm.SelectedLocation;
 
-            if (selectedLocation == null) return;
+            if (selectedLocation == null)
+            {
+                return;
+            }
 
             locationId = (int)selectedLocation.Cells["Номер"].Value;
             textLocationName.Text = $"{selectedLocation.Cells["Город"].Value}, {selectedLocation.Cells["Название"].Value}";
@@ -68,44 +69,44 @@ namespace GreatSportEventApp.TeamForms
         {
             if (locationId == 0 || textTeamName.Text == "")
             {
-                MessageBox.Show(@"Неправильно заполнены поля!");
+                _ = MessageBox.Show(@"Неправильно заполнены поля!");
                 return;
             }
 
             bool isConnected;
 
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
                 Team team;
 
-                if (teamId == -1) // При создании новой команды
+                if (TeamId == -1) // При создании новой команды
                 {
                     team = new Team();
-                    context.Teams.Add(team);
+                    _ = context.Teams.Add(team);
                 }
                 else
                 {
-                    team = context.Teams.Find(teamId);
+                    team = context.Teams.Find(TeamId);
                 }
 
                 team.LocationId = locationId;
                 team.Name = textTeamName.Text;
 
-                int.TryParse(textRating.Text, out int rating);
+                _ = int.TryParse(textRating.Text, out int rating);
                 team.Rating = rating;
 
                 team.Description = textDescription.Text;
-                context.SaveChanges();
+                _ = context.SaveChanges();
 
-                teamId = team.Id;
+                TeamId = team.Id;
                 UpdateParticipationEvent(context);
 
-                TeamString = Query.GetTeamStringById(out isConnected, teamId, sportEventId);
+                TeamString = Query.GetTeamStringById(out isConnected, TeamId, sportEventId);
             }
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
@@ -114,20 +115,20 @@ namespace GreatSportEventApp.TeamForms
 
         private void UpdateParticipationEvent(GreatSportEventContext context)
         {
-            var paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
+            ParticipationEvent paticipationEvent = context.ParticipationEvents.Find(sportEventId, TeamId);
             if (paticipationEvent is null)
             {
                 paticipationEvent = new ParticipationEvent();
-                context.ParticipationEvents.Add(paticipationEvent);
+                _ = context.ParticipationEvents.Add(paticipationEvent);
             }
 
             paticipationEvent.SportEventId = sportEventId;
-            paticipationEvent.TeamId = teamId;
+            paticipationEvent.TeamId = TeamId;
 
-            int.TryParse(textScore.Text, out int score);
+            _ = int.TryParse(textScore.Text, out int score);
             paticipationEvent.Score = score;
 
-            context.SaveChanges();
+            _ = context.SaveChanges();
         }
 
         #region Validating

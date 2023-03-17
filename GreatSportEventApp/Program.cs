@@ -13,9 +13,10 @@ namespace GreatSportEventApp
         private static void Main()
         {
             Application.EnableVisualStyles();
+            _ = Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var mainForm = new MainForm();
+            MainForm mainForm = new();
             Application.Run(mainForm);
             return;
         }

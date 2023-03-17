@@ -26,7 +26,7 @@ namespace GreatSportEventApp.LocationForms
                 labelTitle.Text = @"Изменение места";
             }
         }
-        
+
         /// <summary>
         ///     Обновляет список городов.
         /// </summary>
@@ -34,17 +34,20 @@ namespace GreatSportEventApp.LocationForms
         {
             comboCity.Items.Clear();
 
-            var dataTable = Query.GetListCities(out var isConnected);
+            DataTable dataTable = Query.GetListCities(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
-            foreach (DataRow row in dataTable.Rows) comboCity.Items.Add(row[0]);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                _ = comboCity.Items.Add(row[0]);
+            }
         }
-        
+
         /// <summary>
         ///     Обновляет список типов мест.
         /// </summary>
@@ -52,17 +55,20 @@ namespace GreatSportEventApp.LocationForms
         {
             comboType.Items.Clear();
 
-            var dataTable = Query.GetListTypes(out var isConnected);
+            DataTable dataTable = Query.GetListTypes(out bool isConnected);
 
-            if (!isConnected) 
-            { 
-                MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
-            foreach (DataRow row in dataTable.Rows) comboType.Items.Add(row[0]);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                _ = comboType.Items.Add(row[0]);
+            }
         }
-        
+
         public int LocationId { get; set; }
 
         public string LocationName
@@ -87,10 +93,10 @@ namespace GreatSportEventApp.LocationForms
 
         public int Capacity
         {
-            get => int.TryParse(textCapacity.Text, out var result) ? result : 0;
+            get => int.TryParse(textCapacity.Text, out int result) ? result : 0;
             set => textCapacity.Text = value.ToString();
         }
-        
+
         public string Description
         {
             set => textDescription.Text = value;
@@ -100,22 +106,14 @@ namespace GreatSportEventApp.LocationForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            bool isConnected;
-            
-            if (IsChanging)
-            {
-                isConnected = Query.UpdateLocation(LocationId, textName.Text, comboCity.Text, textAddress.Text,
+            bool isConnected = IsChanging
+                ? Query.UpdateLocation(LocationId, textName.Text, comboCity.Text, textAddress.Text,
+                    comboType.Text, Capacity, textDescription.Text)
+                : Query.InsertLocation(textName.Text, comboCity.Text, textAddress.Text,
                     comboType.Text, Capacity, textDescription.Text);
-            }
-            else
-            {
-                isConnected = Query.InsertLocation(textName.Text, comboCity.Text, textAddress.Text,
-                    comboType.Text, Capacity, textDescription.Text);
-            }
-            
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 

@@ -1,13 +1,6 @@
 ﻿using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.SimpleForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -28,27 +21,27 @@ namespace GreatSportEventApp.BasicForms
         private void LoginToolStripButton_Click(object sender, EventArgs e)
         {
             // Открываем форму входа
-            var loginForm = new LoginForm();
-            loginForm.ShowDialog();
+            LoginForm loginForm = new();
+            _ = loginForm.ShowDialog();
 
             if (!(string.IsNullOrWhiteSpace(loginForm.Login) || string.IsNullOrWhiteSpace(loginForm.Password)))
             {
                 // Получаем режим доступа по логину и паролю
-                var accessMode = Query.GetAccessMode(loginForm.Login, loginForm.Password, out var isConnected);
+                string accessMode = Query.GetAccessMode(loginForm.Login, loginForm.Password, out bool isConnected);
 
                 if (!isConnected)
                 {
-                    MessageBox.Show(@"Отсутствует подключение!");
+                    _ = MessageBox.Show(@"Отсутствует подключение!");
                     Application.Exit();
                     return;
                 }
 
                 // Создаем форму организатора
-                var organizerForm = new OrganizerForm();
+                OrganizerForm organizerForm = new();
                 // Создаем форму продавца
-                var sellerForm = new SellerForm();
+                SellerForm sellerForm = new();
                 // Создаем форму администратора
-                var adminForm = new AdminForm();
+                AdminForm adminForm = new();
 
                 switch (accessMode)
                 {
@@ -62,7 +55,7 @@ namespace GreatSportEventApp.BasicForms
                         organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     default:
-                        MessageBox.Show($@"Неправильный логин или пароль!");
+                        _ = MessageBox.Show($@"Неправильный логин или пароль!");
                         break;
                 }
             }
@@ -70,31 +63,31 @@ namespace GreatSportEventApp.BasicForms
 
         private void TreeFormToolStripButton_Click(object sender, EventArgs e)
         {
-            var treeForm = new TreeForm();
+            TreeForm treeForm = new();
             treeForm.Show(mainDockPanel, DockState.Document);
         }
 
         private void ListLocationsFormToolStripButton_Click(object sender, EventArgs e)
         {
-            var locationsForm = new ListLocationsForm(false);
+            ListLocationsForm locationsForm = new(false);
             locationsForm.Show(mainDockPanel, DockState.Document);
         }
 
         private void AboutFormToolStripButton_Click(object sender, EventArgs e)
         {
-            var aboutForm = new AboutForm();
-            aboutForm.ShowDialog();
+            AboutForm aboutForm = new();
+            _ = aboutForm.ShowDialog();
         }
 
         private void CitiesToolStripButton_Click(object sender, EventArgs e)
         {
-            var citiesForm = new CitiesForm();
+            CitiesForm citiesForm = new();
             citiesForm.Show(mainDockPanel, DockState.Document);
         }
 
         private void PositionsToolStripButton_Click(object sender, EventArgs e)
         {
-            var positionsForm = new PositionsForm();
+            PositionsForm positionsForm = new();
             positionsForm.Show(mainDockPanel, DockState.Document);
         }
 

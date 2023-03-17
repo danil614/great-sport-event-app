@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace GreatSportEventApp
 {
@@ -11,7 +6,7 @@ namespace GreatSportEventApp
     {
         public static void SetTextLengthError(object sender, ErrorProvider errorProvider, int length)
         {
-            var textBox = (TextBox)sender;
+            TextBox textBox = (TextBox)sender;
             errorProvider.SetError(textBox, "");
 
             if (textBox.Text.Length > length)
@@ -22,7 +17,7 @@ namespace GreatSportEventApp
 
         public static void SetIntError(object sender, ErrorProvider errorProvider)
         {
-            var textBox = (TextBox)sender;
+            TextBox textBox = (TextBox)sender;
             errorProvider.SetError(textBox, "");
 
             if (!int.TryParse(textBox.Text, out int result) || result < 0)

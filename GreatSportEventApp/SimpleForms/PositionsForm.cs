@@ -1,5 +1,4 @@
 ﻿using GreatSportEventApp.Entities;
-using MySql.Data.MySqlClient;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
@@ -22,11 +21,11 @@ namespace GreatSportEventApp.SimpleForms
         private void UpdateListPositions()
         {
             // Получаем запрос со зрителями
-            var listPositions = Query.GetListPositions(out var isConnected);
+            System.Data.DataTable listPositions = Query.GetListPositions(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 Close();
             }
             else
@@ -48,28 +47,29 @@ namespace GreatSportEventApp.SimpleForms
 
         private void DataView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataView.CurrentRow == null) return;
+            if (dataView.CurrentRow == null)
+            {
+                return;
+            }
 
-            long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+            _ = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
             string name = dataView.CurrentRow.Cells[1].Value.ToString();
 
             if (name != "")
             {
-                using (var context = new GreatSportEventContext())
+                using GreatSportEventContext context = new();
+                Position position = context.Positions.Find(id);
+
+                if (position is null)
                 {
-                    var position = context.Positions.Find(id);
-
-                    if (position is null)
-                    {
-                        position = new Position();
-                        context.Positions.Add(position);
-                    }
-
-                    position.Name = name;
-                    context.SaveChanges();
-
-                    UpdateListPositions();
+                    position = new Position();
+                    _ = context.Positions.Add(position);
                 }
+
+                position.Name = name;
+                _ = context.SaveChanges();
+
+                UpdateListPositions();
             }
         }
 
@@ -77,47 +77,48 @@ namespace GreatSportEventApp.SimpleForms
         {
             int n = dataView.Rows.Count;
             dataView.CurrentCell = dataView.Rows[n - 1].Cells[1];
-            dataView.BeginEdit(true);
+            _ = dataView.BeginEdit(true);
         }
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
             DataGridViewCell cell = dataView.CurrentRow.Cells[1];
             dataView.CurrentCell = cell;
-            dataView.BeginEdit(true);
+            _ = dataView.BeginEdit(true);
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataView.CurrentRow == null) return;
-
-            using (var context = new GreatSportEventContext())
+            if (dataView.CurrentRow == null)
             {
-                bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
-                string name = dataView.CurrentRow.Cells[1].Value.ToString();
+                return;
+            }
 
-                if (isIdFill && name != "")
+            using GreatSportEventContext context = new();
+            bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+            string name = dataView.CurrentRow.Cells[1].Value.ToString();
+
+            if (isIdFill && name != "")
+            {
+                Position position = context.Positions.Find(id);
+
+                if (position is null)
                 {
-                    var position = context.Positions.Find(id);
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
+                }
+                else
+                {
+                    _ = context.Positions.Remove(position);
 
-                    if (position is null)
+                    try
                     {
-                        MessageBox.Show(@"Невозможно удалить запись!");
+                        _ = context.SaveChanges();
                     }
-                    else
+                    catch (DbUpdateException)
                     {
-                        context.Positions.Remove(position);
-
-                        try
-                        {
-                            context.SaveChanges();
-                        }
-                        catch (DbUpdateException)
-                        {
-                            MessageBox.Show(@"Невозможно удалить запись!");
-                        }
-
-                        UpdateListPositions();
+                        _ = MessageBox.Show(@"Невозможно удалить запись!");
                     }
+
+                    UpdateListPositions();
                 }
             }
         }

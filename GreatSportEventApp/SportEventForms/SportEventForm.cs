@@ -9,17 +9,16 @@ namespace GreatSportEventApp.SportEventForms
 {
     public partial class SportEventForm : Form
     {
-        private int sportEventId;
         private int locationId;
 
         public string SportEventString { get; set; }
-        public int SportEventId { get => sportEventId; set => sportEventId = value; }
+        public int SportEventId { get; set; }
 
         public SportEventForm(bool isChanging, int _sportEventId)
         {
             InitializeComponent();
 
-            sportEventId = _sportEventId;
+            SportEventId = _sportEventId;
             SportEventString = "";
 
             // Запрещаем редактирование типа места
@@ -30,7 +29,7 @@ namespace GreatSportEventApp.SportEventForms
             {
                 Text = @"Изменение спортивного мероприятия";
                 labelTitle.Text = @"Изменение спортивного мероприятия";
-                GetSportEventById(sportEventId);
+                GetSportEventById(SportEventId);
             }
 
             dateTimeEvent.Format = DateTimePickerFormat.Custom;
@@ -43,11 +42,11 @@ namespace GreatSportEventApp.SportEventForms
 
         private void GetSportEventById(int sportEventId)
         {
-            var dataTable = Query.GetSportEventById(out var isConnected, sportEventId);
+            DataRow dataTable = Query.GetSportEventById(out bool isConnected, sportEventId);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
@@ -58,7 +57,7 @@ namespace GreatSportEventApp.SportEventForms
             duration.Value = new DateTime(2011, 11, 11) + (TimeSpan)dataTable["duration"];
             textDescription.Text = dataTable["description"].ToString();
         }
-        
+
         /// <summary>
         ///     Обновляет список типов мест.
         /// </summary>
@@ -66,25 +65,31 @@ namespace GreatSportEventApp.SportEventForms
         {
             comboType.Items.Clear();
 
-            var dataTable = Query.GetListTypes(out var isConnected);
+            DataTable dataTable = Query.GetListTypes(out bool isConnected);
 
-            if (!isConnected) 
-            { 
-                MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 
-            foreach (DataRow row in dataTable.Rows) comboType.Items.Add(row[0]);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                _ = comboType.Items.Add(row[0]);
+            }
         }
 
         private void SelectLocationButton_Click(object sender, EventArgs e)
         {
-            var listLocationsForm = new ListLocationsForm(true);
-            listLocationsForm.ShowDialog();
+            ListLocationsForm listLocationsForm = new(true);
+            _ = listLocationsForm.ShowDialog();
 
-            var selectedLocation = listLocationsForm.SelectedLocation;
+            DataGridViewRow selectedLocation = listLocationsForm.SelectedLocation;
 
-            if (selectedLocation == null) return;
+            if (selectedLocation == null)
+            {
+                return;
+            }
 
             locationId = (int)selectedLocation.Cells["Номер"].Value;
             textLocationName.Text = $"{selectedLocation.Cells["Город"].Value}, {selectedLocation.Cells["Название"].Value}";
@@ -92,25 +97,25 @@ namespace GreatSportEventApp.SportEventForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            var typeId = Query.GetTypeIdByName(out bool isConnected, comboType.Text);
+            int typeId = Query.GetTypeIdByName(out bool isConnected, comboType.Text);
             if (typeId == -1 || locationId == 0 || (duration.Value.Hour == 0 && duration.Value.Minute == 0))
             {
-                MessageBox.Show(@"Неправильно заполнены поля!");
+                _ = MessageBox.Show(@"Неправильно заполнены поля!");
                 return;
             }
 
-            using (var context = new GreatSportEventContext())
+            using (GreatSportEventContext context = new())
             {
                 SportEvent sportEvent;
 
-                if (sportEventId == -1)
+                if (SportEventId == -1)
                 {
                     sportEvent = new SportEvent();
-                    context.SportEvents.Add(sportEvent);
+                    _ = context.SportEvents.Add(sportEvent);
                 }
                 else
                 {
-                    sportEvent = context.SportEvents.Find(sportEventId);
+                    sportEvent = context.SportEvents.Find(SportEventId);
                 }
 
                 sportEvent.TypeId = typeId;
@@ -118,7 +123,7 @@ namespace GreatSportEventApp.SportEventForms
                 sportEvent.DateTime = dateTimeEvent.Value;
                 sportEvent.Duration = new TimeSpan(duration.Value.Hour, duration.Value.Minute, 0);
                 sportEvent.Description = textDescription.Text;
-                context.SaveChanges();
+                _ = context.SaveChanges();
 
                 SportEventId = sportEvent.Id;
                 SportEventString = Query.GetSportEventStringById(out isConnected, SportEventId);
@@ -126,7 +131,7 @@ namespace GreatSportEventApp.SportEventForms
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
 

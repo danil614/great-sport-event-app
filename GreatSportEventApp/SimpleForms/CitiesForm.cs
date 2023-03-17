@@ -1,5 +1,4 @@
 ﻿using GreatSportEventApp.Entities;
-using MySql.Data.MySqlClient;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
@@ -22,11 +21,11 @@ namespace GreatSportEventApp.SimpleForms
         private void UpdateListCities()
         {
             // Получаем запрос со зрителями
-            var listCities = Query.GetListCitiesAndId(out var isConnected);
+            System.Data.DataTable listCities = Query.GetListCitiesAndId(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 Close();
             }
             else
@@ -47,47 +46,53 @@ namespace GreatSportEventApp.SimpleForms
         {
             if (e.ColumnIndex == 0)
             {
-                MessageBox.Show(@"Неправльно заполнен id города!");
+                _ = MessageBox.Show(@"Неправльно заполнен id города!");
                 return;
             }
         }
 
         private void DataView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataView.CurrentRow == null) return;
-
-            using (var context = new GreatSportEventContext())
+            if (dataView.CurrentRow == null)
             {
-                string name = dataView.CurrentRow.Cells[1].Value.ToString();
-                bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+                return;
+            }
 
-                if (isIdFill && name != "")
+            using GreatSportEventContext context = new();
+            string name = dataView.CurrentRow.Cells[1].Value.ToString();
+            bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+
+            if (isIdFill && name != "")
+            {
+                City city = context.Cities.Find(id);
+
+                if (city is null)
                 {
-                    var city = context.Cities.Find(id);
-
-                    if (city is null)
+                    city = new City
                     {
-                        city = new City();
-                        city.Id = id;
-                        context.Cities.Add(city);
-                    }
-
-                    city.Name = name;
-                    context.SaveChanges();
-
-                    UpdateListCities();
+                        Id = id
+                    };
+                    _ = context.Cities.Add(city);
                 }
+
+                city.Name = name;
+                _ = context.SaveChanges();
+
+                UpdateListCities();
             }
         }
 
         private void DataView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (dataView.CurrentRow == null) return;
+            if (dataView.CurrentRow == null)
+            {
+                return;
+            }
 
             string stringId = dataView.CurrentRow.Cells[0].Value.ToString();
             if (e.ColumnIndex == 0 && stringId != "")
             {
-                MessageBox.Show(@"Нельзя менять id города!");
+                _ = MessageBox.Show(@"Нельзя менять id города!");
                 e.Cancel = true;
             }
         }
@@ -96,47 +101,48 @@ namespace GreatSportEventApp.SimpleForms
         {
             int n = dataView.Rows.Count;
             dataView.CurrentCell = dataView.Rows[n - 1].Cells[0];
-            dataView.BeginEdit(true);
+            _ = dataView.BeginEdit(true);
         }
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
             DataGridViewCell cell = dataView.CurrentRow.Cells[1];
             dataView.CurrentCell = cell;
-            dataView.BeginEdit(true);
+            _ = dataView.BeginEdit(true);
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataView.CurrentRow == null) return;
-
-            using (var context = new GreatSportEventContext())
+            if (dataView.CurrentRow == null)
             {
-                string name = dataView.CurrentRow.Cells[1].Value.ToString();
-                bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+                return;
+            }
 
-                if (isIdFill && name != "")
+            using GreatSportEventContext context = new();
+            string name = dataView.CurrentRow.Cells[1].Value.ToString();
+            bool isIdFill = long.TryParse(dataView.CurrentRow.Cells[0].Value.ToString(), out long id);
+
+            if (isIdFill && name != "")
+            {
+                City city = context.Cities.Find(id);
+
+                if (city is null)
                 {
-                    var city = context.Cities.Find(id);
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
+                }
+                else
+                {
+                    _ = context.Cities.Remove(city);
 
-                    if (city is null)
+                    try
                     {
-                        MessageBox.Show(@"Невозможно удалить запись!");
+                        _ = context.SaveChanges();
                     }
-                    else
+                    catch (DbUpdateException)
                     {
-                        context.Cities.Remove(city);
-
-                        try
-                        {
-                            context.SaveChanges();
-                        }
-                        catch (DbUpdateException)
-                        {
-                            MessageBox.Show(@"Невозможно удалить запись!");
-                        }
-
-                        UpdateListCities();
+                        _ = MessageBox.Show(@"Невозможно удалить запись!");
                     }
+
+                    UpdateListCities();
                 }
             }
         }

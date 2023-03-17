@@ -23,7 +23,7 @@ namespace GreatSportEventApp
                 labelTitle.Text = @"Изменение зрителя";
             }
         }
-        
+
         public int PersonId { get; set; }
 
         public string Surname
@@ -60,22 +60,17 @@ namespace GreatSportEventApp
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            var birthDateString = dateBirth.Value.Year + "-" + dateBirth.Value.Month + "-" + dateBirth.Value.Day;
+            string birthDateString = dateBirth.Value.Year + "-" + dateBirth.Value.Month + "-" + dateBirth.Value.Day;
 
-            bool isConnected;
-            
-            if (IsChanging)
-            {
-                isConnected = Query.UpdateViewer(PersonId, textSurname.Text, textName.Text,
+            bool isConnected = IsChanging
+                ? Query.UpdateViewer(PersonId, textSurname.Text, textName.Text,
+                    textPatronymic.Text, comboGender.Text, textPhoneNumber.Text, birthDateString)
+                : Query.InsertViewer(textSurname.Text, textName.Text,
                     textPatronymic.Text, comboGender.Text, textPhoneNumber.Text, birthDateString);
-            }
-            else
+            if (!isConnected)
             {
-                isConnected = Query.InsertViewer(textSurname.Text, textName.Text,
-                    textPatronymic.Text, comboGender.Text, textPhoneNumber.Text, birthDateString);
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
-            
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
 
             Close();
         }
@@ -87,11 +82,17 @@ namespace GreatSportEventApp
         {
             comboGender.Items.Clear();
 
-            var dataTable = Query.GetListGender(out var isConnected);
+            DataTable dataTable = Query.GetListGender(out bool isConnected);
 
-            if (!isConnected) MessageBox.Show(@"Отсутствует подключение!");
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+            }
 
-            foreach (DataRow row in dataTable.Rows) comboGender.Items.Add(row[0]);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                _ = comboGender.Items.Add(row[0]);
+            }
         }
     }
 }

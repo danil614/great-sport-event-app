@@ -28,11 +28,11 @@ namespace GreatSportEventApp.TeamForms
         private void UpdateListLocations()
         {
             // Получаем запрос со зрителями
-            var listLocations = Query.GetListLocations(out var isConnected);
+            System.Data.DataTable listLocations = Query.GetListLocations(out bool isConnected);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
                 Close();
             }
             else
@@ -54,33 +54,38 @@ namespace GreatSportEventApp.TeamForms
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
-            var locationForm = new LocationForm(false);
-            locationForm.ShowDialog();
+            LocationForm locationForm = new(false);
+            _ = locationForm.ShowDialog();
             UpdateListLocations();
         }
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
         {
-            if (dataLocations.CurrentRow == null) return;
+            if (dataLocations.CurrentRow == null)
+            {
+                return;
+            }
 
-            var currentRowId = (int)dataLocations.CurrentRow.Cells[0].Value;
-            var location = Query.GetLocationById(out var isConnected, currentRowId);
+            int currentRowId = (int)dataLocations.CurrentRow.Cells[0].Value;
+            System.Data.DataRow location = Query.GetLocationById(out bool isConnected, currentRowId);
 
             if (!isConnected)
             {
-                MessageBox.Show(@"Отсутствует подключение!");
+                _ = MessageBox.Show(@"Отсутствует подключение!");
             }
             else
             {
-                var locationForm = new LocationForm(true);
-                locationForm.LocationId = currentRowId;
-                locationForm.LocationName = location["location_name"].ToString();
-                locationForm.City = location["city_name"].ToString();
-                locationForm.Address = location["address"].ToString();
-                locationForm.Type = location["location_type"].ToString();
-                locationForm.Capacity = (int)location["capacity"];
-                locationForm.Description = location["description"].ToString();
-                locationForm.ShowDialog();
+                LocationForm locationForm = new(true)
+                {
+                    LocationId = currentRowId,
+                    LocationName = location["location_name"].ToString(),
+                    City = location["city_name"].ToString(),
+                    Address = location["address"].ToString(),
+                    Type = location["location_type"].ToString(),
+                    Capacity = (int)location["capacity"],
+                    Description = location["description"].ToString()
+                };
+                _ = locationForm.ShowDialog();
                 UpdateListLocations();
             }
         }
@@ -97,7 +102,7 @@ namespace GreatSportEventApp.TeamForms
 
         private void DataLocations_Click(object sender, EventArgs e)
         {
-            var isEnabled = dataLocations.CurrentRow != null;
+            bool isEnabled = dataLocations.CurrentRow != null;
 
             CreateToolStripButton.Enabled = isEnabled;
             EditToolStripButton.Enabled = isEnabled;
@@ -113,7 +118,7 @@ namespace GreatSportEventApp.TeamForms
         {
             if (dataLocations.CurrentRow == null)
             {
-                MessageBox.Show(@"Выделите нужную строку с местом расположения!");
+                _ = MessageBox.Show(@"Выделите нужную строку с местом расположения!");
                 return;
             }
             else
