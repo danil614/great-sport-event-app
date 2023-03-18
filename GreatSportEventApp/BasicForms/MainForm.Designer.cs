@@ -30,171 +30,157 @@ namespace GreatSportEventApp.BasicForms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.MainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.LoginToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.TreeFormToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ListLocationsFormToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.CitiesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.AboutFormToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.PositionsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.MainToolStrip.SuspendLayout();
-            this.SuspendLayout();
+            MainToolStrip = new System.Windows.Forms.ToolStrip();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            LoginToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            TreeFormToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            ListLocationsFormToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            CitiesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            PositionsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            AboutFormToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            MainToolStrip.SuspendLayout();
+            SuspendLayout();
             // 
             // MainToolStrip
             // 
-            this.MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.LoginToolStripButton,
-            this.toolStripSeparator8,
-            this.TreeFormToolStripButton,
-            this.toolStripSeparator2,
-            this.ListLocationsFormToolStripButton,
-            this.toolStripSeparator7,
-            this.CitiesToolStripButton,
-            this.toolStripSeparator5,
-            this.PositionsToolStripButton,
-            this.toolStripSeparator4,
-            this.AboutFormToolStripButton,
-            this.toolStripSeparator3});
-            this.MainToolStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainToolStrip.Name = "MainToolStrip";
-            this.MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.MainToolStrip.Size = new System.Drawing.Size(1137, 31);
-            this.MainToolStrip.TabIndex = 1;
-            this.MainToolStrip.Text = "mainToolStrip";
+            MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparator1, LoginToolStripButton, toolStripSeparator8, TreeFormToolStripButton, toolStripSeparator2, ListLocationsFormToolStripButton, toolStripSeparator7, CitiesToolStripButton, toolStripSeparator5, PositionsToolStripButton, toolStripSeparator4, AboutFormToolStripButton, toolStripSeparator3 });
+            MainToolStrip.Location = new System.Drawing.Point(0, 0);
+            MainToolStrip.Name = "MainToolStrip";
+            MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            MainToolStrip.Size = new System.Drawing.Size(1324, 27);
+            MainToolStrip.TabIndex = 1;
+            MainToolStrip.Text = "mainToolStrip";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // LoginToolStripButton
             // 
-            this.LoginToolStripButton.Image = global::GreatSportEventApp.Properties.Resources.login;
-            this.LoginToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LoginToolStripButton.Name = "LoginToolStripButton";
-            this.LoginToolStripButton.Size = new System.Drawing.Size(75, 28);
-            this.LoginToolStripButton.Text = "Войти";
-            this.LoginToolStripButton.Click += new System.EventHandler(this.LoginToolStripButton_Click);
+            LoginToolStripButton.Image = Properties.Resources.login;
+            LoginToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            LoginToolStripButton.Name = "LoginToolStripButton";
+            LoginToolStripButton.Size = new System.Drawing.Size(64, 24);
+            LoginToolStripButton.Text = "Войти";
+            LoginToolStripButton.Click += LoginToolStripButton_Click;
             // 
             // toolStripSeparator8
             // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator8.Name = "toolStripSeparator8";
+            toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
             // 
             // TreeFormToolStripButton
             // 
-            this.TreeFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TreeFormToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("TreeFormToolStripButton.Image")));
-            this.TreeFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TreeFormToolStripButton.Name = "TreeFormToolStripButton";
-            this.TreeFormToolStripButton.Size = new System.Drawing.Size(199, 28);
-            this.TreeFormToolStripButton.Text = "Спортивные мероприятия";
-            this.TreeFormToolStripButton.Click += new System.EventHandler(this.TreeFormToolStripButton_Click);
+            TreeFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            TreeFormToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TreeFormToolStripButton.Image");
+            TreeFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            TreeFormToolStripButton.Name = "TreeFormToolStripButton";
+            TreeFormToolStripButton.Size = new System.Drawing.Size(157, 24);
+            TreeFormToolStripButton.Text = "Спортивные мероприятия";
+            TreeFormToolStripButton.Click += TreeFormToolStripButton_Click;
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // ListLocationsFormToolStripButton
             // 
-            this.ListLocationsFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ListLocationsFormToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ListLocationsFormToolStripButton.Image")));
-            this.ListLocationsFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ListLocationsFormToolStripButton.Name = "ListLocationsFormToolStripButton";
-            this.ListLocationsFormToolStripButton.Size = new System.Drawing.Size(163, 28);
-            this.ListLocationsFormToolStripButton.Text = "Места расположения";
-            this.ListLocationsFormToolStripButton.Click += new System.EventHandler(this.ListLocationsFormToolStripButton_Click);
+            ListLocationsFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            ListLocationsFormToolStripButton.Image = (System.Drawing.Image)resources.GetObject("ListLocationsFormToolStripButton.Image");
+            ListLocationsFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ListLocationsFormToolStripButton.Name = "ListLocationsFormToolStripButton";
+            ListLocationsFormToolStripButton.Size = new System.Drawing.Size(130, 24);
+            ListLocationsFormToolStripButton.Text = "Места расположения";
+            ListLocationsFormToolStripButton.Click += ListLocationsFormToolStripButton_Click;
             // 
             // toolStripSeparator7
             // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(6, 27);
             // 
             // CitiesToolStripButton
             // 
-            this.CitiesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CitiesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CitiesToolStripButton.Image")));
-            this.CitiesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CitiesToolStripButton.Name = "CitiesToolStripButton";
-            this.CitiesToolStripButton.Size = new System.Drawing.Size(63, 28);
-            this.CitiesToolStripButton.Text = "Города";
-            this.CitiesToolStripButton.Click += new System.EventHandler(this.CitiesToolStripButton_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
-            // 
-            // AboutFormToolStripButton
-            // 
-            this.AboutFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.AboutFormToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("AboutFormToolStripButton.Image")));
-            this.AboutFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AboutFormToolStripButton.Name = "AboutFormToolStripButton";
-            this.AboutFormToolStripButton.Size = new System.Drawing.Size(29, 28);
-            this.AboutFormToolStripButton.Text = "Спр&авка";
-            this.AboutFormToolStripButton.Click += new System.EventHandler(this.AboutFormToolStripButton_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // mainDockPanel
-            // 
-            this.mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainDockPanel.Location = new System.Drawing.Point(0, 31);
-            this.mainDockPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.mainDockPanel.Name = "mainDockPanel";
-            this.mainDockPanel.Size = new System.Drawing.Size(1137, 684);
-            this.mainDockPanel.TabIndex = 2;
-            // 
-            // PositionsToolStripButton
-            // 
-            this.PositionsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PositionsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PositionsToolStripButton.Image")));
-            this.PositionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PositionsToolStripButton.Name = "PositionsToolStripButton";
-            this.PositionsToolStripButton.Size = new System.Drawing.Size(91, 28);
-            this.PositionsToolStripButton.Text = "Должности";
-            this.PositionsToolStripButton.Click += new System.EventHandler(this.PositionsToolStripButton_Click);
+            CitiesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            CitiesToolStripButton.Image = (System.Drawing.Image)resources.GetObject("CitiesToolStripButton.Image");
+            CitiesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            CitiesToolStripButton.Name = "CitiesToolStripButton";
+            CitiesToolStripButton.Size = new System.Drawing.Size(50, 24);
+            CitiesToolStripButton.Text = "Города";
+            CitiesToolStripButton.Click += CitiesToolStripButton_Click;
             // 
             // toolStripSeparator5
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
+            // 
+            // PositionsToolStripButton
+            // 
+            PositionsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            PositionsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("PositionsToolStripButton.Image");
+            PositionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            PositionsToolStripButton.Name = "PositionsToolStripButton";
+            PositionsToolStripButton.Size = new System.Drawing.Size(74, 24);
+            PositionsToolStripButton.Text = "Должности";
+            PositionsToolStripButton.Click += PositionsToolStripButton_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
+            // 
+            // AboutFormToolStripButton
+            // 
+            AboutFormToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            AboutFormToolStripButton.Image = (System.Drawing.Image)resources.GetObject("AboutFormToolStripButton.Image");
+            AboutFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            AboutFormToolStripButton.Name = "AboutFormToolStripButton";
+            AboutFormToolStripButton.Size = new System.Drawing.Size(24, 24);
+            AboutFormToolStripButton.Text = "Спр&авка";
+            AboutFormToolStripButton.Click += AboutFormToolStripButton_Click;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // mainDockPanel
+            // 
+            mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            mainDockPanel.Location = new System.Drawing.Point(0, 27);
+            mainDockPanel.Margin = new System.Windows.Forms.Padding(4);
+            mainDockPanel.Name = "mainDockPanel";
+            mainDockPanel.Size = new System.Drawing.Size(1324, 763);
+            mainDockPanel.TabIndex = 2;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1137, 715);
-            this.Controls.Add(this.mainDockPanel);
-            this.Controls.Add(this.MainToolStrip);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Организация спортивных мероприятий";
-            this.MainToolStrip.ResumeLayout(false);
-            this.MainToolStrip.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScroll = true;
+            ClientSize = new System.Drawing.Size(1324, 790);
+            Controls.Add(mainDockPanel);
+            Controls.Add(MainToolStrip);
+            Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "MainForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Организация спортивных мероприятий";
+            MainToolStrip.ResumeLayout(false);
+            MainToolStrip.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -7,7 +7,7 @@ namespace GreatSportEventApp
         /// <summary>
         ///     Получает режим доступа по логину и паролю.
         /// </summary>
-        public static string GetAccessMode(string login, string password, out bool isConnected)
+        public static UserType GetAccessMode(string login, string password, out bool isConnected)
         {
             string query = $"CALL get_access_mode('{login}', '{password}')";
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
@@ -15,12 +15,20 @@ namespace GreatSportEventApp
             if (dataTable == null)
             {
                 isConnected = false;
-                return "";
+                return UserType.Null;
             }
 
             isConnected = true;
 
-            return dataTable.Rows.Count == 1 ? (string)dataTable.Rows[0][0] : "";
+            if(dataTable.Rows.Count == 1)
+            {
+                if (int.TryParse(dataTable.Rows[0][0].ToString(), out int mode))
+                {
+                    return (UserType)mode;
+                }
+            }
+
+            return UserType.Null;
         }
 
         /// <summary>

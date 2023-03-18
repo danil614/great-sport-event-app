@@ -1,6 +1,10 @@
-﻿using System;
+﻿using GreatSportEventApp.Entities;
+using System;
+using System.Data.Entity.Infrastructure;
+using System.Data;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using GreatSportEventApp.BasicForms;
 
 namespace GreatSportEventApp.LocationForms
 {
@@ -12,6 +16,7 @@ namespace GreatSportEventApp.LocationForms
         {
             InitializeComponent();
             UpdateListLocations();
+            SetVisibleItems();
 
             if (!isSelectionMode)
             {
@@ -19,6 +24,18 @@ namespace GreatSportEventApp.LocationForms
             }
 
             SelectedLocation = null;
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+            }
         }
 
         /// <summary>
@@ -91,7 +108,38 @@ namespace GreatSportEventApp.LocationForms
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
         {
+            if (dataLocations.CurrentRow == null)
+            {
+                return;
+            }
 
+            using GreatSportEventContext context = new();
+            bool isIdFill = int.TryParse(dataLocations.CurrentRow.Cells[0].Value.ToString(), out int id);
+
+            if (isIdFill)
+            {
+                var location = context.Locations.Find(id);
+
+                if (location is null)
+                {
+                    _ = MessageBox.Show(@"Невозможно удалить запись!");
+                }
+                else
+                {
+                    _ = context.Locations.Remove(location);
+
+                    try
+                    {
+                        _ = context.SaveChanges();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        _ = MessageBox.Show(@"Невозможно удалить запись!");
+                    }
+
+                    UpdateListLocations();
+                }
+            }
         }
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)

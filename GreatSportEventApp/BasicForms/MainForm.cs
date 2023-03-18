@@ -8,9 +8,13 @@ namespace GreatSportEventApp.BasicForms
 {
     public partial class MainForm : Form
     {
+        public static UserType CurrentUserType { get => _currentUserType; }
+        private static UserType _currentUserType;
+
         public MainForm()
         {
             InitializeComponent();
+            _currentUserType = UserType.Null;
 
             // Тема для Dock
             mainDockPanel.Theme = new VS2015LightTheme();
@@ -27,31 +31,29 @@ namespace GreatSportEventApp.BasicForms
             if (!(string.IsNullOrWhiteSpace(loginForm.Login) || string.IsNullOrWhiteSpace(loginForm.Password)))
             {
                 // Получаем режим доступа по логину и паролю
-                string accessMode = Query.GetAccessMode(loginForm.Login, loginForm.Password, out bool isConnected);
+                _currentUserType = Query.GetAccessMode(loginForm.Login, loginForm.Password, out bool isConnected);
 
                 if (!isConnected)
                 {
                     _ = MessageBox.Show(@"Отсутствует подключение!");
-                    Application.Exit();
                     return;
                 }
 
-                // Создаем форму организатора
-                OrganizerForm organizerForm = new();
-                // Создаем форму продавца
-                SellerForm sellerForm = new();
-                // Создаем форму администратора
-                AdminForm adminForm = new();
-
-                switch (accessMode)
+                switch (CurrentUserType)
                 {
-                    case "1":
+                    case UserType.Admin:
+                        // Создаем форму администратора
+                        AdminForm adminForm = new();
                         adminForm.Show(mainDockPanel, DockState.Document);
                         break;
-                    case "2":
+                    case UserType.Seller:
+                        // Создаем форму продавца
+                        SellerForm sellerForm = new();
                         sellerForm.Show(mainDockPanel, DockState.Document);
                         break;
-                    case "3":
+                    case UserType.Organizer:
+                        // Создаем форму организатора
+                        OrganizerForm organizerForm = new();
                         organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     default:

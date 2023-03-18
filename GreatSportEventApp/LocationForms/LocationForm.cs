@@ -106,6 +106,13 @@ namespace GreatSportEventApp.LocationForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
+            if (textName.Text == "" || comboCity.SelectedIndex == -1 || textAddress.Text == "" || 
+                comboType.SelectedIndex == -1)
+            {
+                _ = MessageBox.Show(@"Неправильно заполнены поля!");
+                return;
+            }
+
             bool isConnected = IsChanging
                 ? Query.UpdateLocation(LocationId, textName.Text, comboCity.Text, textAddress.Text,
                     comboType.Text, Capacity, textDescription.Text)

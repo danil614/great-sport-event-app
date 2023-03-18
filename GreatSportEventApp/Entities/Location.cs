@@ -30,7 +30,6 @@ namespace GreatSportEventApp.Entities
         [Column("capacity")]
         public int Capacity { get; set; }
 
-        [Required]
         [Column("description")]
         public string Description { get; set; }
 
