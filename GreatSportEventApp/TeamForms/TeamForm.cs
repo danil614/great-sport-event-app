@@ -118,7 +118,8 @@ namespace GreatSportEventApp.TeamForms
 
                 if (sportEventId != -1)
                 {
-                    UpdateParticipationEvent(context);
+                    _ = int.TryParse(textScore.Text, out int score);
+                    UpdateParticipationEvent(context, sportEventId, TeamId, score);
                     TeamString = Query.GetTeamStringById(out isConnected, TeamId, sportEventId);
 
                     if (!isConnected)
@@ -132,22 +133,26 @@ namespace GreatSportEventApp.TeamForms
             Close();
         }
 
-        private void UpdateParticipationEvent(GreatSportEventContext context)
+        public static bool UpdateParticipationEvent(GreatSportEventContext context, int sportEventId, int teamId, int score)
         {
-            ParticipationEvent paticipationEvent = context.ParticipationEvents.Find(sportEventId, TeamId);
+            bool isNew = false;
+
+            ParticipationEvent paticipationEvent = context.ParticipationEvents.Find(sportEventId, teamId);
             if (paticipationEvent is null)
             {
+                isNew = true;
+
                 paticipationEvent = new ParticipationEvent();
+                paticipationEvent.SportEventId = sportEventId;
+                paticipationEvent.TeamId = teamId;
+
                 _ = context.ParticipationEvents.Add(paticipationEvent);
             }
 
-            paticipationEvent.SportEventId = sportEventId;
-            paticipationEvent.TeamId = TeamId;
-
-            _ = int.TryParse(textScore.Text, out int score);
             paticipationEvent.Score = score;
-
             _ = context.SaveChanges();
+
+            return isNew;
         }
 
         #region Validating

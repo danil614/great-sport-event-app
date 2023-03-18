@@ -80,19 +80,8 @@ namespace GreatSportEventApp.BasicForms
                 switch (currentNode.Level)
                 {
                     case 0:
-                        // Создаем команду для участия в спортивном мероприятия
-                        TeamForm teamForm = new(false, -1, (int)currentNode.Tag);
-                        _ = teamForm.ShowDialog();
-
-                        if (teamForm.TeamId != -1)
-                        {
-                            TreeNode node = new(teamForm.TeamString)
-                            {
-                                Tag = teamForm.TeamId,
-                                Checked = false
-                            };
-                            _ = currentNode.Nodes.Add(node);
-                        }
+                        // Создаем команду для участия в спортивном мероприятии
+                        CreateTeam();
                         break;
                     case 1:
                         // Создаем спортсменов в команду
@@ -111,6 +100,54 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     default:
                         break;
+                }
+            }
+        }
+
+        private void CreateTeam()
+        {
+            TreeNode currentNode = MainTreeView.SelectedNode;
+
+            ListTeamsForm teamsForm = new(true);
+            teamsForm.ShowDialog();
+
+            if (teamsForm.SelectedItem == null)
+            {
+                MessageBox.Show(@"Команда не выбрана!");
+                return;
+            }
+
+            var teamId = (int)teamsForm.SelectedItem.Cells[0].Value;
+            var sportEventId = (int)currentNode.Tag;
+
+            if (teamId > 0 && sportEventId > 0)
+            {
+                bool isTeamNew;
+
+                // Добавляем во вспомогательную таблицу
+                using (GreatSportEventContext context = new())
+                {
+                    isTeamNew = TeamForm.UpdateParticipationEvent(context, sportEventId, teamId, 0);
+                }
+                
+                var teamString = Query.GetTeamStringById(out bool isConnected, teamId, sportEventId);
+
+                if (!isConnected)
+                {
+                    MessageBox.Show(@"Отсутствует подключение!");
+                    return;
+                }
+                
+                if (isTeamNew)
+                {
+                    TreeNode node = new(teamString)
+                    {
+                        Tag = teamId,
+                        Checked = false
+                    };
+                    node.Nodes.Add("Temp");
+
+                    currentNode.Nodes.Add(node);
                 }
             }
         }
