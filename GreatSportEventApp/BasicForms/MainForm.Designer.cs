@@ -45,6 +45,8 @@ namespace GreatSportEventApp.BasicForms
             AboutFormToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            TeamsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +54,7 @@ namespace GreatSportEventApp.BasicForms
             // 
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparator1, LoginToolStripButton, toolStripSeparator8, TreeFormToolStripButton, toolStripSeparator2, ListLocationsFormToolStripButton, toolStripSeparator7, CitiesToolStripButton, toolStripSeparator5, PositionsToolStripButton, toolStripSeparator4, AboutFormToolStripButton, toolStripSeparator3 });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparator1, LoginToolStripButton, toolStripSeparator8, TreeFormToolStripButton, toolStripSeparator2, ListLocationsFormToolStripButton, toolStripSeparator7, CitiesToolStripButton, toolStripSeparator5, PositionsToolStripButton, toolStripSeparator6, TeamsToolStripButton, toolStripSeparator4, AboutFormToolStripButton, toolStripSeparator3 });
             MainToolStrip.Location = new System.Drawing.Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
@@ -163,6 +165,21 @@ namespace GreatSportEventApp.BasicForms
             mainDockPanel.Size = new System.Drawing.Size(1324, 763);
             mainDockPanel.TabIndex = 2;
             // 
+            // TeamsToolStripButton
+            // 
+            TeamsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            TeamsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TeamsToolStripButton.Image");
+            TeamsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            TeamsToolStripButton.Name = "TeamsToolStripButton";
+            TeamsToolStripButton.Size = new System.Drawing.Size(62, 24);
+            TeamsToolStripButton.Text = "Команды";
+            TeamsToolStripButton.Click += TeamsToolStripButton_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -199,5 +216,7 @@ namespace GreatSportEventApp.BasicForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton PositionsToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton TeamsToolStripButton;
     }
 }

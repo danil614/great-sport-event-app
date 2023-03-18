@@ -106,7 +106,7 @@ namespace GreatSportEventApp.LocationForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (textName.Text == "" || comboCity.SelectedIndex == -1 || textAddress.Text == "" || 
+            if (textName.Text == "" || comboCity.SelectedIndex == -1 || textAddress.Text == "" ||
                 comboType.SelectedIndex == -1)
             {
                 _ = MessageBox.Show(@"Неправильно заполнены поля!");

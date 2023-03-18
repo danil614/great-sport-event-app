@@ -1,5 +1,6 @@
 ﻿using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.SimpleForms;
+using GreatSportEventApp.TeamForms;
 using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -91,6 +92,12 @@ namespace GreatSportEventApp.BasicForms
         {
             PositionsForm positionsForm = new();
             positionsForm.Show(mainDockPanel, DockState.Document);
+        }
+
+        private void TeamsToolStripButton_Click(object sender, EventArgs e)
+        {
+            ListTeamsForm teamsForm = new(false);
+            teamsForm.Show(mainDockPanel, DockState.Document);
         }
 
         #endregion

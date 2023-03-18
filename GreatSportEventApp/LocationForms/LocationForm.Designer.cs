@@ -31,184 +31,183 @@ namespace GreatSportEventApp.LocationForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textAddress = new System.Windows.Forms.TextBox();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textName = new System.Windows.Forms.TextBox();
-            this.textCapacity = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboCity = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.comboType = new System.Windows.Forms.ComboBox();
-            this.textDescription = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.SuspendLayout();
+            components = new Container();
+            label1 = new System.Windows.Forms.Label();
+            textAddress = new System.Windows.Forms.TextBox();
+            labelTitle = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            textName = new System.Windows.Forms.TextBox();
+            textCapacity = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            comboCity = new System.Windows.Forms.ComboBox();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            buttonSave = new System.Windows.Forms.Button();
+            comboType = new System.Windows.Forms.ComboBox();
+            textDescription = new System.Windows.Forms.TextBox();
+            errorProvider1 = new System.Windows.Forms.ErrorProvider(components);
+            ((ISupportInitialize)errorProvider1).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Название:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.Location = new System.Drawing.Point(12, 55);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(132, 26);
+            label1.TabIndex = 0;
+            label1.Text = "Название:";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textAddress
             // 
-            this.textAddress.Location = new System.Drawing.Point(150, 120);
-            this.textAddress.Name = "textAddress";
-            this.textAddress.Size = new System.Drawing.Size(418, 26);
-            this.textAddress.TabIndex = 3;
-            this.textAddress.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
+            textAddress.Location = new System.Drawing.Point(150, 120);
+            textAddress.Name = "textAddress";
+            textAddress.Size = new System.Drawing.Size(418, 26);
+            textAddress.TabIndex = 3;
+            textAddress.Validating += TextLength_Validating;
             // 
             // labelTitle
             // 
-            this.labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTitle.Location = new System.Drawing.Point(12, 9);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(265, 46);
-            this.labelTitle.TabIndex = 2;
-            this.labelTitle.Text = "Добавление места";
+            labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            labelTitle.Location = new System.Drawing.Point(12, 9);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new System.Drawing.Size(265, 46);
+            labelTitle.TabIndex = 2;
+            labelTitle.Text = "Добавление места";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Город:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.Location = new System.Drawing.Point(12, 87);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(132, 26);
+            label2.TabIndex = 3;
+            label2.Text = "Город:";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(150, 55);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(418, 26);
-            this.textName.TabIndex = 1;
-            this.textName.Validating += new System.ComponentModel.CancelEventHandler(this.TextLength_Validating);
+            textName.Location = new System.Drawing.Point(150, 55);
+            textName.Name = "textName";
+            textName.Size = new System.Drawing.Size(418, 26);
+            textName.TabIndex = 1;
+            textName.Validating += TextLength_Validating;
             // 
             // textCapacity
             // 
-            this.textCapacity.Location = new System.Drawing.Point(150, 184);
-            this.textCapacity.Name = "textCapacity";
-            this.textCapacity.Size = new System.Drawing.Size(127, 26);
-            this.textCapacity.TabIndex = 5;
-            this.textCapacity.Validating += new System.ComponentModel.CancelEventHandler(this.TextCapacity_Validating);
+            textCapacity.Location = new System.Drawing.Point(150, 184);
+            textCapacity.Name = "textCapacity";
+            textCapacity.Size = new System.Drawing.Size(127, 26);
+            textCapacity.TabIndex = 5;
+            textCapacity.Validating += TextCapacity_Validating;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 26);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Адрес:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.Location = new System.Drawing.Point(12, 119);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(132, 26);
+            label3.TabIndex = 6;
+            label3.Text = "Адрес:";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboCity
             // 
-            this.comboCity.FormattingEnabled = true;
-            this.comboCity.Location = new System.Drawing.Point(150, 87);
-            this.comboCity.Name = "comboCity";
-            this.comboCity.Size = new System.Drawing.Size(286, 26);
-            this.comboCity.TabIndex = 2;
+            comboCity.FormattingEnabled = true;
+            comboCity.Location = new System.Drawing.Point(150, 87);
+            comboCity.Name = "comboCity";
+            comboCity.Size = new System.Drawing.Size(286, 26);
+            comboCity.TabIndex = 2;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 151);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 26);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Тип места:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label4.Location = new System.Drawing.Point(12, 151);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(132, 26);
+            label4.TabIndex = 9;
+            label4.Text = "Тип места:";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(12, 184);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(132, 26);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Вместимость:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label5.Location = new System.Drawing.Point(12, 184);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(132, 26);
+            label5.TabIndex = 11;
+            label5.Text = "Вместимость:";
+            label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(12, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(132, 26);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Описание:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label6.Location = new System.Drawing.Point(12, 216);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(132, 26);
+            label6.TabIndex = 13;
+            label6.Text = "Описание:";
+            label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // buttonSave
             // 
-            this.buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSave.Location = new System.Drawing.Point(439, 451);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(129, 37);
-            this.buttonSave.TabIndex = 14;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+            buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonSave.Location = new System.Drawing.Point(439, 451);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new System.Drawing.Size(129, 37);
+            buttonSave.TabIndex = 14;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += ButtonSave_Click;
             // 
             // comboType
             // 
-            this.comboType.FormattingEnabled = true;
-            this.comboType.Location = new System.Drawing.Point(150, 152);
-            this.comboType.Name = "comboType";
-            this.comboType.Size = new System.Drawing.Size(286, 26);
-            this.comboType.TabIndex = 4;
+            comboType.FormattingEnabled = true;
+            comboType.Location = new System.Drawing.Point(150, 152);
+            comboType.Name = "comboType";
+            comboType.Size = new System.Drawing.Size(286, 26);
+            comboType.TabIndex = 4;
             // 
             // textDescription
             // 
-            this.textDescription.Location = new System.Drawing.Point(150, 216);
-            this.textDescription.Multiline = true;
-            this.textDescription.Name = "textDescription";
-            this.textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textDescription.Size = new System.Drawing.Size(418, 219);
-            this.textDescription.TabIndex = 6;
-            this.textDescription.Validating += new System.ComponentModel.CancelEventHandler(this.TextDescription_Validating);
+            textDescription.Location = new System.Drawing.Point(150, 216);
+            textDescription.Multiline = true;
+            textDescription.Name = "textDescription";
+            textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            textDescription.Size = new System.Drawing.Size(418, 219);
+            textDescription.TabIndex = 6;
+            textDescription.Validating += TextDescription_Validating;
             // 
             // errorProvider1
             // 
-            this.errorProvider1.ContainerControl = this;
+            errorProvider1.ContainerControl = this;
             // 
             // LocationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 499);
-            this.Controls.Add(this.textDescription);
-            this.Controls.Add(this.comboType);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboCity);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textCapacity);
-            this.Controls.Add(this.textName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.textAddress);
-            this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "LocationForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Добавление места";
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(597, 509);
+            Controls.Add(textDescription);
+            Controls.Add(comboType);
+            Controls.Add(buttonSave);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(comboCity);
+            Controls.Add(label3);
+            Controls.Add(textCapacity);
+            Controls.Add(textName);
+            Controls.Add(label2);
+            Controls.Add(labelTitle);
+            Controls.Add(textAddress);
+            Controls.Add(label1);
+            Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            Margin = new System.Windows.Forms.Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "LocationForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Добавление места";
+            ((ISupportInitialize)errorProvider1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.TextBox textDescription;

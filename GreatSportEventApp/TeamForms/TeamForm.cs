@@ -27,13 +27,24 @@ namespace GreatSportEventApp.TeamForms
             {
                 Text = @"Изменение команды";
                 labelTitle.Text = @"Изменение команды";
-                GetTeamById(TeamId);
+                GetTeamById();
+            }
+
+            if (sportEventId == -1)
+            {
+                textScore.Visible = false;
+                label2.Visible = false;
+            }
+            else
+            {
+                textScore.Visible = true;
+                label2.Visible = true;
             }
         }
 
-        private void GetTeamById(int teamId)
+        private void GetTeamById()
         {
-            DataRow dataTable = Query.GetTeamById(out bool isConnected, teamId, sportEventId);
+            DataRow dataTable = Query.GetTeamById(out bool isConnected, TeamId, sportEventId);
 
             if (!isConnected)
             {
@@ -45,7 +56,12 @@ namespace GreatSportEventApp.TeamForms
             textLocationName.Text = dataTable["location_full_name"].ToString();
             locationId = (int)dataTable["location_id"];
             textRating.Text = dataTable["rating"].ToString();
-            textScore.Text = dataTable["score"].ToString();
+
+            if (sportEventId != -1)
+            {
+                textScore.Text = dataTable["score"].ToString();
+            }
+
             textDescription.Text = dataTable["description"].ToString();
         }
 
@@ -99,15 +115,18 @@ namespace GreatSportEventApp.TeamForms
                 _ = context.SaveChanges();
 
                 TeamId = team.Id;
-                UpdateParticipationEvent(context);
 
-                TeamString = Query.GetTeamStringById(out isConnected, TeamId, sportEventId);
-            }
+                if (sportEventId != -1)
+                {
+                    UpdateParticipationEvent(context);
+                    TeamString = Query.GetTeamStringById(out isConnected, TeamId, sportEventId);
 
-            if (!isConnected)
-            {
-                _ = MessageBox.Show(@"Отсутствует подключение!");
-                return;
+                    if (!isConnected)
+                    {
+                        _ = MessageBox.Show(@"Отсутствует подключение!");
+                        return;
+                    }
+                }
             }
 
             Close();

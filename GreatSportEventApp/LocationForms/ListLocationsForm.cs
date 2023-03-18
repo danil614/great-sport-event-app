@@ -31,10 +31,12 @@ namespace GreatSportEventApp.LocationForms
             if (MainForm.CurrentUserType == UserType.Admin)
             {
                 DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
             }
             else
             {
                 DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
             }
         }
 
