@@ -23,9 +23,6 @@
     <Compile Update="LocationForms\LocationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="OrganizerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="PersonForm.cs">
       <SubType>Form</SubType>
     </Compile>

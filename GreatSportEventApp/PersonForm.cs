@@ -19,7 +19,7 @@ namespace GreatSportEventApp
 
             if (IsChanging)
             {
-                base.Text = @"Изменение зрителя | Спортивное мероприятие";
+                Text = @"Изменение зрителя";
                 labelTitle.Text = @"Изменение зрителя";
             }
         }
@@ -58,9 +58,16 @@ namespace GreatSportEventApp
 
         private bool IsChanging { get; set; }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             string birthDateString = dateBirth.Value.Year + "-" + dateBirth.Value.Month + "-" + dateBirth.Value.Day;
+
+            if (textSurname.Text == "" || textName.Text == "" || comboGender.SelectedIndex == -1 ||
+                    textPatronymic.Text == "" || textPhoneNumber.Text == "")
+            {
+                _ = MessageBox.Show(@"Неправильно заполнены поля!");
+                return;
+            }
 
             bool isConnected = IsChanging
                 ? Query.UpdateViewer(PersonId, textSurname.Text, textName.Text,
@@ -70,6 +77,7 @@ namespace GreatSportEventApp
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
+                return;
             }
 
             Close();

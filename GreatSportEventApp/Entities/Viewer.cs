@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreatSportEventApp.Entities
 {
-    [Table("Athletes")]
-    public class Athlete
+    [Table("Viewers")]
+    public class Viewer
     {
         [Key]
-        [Column("athlete_id")]
+        [Column("viewer_id")]
         public int Id { get; set; }
 
         [Required]
@@ -35,17 +35,7 @@ namespace GreatSportEventApp.Entities
         public DateTime BirthDate { get; set; }
 
         [Required]
-        [Column("team_id")]
-        public int TeamId { get; set; }
-
-        [Required]
-        [Column("position_id")]
-        public int PositionId { get; set; }
-
-        [Column("rating")]
-        public int? Rating { get; set; }
-
-        [Column("description")]
-        public string Description { get; set; }
+        [Column("number_purchases")]
+        public int NumberPurchases { get; set; }
     }
 }

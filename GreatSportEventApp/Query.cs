@@ -353,9 +353,9 @@ namespace GreatSportEventApp
             string phoneNumber, string birthDate)
         {
             string query =
-                "INSERT INTO Viewers (surname, name, patronymic, gender_id, phone_number, birth_date)" +
-                $"SELECT '{surname}', '{name}', '{patronymic}', Gender.gender_id, '{phoneNumber}', '{birthDate}'" +
-                $"FROM Gender WHERE gender_name='{genderName}'";
+                @$"INSERT INTO Viewers (surname, name, patronymic, gender_id, phone_number, birth_date)
+                   SELECT '{surname}', '{name}', '{patronymic}', Gender.gender_id, '{phoneNumber}', '{birthDate}'
+                   FROM Gender WHERE gender_name='{genderName}'";
 
             bool isConnected = DatabaseConnection.RunQuery(query);
 
@@ -536,10 +536,9 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataRow GetViewerById(out bool isConnected, int id)
         {
-            string query =
-                "SELECT surname, name, patronymic, " +
-                "(SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS gender_name," +
-                $"phone_number, birth_date FROM Viewers WHERE viewer_id={id}";
+            string query = $@"SELECT surname, name, patronymic,
+                             (SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS gender_name,
+                             phone_number, birth_date FROM Viewers WHERE viewer_id={id}";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;

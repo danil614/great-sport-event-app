@@ -5,13 +5,13 @@ using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp.TeamForms
+namespace GreatSportEventApp.PersonForms
 {
-    public partial class ListTeamsForm : DockContent
+    public partial class ListViewersForm : DockContent
     {
         public DataGridViewRow SelectedItem { get; set; }
 
-        public ListTeamsForm(bool isSelectionMode)
+        public ListViewersForm(bool isSelectionMode)
         {
             InitializeComponent();
             UpdateDataGridView();
@@ -30,7 +30,7 @@ namespace GreatSportEventApp.TeamForms
         private void UpdateDataGridView()
         {
             // Получаем запрос со зрителями
-            DataTable dataTable = Query.GetListTeams(out bool isConnected);
+            DataTable dataTable = Query.GetListViewers(out bool isConnected);
 
             if (!isConnected)
             {
@@ -40,10 +40,7 @@ namespace GreatSportEventApp.TeamForms
             else
             {
                 DataGridView.DataSource = dataTable;
-                DataGridView.Columns["team_id"].Visible = false;
-                DataGridView.Columns["team_name"].HeaderText = "Название";
-                DataGridView.Columns["location_name"].HeaderText = "Место расположения";
-                DataGridView.Columns["rating"].HeaderText = "Рейтинг";
+                DataGridView.Columns["Номер"].Visible = false;
             }
 
             // Растягиваем колонки
@@ -52,13 +49,9 @@ namespace GreatSportEventApp.TeamForms
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
-            TeamForm teamForm = new(false, -1, -1);
-            _ = teamForm.ShowDialog();
-
-            if (teamForm.TeamId != -1)
-            {
-                UpdateDataGridView();
-            }
+            PersonForm personForm = new(false);
+            _ = personForm.ShowDialog();
+            UpdateDataGridView();
         }
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
@@ -69,10 +62,27 @@ namespace GreatSportEventApp.TeamForms
             }
 
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-            TeamForm teamForm = new(true, currentRowId, -1);
-            _ = teamForm.ShowDialog();
-            
-            UpdateDataGridView();
+            DataRow person = Query.GetViewerById(out bool isConnected, currentRowId);
+
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+            }
+            else
+            {
+                PersonForm personForm = new(true)
+                {
+                    PersonId = currentRowId,
+                    Surname = person["surname"].ToString(),
+                    PersonName = person["name"].ToString(),
+                    Patronymic = person["patronymic"].ToString(),
+                    Gender = person["gender_name"].ToString(),
+                    PhoneNumber = person["phone_number"].ToString(),
+                    BirthDate = (DateTime)person["birth_date"]
+                };
+                _ = personForm.ShowDialog();
+                UpdateDataGridView();
+            }
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
@@ -85,15 +95,15 @@ namespace GreatSportEventApp.TeamForms
             using (GreatSportEventContext context = new())
             {
                 int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-                Team team = context.Teams.Find(currentRowId);
+                var viewer = context.Viewers.Find(currentRowId);
 
-                if (team is null)
+                if (viewer is null)
                 {
                     _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                _ = context.Teams.Remove(team);
+                _ = context.Viewers.Remove(viewer);
 
                 try
                 {
@@ -118,7 +128,7 @@ namespace GreatSportEventApp.TeamForms
         {
             if (DataGridView.CurrentRow == null)
             {
-                _ = MessageBox.Show(@"Выделите нужную строку с командой!");
+                _ = MessageBox.Show(@"Выделите нужную строку со зрителем!");
                 return;
             }
             else

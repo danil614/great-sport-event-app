@@ -1,4 +1,5 @@
 ﻿using GreatSportEventApp.LocationForms;
+using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.TeamForms;
 using System;
@@ -54,8 +55,8 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case UserType.Organizer:
                         // Создаем форму организатора
-                        OrganizerForm organizerForm = new();
-                        organizerForm.Show(mainDockPanel, DockState.Document);
+                        // OrganizerForm organizerForm = new();
+                        // organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");
@@ -98,6 +99,12 @@ namespace GreatSportEventApp.BasicForms
         {
             ListTeamsForm teamsForm = new(false);
             teamsForm.Show(mainDockPanel, DockState.Document);
+        }
+
+        private void ViewersToolStripButton_Click(object sender, EventArgs e)
+        {
+            ListViewersForm viewersForm = new(false);
+            viewersForm.Show(mainDockPanel, DockState.Document);
         }
 
         #endregion

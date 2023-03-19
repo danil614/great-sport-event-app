@@ -52,7 +52,7 @@ namespace GreatSportEventApp.PersonForms
             textPatronymic.Text = athlete.Patronymic;
             comboGender.SelectedValue = athlete.GenderId;
             textPhoneNumber.Text = athlete.PhoneNumber;
-            dateBirth.Value = athlete.BithDate;
+            dateBirth.Value = athlete.BirthDate;
             comboPosition.SelectedValue = athlete.PositionId;
             textRating.Text = athlete.Rating.ToString();
             textDescription.Text = athlete.Description;
@@ -132,7 +132,7 @@ namespace GreatSportEventApp.PersonForms
                 athlete.Patronymic = textPatronymic.Text;
                 athlete.GenderId = (int)comboGender.SelectedValue;
                 athlete.PhoneNumber = textPhoneNumber.Text;
-                athlete.BithDate = dateBirth.Value;
+                athlete.BirthDate = dateBirth.Value;
                 athlete.PositionId = (int)comboPosition.SelectedValue;
 
                 _ = int.TryParse(textRating.Text, out int rating);

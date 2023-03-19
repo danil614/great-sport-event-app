@@ -31,171 +31,171 @@ namespace GreatSportEventApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textSurname = new System.Windows.Forms.TextBox();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textName = new System.Windows.Forms.TextBox();
-            this.textPatronymic = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboGender = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dateBirth = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.textPhoneNumber = new System.Windows.Forms.MaskedTextBox();
-            this.SuspendLayout();
+            label1 = new System.Windows.Forms.Label();
+            textSurname = new System.Windows.Forms.TextBox();
+            labelTitle = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            textName = new System.Windows.Forms.TextBox();
+            textPatronymic = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            comboGender = new System.Windows.Forms.ComboBox();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            dateBirth = new System.Windows.Forms.DateTimePicker();
+            label6 = new System.Windows.Forms.Label();
+            buttonSave = new System.Windows.Forms.Button();
+            textPhoneNumber = new System.Windows.Forms.MaskedTextBox();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Фамилия:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.Location = new System.Drawing.Point(12, 55);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(132, 26);
+            label1.TabIndex = 0;
+            label1.Text = "Фамилия:";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textSurname
             // 
-            this.textSurname.Location = new System.Drawing.Point(150, 55);
-            this.textSurname.Name = "textSurname";
-            this.textSurname.Size = new System.Drawing.Size(196, 26);
-            this.textSurname.TabIndex = 1;
+            textSurname.Location = new System.Drawing.Point(162, 55);
+            textSurname.Name = "textSurname";
+            textSurname.Size = new System.Drawing.Size(210, 26);
+            textSurname.TabIndex = 1;
             // 
             // labelTitle
             // 
-            this.labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTitle.Location = new System.Drawing.Point(12, 9);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(265, 46);
-            this.labelTitle.TabIndex = 2;
-            this.labelTitle.Text = "Добавление зрителя";
+            labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            labelTitle.Location = new System.Drawing.Point(12, 9);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new System.Drawing.Size(265, 46);
+            labelTitle.TabIndex = 2;
+            labelTitle.Text = "Добавление зрителя";
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(12, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 26);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Имя:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label2.Location = new System.Drawing.Point(12, 87);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(132, 26);
+            label2.TabIndex = 3;
+            label2.Text = "Имя:";
+            label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(150, 87);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(196, 26);
-            this.textName.TabIndex = 4;
+            textName.Location = new System.Drawing.Point(163, 87);
+            textName.Name = "textName";
+            textName.Size = new System.Drawing.Size(209, 26);
+            textName.TabIndex = 4;
             // 
             // textPatronymic
             // 
-            this.textPatronymic.Location = new System.Drawing.Point(150, 119);
-            this.textPatronymic.Name = "textPatronymic";
-            this.textPatronymic.Size = new System.Drawing.Size(196, 26);
-            this.textPatronymic.TabIndex = 5;
+            textPatronymic.Location = new System.Drawing.Point(163, 119);
+            textPatronymic.Name = "textPatronymic";
+            textPatronymic.Size = new System.Drawing.Size(209, 26);
+            textPatronymic.TabIndex = 5;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(132, 26);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Отчество:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label3.Location = new System.Drawing.Point(12, 119);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(132, 26);
+            label3.TabIndex = 6;
+            label3.Text = "Отчество:";
+            label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboGender
             // 
-            this.comboGender.FormattingEnabled = true;
-            this.comboGender.Location = new System.Drawing.Point(150, 161);
-            this.comboGender.Name = "comboGender";
-            this.comboGender.Size = new System.Drawing.Size(146, 26);
-            this.comboGender.TabIndex = 8;
+            comboGender.FormattingEnabled = true;
+            comboGender.Location = new System.Drawing.Point(163, 151);
+            comboGender.Name = "comboGender";
+            comboGender.Size = new System.Drawing.Size(169, 26);
+            comboGender.TabIndex = 8;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 161);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 26);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Пол:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label4.Location = new System.Drawing.Point(12, 151);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(132, 26);
+            label4.TabIndex = 9;
+            label4.Text = "Пол:";
+            label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(12, 202);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 26);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Номер телефона:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label5.Location = new System.Drawing.Point(12, 183);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(145, 26);
+            label5.TabIndex = 11;
+            label5.Text = "Номер телефона:";
+            label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dateBirth
             // 
-            this.dateBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateBirth.Location = new System.Drawing.Point(178, 235);
-            this.dateBirth.Name = "dateBirth";
-            this.dateBirth.Size = new System.Drawing.Size(194, 26);
-            this.dateBirth.TabIndex = 12;
-            this.dateBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            dateBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            dateBirth.Location = new System.Drawing.Point(162, 215);
+            dateBirth.Name = "dateBirth";
+            dateBirth.Size = new System.Drawing.Size(170, 26);
+            dateBirth.TabIndex = 12;
+            dateBirth.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(12, 235);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(160, 26);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Дата рождения:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label6.Location = new System.Drawing.Point(12, 215);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(145, 26);
+            label6.TabIndex = 13;
+            label6.Text = "Дата рождения:";
+            label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // buttonSave
             // 
-            this.buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSave.Location = new System.Drawing.Point(243, 279);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(129, 37);
-            this.buttonSave.TabIndex = 14;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            buttonSave.Location = new System.Drawing.Point(243, 262);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new System.Drawing.Size(129, 37);
+            buttonSave.TabIndex = 14;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += ButtonSave_Click;
             // 
             // textPhoneNumber
             // 
-            this.textPhoneNumber.Location = new System.Drawing.Point(177, 203);
-            this.textPhoneNumber.Mask = "+7 (999) 999-99-99";
-            this.textPhoneNumber.Name = "textPhoneNumber";
-            this.textPhoneNumber.Size = new System.Drawing.Size(195, 26);
-            this.textPhoneNumber.TabIndex = 15;
+            textPhoneNumber.Location = new System.Drawing.Point(163, 183);
+            textPhoneNumber.Mask = "+7 (999) 999-99-99";
+            textPhoneNumber.Name = "textPhoneNumber";
+            textPhoneNumber.Size = new System.Drawing.Size(169, 26);
+            textPhoneNumber.TabIndex = 15;
             // 
-            // AddingPerson
+            // PersonForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 333);
-            this.Controls.Add(this.textPhoneNumber);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.dateBirth);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboGender);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textPatronymic);
-            this.Controls.Add(this.textName);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelTitle);
-            this.Controls.Add(this.textSurname);
-            this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "PersonForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Добавление зрителя | Спортивное мероприятие";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(397, 315);
+            Controls.Add(textPhoneNumber);
+            Controls.Add(buttonSave);
+            Controls.Add(label6);
+            Controls.Add(dateBirth);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(comboGender);
+            Controls.Add(label3);
+            Controls.Add(textPatronymic);
+            Controls.Add(textName);
+            Controls.Add(label2);
+            Controls.Add(labelTitle);
+            Controls.Add(textSurname);
+            Controls.Add(label1);
+            Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            Margin = new System.Windows.Forms.Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "PersonForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "Добавление зрителя";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.MaskedTextBox textPhoneNumber;
