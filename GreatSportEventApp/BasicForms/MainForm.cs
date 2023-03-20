@@ -4,6 +4,7 @@ using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.TeamForms;
 using GreatSportEventApp.TicketForms;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -21,6 +22,40 @@ namespace GreatSportEventApp.BasicForms
 
             // Тема для Dock
             mainDockPanel.Theme = new VS2015LightTheme();
+
+            LoginToolStripButton_Click(null, null);
+        }
+
+        private void SetMainToolStripVisible(bool isVisible)
+        {
+            var openedWindows = new List<DockContent>();
+
+            foreach (DockContent item in mainDockPanel.Documents)
+            {
+                openedWindows.Add(item);
+            }
+
+            foreach (DockContent item in openedWindows)
+            {
+                item.Close();
+            }
+
+            foreach (ToolStripItem item in MainToolStrip.Items)
+            {
+                item.Visible = isVisible;
+            }
+
+            toolStripSeparatorLeft.Visible = true;
+
+            ModeToolStripLabel.Visible = true;
+            toolStripSeparatorMode.Visible = true;
+
+            LoginToolStripButton.Visible = true;
+            toolStripSeparatorLogin.Visible = true;
+
+            AboutFormToolStripButton.Visible = true;
+
+            toolStripSeparatorRight.Visible = true;
         }
 
         #region MainToolStrip
@@ -42,27 +77,72 @@ namespace GreatSportEventApp.BasicForms
                     return;
                 }
 
+                SetMainToolStripVisible(false);
+
                 switch (CurrentUser.UserType)
                 {
                     case UserType.Admin:
                         // Создаем форму администратора
-                        //AdminForm adminForm = new();
-                        //adminForm.Show(mainDockPanel, DockState.Document);
+                        ModeToolStripLabel.Text = "Администратор";
+                        SetMainToolStripVisible(true);
                         break;
                     case UserType.Seller:
                         // Создаем форму продавца
-                        // SellerForm sellerForm = new();
-                        // sellerForm.Show(mainDockPanel, DockState.Document);
+                        ModeToolStripLabel.Text = "Продавец";
+                        // Билеты
+                        TicketsToolStripButton.Visible = true;
+                        toolStripSeparatorTickets.Visible = true;
+
+                        // Зрители
+                        ViewersToolStripButton.Visible = true;
+                        toolStripSeparatorViewers.Visible = true;
                         break;
                     case UserType.Organizer:
                         // Создаем форму организатора
-                        // OrganizerForm organizerForm = new();
-                        // organizerForm.Show(mainDockPanel, DockState.Document);
+                        ModeToolStripLabel.Text = "Организатор";
+                        // Мероприятия и участники
+                        TreeFormToolStripButton.Visible = true;
+                        toolStripSeparatorTreeForm.Visible = true;
+
+                        // Места расположения
+                        ListLocationsFormToolStripButton.Visible = true;
+                        toolStripSeparatorLocations.Visible = true;
+
+                        // Города
+                        CitiesToolStripButton.Visible = true;
+                        toolStripSeparatorCities.Visible = true;
+
+                        // Команды
+                        TeamsToolStripButton.Visible = true;
+                        toolStripSeparatorTeams.Visible = true;
+
+                        // Спортсмены
+                        AthletesToolStripButton.Visible = true;
+                        toolStripSeparatorAthletes.Visible = true;
                         break;
                     case UserType.HR:
+                        ModeToolStripLabel.Text = "HR менеджер";
+                        // Должности
+                        PositionsToolStripButton.Visible = true;
+                        toolStripSeparatorPositions.Visible = true;
+
+                        // Сотрудники
+                        EmployeesToolStripButton.Visible = true;
+                        toolStripSeparatorEmployees.Visible = true;
+                        break;
+                    case UserType.Trainer:
+                        ModeToolStripLabel.Text = "Тренер";
+                        // Команды
+                        TeamsToolStripButton.Visible = true;
+                        toolStripSeparatorTeams.Visible = true;
+
+                        // Спортсмены
+                        AthletesToolStripButton.Visible = true;
+                        toolStripSeparatorAthletes.Visible = true;
                         break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");
+                        ModeToolStripLabel.Text = "—";
                         break;
                 }
             }

@@ -107,7 +107,7 @@ namespace GreatSportEventApp.UserForms
             // comboMode
             // 
             comboMode.FormattingEnabled = true;
-            comboMode.Items.AddRange(new object[] { "Администратор", "Продавец", "Организатор", "Менеджер по персоналу" });
+            comboMode.Items.AddRange(new object[] { "Администратор", "Продавец", "Организатор", "Менеджер по персоналу", "Тренер" });
             comboMode.Location = new System.Drawing.Point(162, 120);
             comboMode.Name = "comboMode";
             comboMode.Size = new System.Drawing.Size(260, 26);

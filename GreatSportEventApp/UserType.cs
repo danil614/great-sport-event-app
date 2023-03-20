@@ -9,7 +9,7 @@ namespace GreatSportEventApp
 {
     public enum UserType
     {
-        Null = 0, Admin = 1, Seller = 2, Organizer = 3, HR = 4
+        Null = 0, Admin = 1, Seller = 2, Organizer = 3, HR = 4, Trainer = 5
     }
 
     public class CurrentUser

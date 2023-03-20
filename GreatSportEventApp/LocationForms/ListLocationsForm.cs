@@ -176,5 +176,10 @@ namespace GreatSportEventApp.LocationForms
                 Close();
             }
         }
+
+        private void ExportToolStripButton_Click(object sender, EventArgs e)
+        {
+            ExportToExcel.Do(dataLocations);
+        }
     }
 }
