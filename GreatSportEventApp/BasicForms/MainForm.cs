@@ -114,6 +114,13 @@ namespace GreatSportEventApp.BasicForms
             ticketsForm.Show(mainDockPanel, DockState.Document);
         }
 
+        private void EmployeesToolStripButton_Click(object sender, EventArgs e)
+        {
+            ListEmployeesForm employeesForm = new(false);
+            employeesForm.Show(mainDockPanel, DockState.Document);
+        }
+
         #endregion
+
     }
 }

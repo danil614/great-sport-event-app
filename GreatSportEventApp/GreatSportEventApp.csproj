@@ -19,6 +19,12 @@
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="PersonForms\EmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PersonForms\ListEmployeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="PersonForms\ListViewersForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -39,7 +39,7 @@ namespace GreatSportEventApp.Entities
         public int PositionId { get; set; }
 
         [Column("team_id")]
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         public override string ToString()
         {

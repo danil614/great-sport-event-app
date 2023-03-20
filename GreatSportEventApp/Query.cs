@@ -49,6 +49,25 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает всех сотрудников.
+        /// </summary>
+        public static DataTable GetListEmployees(out bool isConnected)
+        {
+            const string query =
+                @"SELECT employee_id AS 'Номер', CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО',
+                  (SELECT Gender.gender_name FROM Gender WHERE Gender.gender_id = Employees.gender_id) AS 'Пол',
+                  phone_number AS 'Номер телефона', birth_date AS 'Дата рождения',
+                  (SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Employees.position_id) AS 'Должность',
+                  (SELECT Teams.team_name FROM Teams WHERE Teams.team_id = Employees.team_id) AS 'Команда'
+                  FROM Employees";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает все билеты.
         /// </summary>
         public static DataTable GetListTickets(out bool isConnected)
