@@ -46,8 +46,8 @@ namespace GreatSportEventApp.BasicForms
                 {
                     case UserType.Admin:
                         // Создаем форму администратора
-                        AdminForm adminForm = new();
-                        adminForm.Show(mainDockPanel, DockState.Document);
+                        //AdminForm adminForm = new();
+                        //adminForm.Show(mainDockPanel, DockState.Document);
                         break;
                     case UserType.Seller:
                         // Создаем форму продавца
@@ -59,7 +59,7 @@ namespace GreatSportEventApp.BasicForms
                         // OrganizerForm organizerForm = new();
                         // organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
-                    case UserType.HR: 
+                    case UserType.HR:
                         break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");
@@ -116,6 +116,11 @@ namespace GreatSportEventApp.BasicForms
         private void AthletesToolStripButton_Click(object sender, EventArgs e)
         {
             Forms.OpenAthletesForm(mainDockPanel);
+        }
+
+        private void UsersToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenUsersForm(mainDockPanel);
         }
 
         #endregion

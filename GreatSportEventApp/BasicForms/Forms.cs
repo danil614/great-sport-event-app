@@ -3,6 +3,7 @@ using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.TeamForms;
 using GreatSportEventApp.TicketForms;
+using GreatSportEventApp.UserForms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp.BasicForms
@@ -97,6 +98,15 @@ namespace GreatSportEventApp.BasicForms
         {
             ListAthletesForm athletesForm = new(false);
             athletesForm.Show(dockPanel, DockState.Document);
+        }
+
+        /// <summary>
+        /// Открыть форму пользователей.
+        /// </summary>
+        public static void OpenUsersForm(DockPanel dockPanel)
+        {
+            ListUsersForm usersForm = new(false);
+            usersForm.Show(dockPanel, DockState.Document);
         }
     }
 }

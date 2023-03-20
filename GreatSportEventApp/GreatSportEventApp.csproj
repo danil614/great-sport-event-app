@@ -37,5 +37,11 @@
     <Compile Update="TicketForms\TicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UserForms\ListUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserForms\UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
