@@ -53,6 +53,9 @@ namespace GreatSportEventApp.PersonForms
             label11 = new System.Windows.Forms.Label();
             textSurname = new System.Windows.Forms.TextBox();
             label12 = new System.Windows.Forms.Label();
+            SelectTeamButton = new System.Windows.Forms.Button();
+            labelTeam = new System.Windows.Forms.Label();
+            textTeamName = new System.Windows.Forms.TextBox();
             ((ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -101,7 +104,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             // label6
             // 
-            label6.Location = new System.Drawing.Point(13, 311);
+            label6.Location = new System.Drawing.Point(12, 343);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(132, 26);
             label6.TabIndex = 13;
@@ -111,7 +114,7 @@ namespace GreatSportEventApp.PersonForms
             // buttonSave
             // 
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(450, 550);
+            buttonSave.Location = new System.Drawing.Point(474, 582);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(129, 37);
             buttonSave.TabIndex = 14;
@@ -121,11 +124,11 @@ namespace GreatSportEventApp.PersonForms
             // 
             // textDescription
             // 
-            textDescription.Location = new System.Drawing.Point(166, 311);
+            textDescription.Location = new System.Drawing.Point(166, 343);
             textDescription.Multiline = true;
             textDescription.Name = "textDescription";
             textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            textDescription.Size = new System.Drawing.Size(413, 219);
+            textDescription.Size = new System.Drawing.Size(437, 219);
             textDescription.TabIndex = 6;
             textDescription.Validating += TextDescription_Validating;
             // 
@@ -236,11 +239,41 @@ namespace GreatSportEventApp.PersonForms
             label12.Text = "Фамилия:";
             label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // SelectTeamButton
+            // 
+            SelectTeamButton.Location = new System.Drawing.Point(500, 311);
+            SelectTeamButton.Name = "SelectTeamButton";
+            SelectTeamButton.Size = new System.Drawing.Size(103, 26);
+            SelectTeamButton.TabIndex = 31;
+            SelectTeamButton.Text = "Выбрать";
+            SelectTeamButton.UseVisualStyleBackColor = true;
+            SelectTeamButton.Click += SelectTeamButton_Click;
+            // 
+            // labelTeam
+            // 
+            labelTeam.Location = new System.Drawing.Point(12, 310);
+            labelTeam.Name = "labelTeam";
+            labelTeam.Size = new System.Drawing.Size(132, 26);
+            labelTeam.TabIndex = 30;
+            labelTeam.Text = "Команда:";
+            labelTeam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textTeamName
+            // 
+            textTeamName.Location = new System.Drawing.Point(166, 311);
+            textTeamName.Name = "textTeamName";
+            textTeamName.ReadOnly = true;
+            textTeamName.Size = new System.Drawing.Size(328, 26);
+            textTeamName.TabIndex = 29;
+            // 
             // AthleteForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(603, 604);
+            ClientSize = new System.Drawing.Size(629, 639);
+            Controls.Add(SelectTeamButton);
+            Controls.Add(labelTeam);
+            Controls.Add(textTeamName);
             Controls.Add(textPhoneNumber);
             Controls.Add(label7);
             Controls.Add(dateBirth);
@@ -298,5 +331,8 @@ namespace GreatSportEventApp.PersonForms
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textSurname;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button SelectTeamButton;
+        private System.Windows.Forms.Label labelTeam;
+        private System.Windows.Forms.TextBox textTeamName;
     }
 }

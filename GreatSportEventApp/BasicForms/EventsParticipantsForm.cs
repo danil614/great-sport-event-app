@@ -12,9 +12,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace GreatSportEventApp.BasicForms
 {
-    public partial class TreeForm : DockContent
+    public partial class EventsParticipantsForm : DockContent
     {
-        public TreeForm()
+        public EventsParticipantsForm()
         {
             InitializeComponent();
         }
@@ -129,7 +129,7 @@ namespace GreatSportEventApp.BasicForms
                 {
                     isTeamNew = TeamForm.UpdateParticipationEvent(context, sportEventId, teamId, 0);
                 }
-                
+
                 var teamString = Query.GetTeamStringById(out bool isConnected, teamId, sportEventId);
 
                 if (!isConnected)
@@ -137,7 +137,7 @@ namespace GreatSportEventApp.BasicForms
                     MessageBox.Show(@"Отсутствует подключение!");
                     return;
                 }
-                
+
                 if (isTeamNew)
                 {
                     TreeNode node = new(teamString)

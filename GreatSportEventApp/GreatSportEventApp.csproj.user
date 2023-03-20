@@ -14,7 +14,7 @@
     <Compile Update="BasicForms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="BasicForms\TreeForm.cs">
+    <Compile Update="BasicForms\EventsParticipantsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="LocationForms\ListLocationsForm.cs">

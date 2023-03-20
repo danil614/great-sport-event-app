@@ -1,4 +1,5 @@
 ﻿using GreatSportEventApp.Entities;
+using GreatSportEventApp.TeamForms;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,11 @@ namespace GreatSportEventApp.PersonForms
             teamId = _teamId;
             AthleteId = _athleteId;
             AthleteString = "";
+
+            if (teamId != -1)
+            {
+                SelectTeamButton.Visible = false;
+            }
 
             // Запрещаем редактирование пола и должности
             comboGender.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -59,6 +65,7 @@ namespace GreatSportEventApp.PersonForms
                 textDescription.Text = athlete.Description;
 
                 teamId = athlete.TeamId;
+                textTeamName.Text = teamId == -1 ? "" : context.Teams.Find(teamId).ToString();
             }
         }
 
@@ -104,7 +111,7 @@ namespace GreatSportEventApp.PersonForms
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (textSurname.Text == "" || textName.Text == "" ||
-                textPatronymic.Text == "" || textPhoneNumber.Text == "")
+                textPatronymic.Text == "" || textPhoneNumber.Text == "" || teamId <= 0)
             {
                 _ = MessageBox.Show(@"Неправильно заполнены поля!");
                 return;
@@ -118,10 +125,7 @@ namespace GreatSportEventApp.PersonForms
 
                 if (AthleteId == -1) // При создании нового спортсмена
                 {
-                    athlete = new Athlete
-                    {
-                        TeamId = teamId
-                    };
+                    athlete = new Athlete();
                     _ = context.Athletes.Add(athlete);
                 }
                 else
@@ -142,6 +146,8 @@ namespace GreatSportEventApp.PersonForms
 
                 athlete.Description = textDescription.Text;
 
+                athlete.TeamId = teamId;
+
                 _ = context.SaveChanges();
 
                 AthleteId = athlete.Id;
@@ -154,6 +160,7 @@ namespace GreatSportEventApp.PersonForms
                 return;
             }
 
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -175,5 +182,24 @@ namespace GreatSportEventApp.PersonForms
         }
 
         #endregion
+
+        private void SelectTeamButton_Click(object sender, EventArgs e)
+        {
+            ListTeamsForm teamsForm = new(true);
+            teamsForm.ShowDialog();
+
+            if (teamsForm.SelectedItem == null)
+            {
+                MessageBox.Show(@"Команда не выбрана!");
+                teamId = -1;
+                return;
+            }
+
+            using (GreatSportEventContext context = new())
+            {
+                teamId = (int)teamsForm.SelectedItem.Cells[0].Value;
+                textTeamName.Text = teamId == -1 ? "" : context.Teams.Find(teamId).ToString();
+            }
+        }
     }
 }

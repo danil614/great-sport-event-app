@@ -59,6 +59,8 @@ namespace GreatSportEventApp.BasicForms
                         // OrganizerForm organizerForm = new();
                         // organizerForm.Show(mainDockPanel, DockState.Document);
                         break;
+                    case UserType.HR: 
+                        break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");
                         break;
@@ -68,59 +70,54 @@ namespace GreatSportEventApp.BasicForms
 
         private void TreeFormToolStripButton_Click(object sender, EventArgs e)
         {
-            TreeForm treeForm = new();
-            treeForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenEventsParticipantsForm(mainDockPanel);
         }
 
         private void ListLocationsFormToolStripButton_Click(object sender, EventArgs e)
         {
-            ListLocationsForm locationsForm = new(false);
-            locationsForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenLocationsForm(mainDockPanel);
         }
 
         private void AboutFormToolStripButton_Click(object sender, EventArgs e)
         {
-            AboutForm aboutForm = new();
-            _ = aboutForm.ShowDialog();
+            Forms.OpenAboutForm();
         }
 
         private void CitiesToolStripButton_Click(object sender, EventArgs e)
         {
-            CitiesForm citiesForm = new();
-            citiesForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenCitiesForm(mainDockPanel);
         }
 
         private void PositionsToolStripButton_Click(object sender, EventArgs e)
         {
-            PositionsForm positionsForm = new();
-            positionsForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenPositionsForm(mainDockPanel);
         }
 
         private void TeamsToolStripButton_Click(object sender, EventArgs e)
         {
-            ListTeamsForm teamsForm = new(false);
-            teamsForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenTeamsForm(mainDockPanel);
         }
 
         private void ViewersToolStripButton_Click(object sender, EventArgs e)
         {
-            ListViewersForm viewersForm = new(false);
-            viewersForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenViewersForm(mainDockPanel);
         }
 
         private void TicketsToolStripButton_Click(object sender, EventArgs e)
         {
-            ListTicketsForm ticketsForm = new(false);
-            ticketsForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenTicketsForm(mainDockPanel);
         }
 
         private void EmployeesToolStripButton_Click(object sender, EventArgs e)
         {
-            ListEmployeesForm employeesForm = new(false);
-            employeesForm.Show(mainDockPanel, DockState.Document);
+            Forms.OpenEmployeesForm(mainDockPanel);
+        }
+
+        private void AthletesToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenAthletesForm(mainDockPanel);
         }
 
         #endregion
-
     }
 }

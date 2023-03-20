@@ -309,6 +309,29 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает всех спортсменов.
+        /// </summary>
+        public static DataTable GetListAthletes(out bool isConnected)
+        {
+            string query =
+                @"SELECT Athletes.athlete_id as 'Номер',
+                  CONCAT(Athletes.surname, ' ', Athletes.name, ' ', Athletes.patronymic) AS 'ФИО',
+                  (SELECT Gender.gender_name FROM Gender WHERE Gender.gender_id = Athletes.gender_id) AS 'Пол',
+                  Athletes.phone_number AS 'Номер телефона',
+                  (SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Athletes.position_id) AS 'Должность',
+                  (SELECT Teams.team_name FROM Teams WHERE Teams.team_id = Athletes.team_id) AS 'Команда',
+                  Athletes.birth_date AS 'Дата рождения',
+                  Athletes.rating AS 'Рейтинг'
+                  FROM Athletes
+                  ORDER BY Athletes.athlete_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает строку спортсмена по индексу.
         /// </summary>
         public static string GetAthleteStringById(out bool isConnected, int athleteId)
