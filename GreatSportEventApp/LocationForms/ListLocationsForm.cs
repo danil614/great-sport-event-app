@@ -28,7 +28,7 @@ namespace GreatSportEventApp.LocationForms
 
         private void SetVisibleItems()
         {
-            if (MainForm.CurrentUserType == UserType.Admin)
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
             {
                 DeleteToolStripButton.Visible = true;
                 toolStripSeparator4.Visible = true;

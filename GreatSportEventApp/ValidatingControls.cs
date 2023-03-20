@@ -25,5 +25,16 @@ namespace GreatSportEventApp
                 errorProvider.SetError(textBox, "Ожидается положительное число!");
             }
         }
+
+        public static void SetDecimalError(object sender, ErrorProvider errorProvider)
+        {
+            TextBox textBox = (TextBox)sender;
+            errorProvider.SetError(textBox, "");
+
+            if (!decimal.TryParse(textBox.Text, out decimal result) || result < 0)
+            {
+                errorProvider.SetError(textBox, "Ожидается положительное число!");
+            }
+        }
     }
 }

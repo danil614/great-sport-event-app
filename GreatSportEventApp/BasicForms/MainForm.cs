@@ -2,6 +2,7 @@
 using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.TeamForms;
+using GreatSportEventApp.TicketForms;
 using System;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -10,13 +11,13 @@ namespace GreatSportEventApp.BasicForms
 {
     public partial class MainForm : Form
     {
-        public static UserType CurrentUserType { get => _currentUserType; }
-        private static UserType _currentUserType;
+        public static CurrentUser CurrentUser { get => _currentUser; }
+        private static CurrentUser _currentUser;
 
         public MainForm()
         {
             InitializeComponent();
-            _currentUserType = UserType.Null;
+            _currentUser = new CurrentUser();
 
             // Тема для Dock
             mainDockPanel.Theme = new VS2015LightTheme();
@@ -33,7 +34,7 @@ namespace GreatSportEventApp.BasicForms
             if (!(string.IsNullOrWhiteSpace(loginForm.Login) || string.IsNullOrWhiteSpace(loginForm.Password)))
             {
                 // Получаем режим доступа по логину и паролю
-                _currentUserType = Query.GetAccessMode(loginForm.Login, loginForm.Password, out bool isConnected);
+                _currentUser = Query.GetAccessMode(loginForm.Login, loginForm.Password, out bool isConnected);
 
                 if (!isConnected)
                 {
@@ -41,7 +42,7 @@ namespace GreatSportEventApp.BasicForms
                     return;
                 }
 
-                switch (CurrentUserType)
+                switch (CurrentUser.UserType)
                 {
                     case UserType.Admin:
                         // Создаем форму администратора
@@ -50,8 +51,8 @@ namespace GreatSportEventApp.BasicForms
                         break;
                     case UserType.Seller:
                         // Создаем форму продавца
-                        SellerForm sellerForm = new();
-                        sellerForm.Show(mainDockPanel, DockState.Document);
+                        // SellerForm sellerForm = new();
+                        // sellerForm.Show(mainDockPanel, DockState.Document);
                         break;
                     case UserType.Organizer:
                         // Создаем форму организатора
@@ -105,6 +106,12 @@ namespace GreatSportEventApp.BasicForms
         {
             ListViewersForm viewersForm = new(false);
             viewersForm.Show(mainDockPanel, DockState.Document);
+        }
+
+        private void TicketsToolStripButton_Click(object sender, EventArgs e)
+        {
+            ListTicketsForm ticketsForm = new(false);
+            ticketsForm.Show(mainDockPanel, DockState.Document);
         }
 
         #endregion

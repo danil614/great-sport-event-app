@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GreatSportEventApp.Entities
 {
-    [Table("Viewers")]
-    public class Viewer
+    [Table("Employees")]
+    public class Employee
     {
         [Key]
-        [Column("viewer_id")]
+        [Column("employee_id")]
         public int Id { get; set; }
 
         [Required]
@@ -35,8 +35,11 @@ namespace GreatSportEventApp.Entities
         public DateTime BirthDate { get; set; }
 
         [Required]
-        [Column("number_purchases")]
-        public int NumberPurchases { get; set; }
+        [Column("position_id")]
+        public int PositionId { get; set; }
+
+        [Column("team_id")]
+        public int TeamId { get; set; }
 
         public override string ToString()
         {

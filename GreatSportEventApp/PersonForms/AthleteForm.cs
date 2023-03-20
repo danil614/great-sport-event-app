@@ -38,26 +38,28 @@ namespace GreatSportEventApp.PersonForms
 
         private void GetAthleteById()
         {
-            using GreatSportEventContext context = new();
-            Athlete athlete = context.Athletes.Find(AthleteId);
-
-            if (athlete is null)
+            using (GreatSportEventContext context = new())
             {
-                _ = MessageBox.Show(@"Отсутствует подключение!");
-                return;
+                Athlete athlete = context.Athletes.Find(AthleteId);
+
+                if (athlete is null)
+                {
+                    _ = MessageBox.Show(@"Отсутствует подключение!");
+                    return;
+                }
+
+                textSurname.Text = athlete.Surname;
+                textName.Text = athlete.Name;
+                textPatronymic.Text = athlete.Patronymic;
+                comboGender.SelectedValue = athlete.GenderId;
+                textPhoneNumber.Text = athlete.PhoneNumber;
+                dateBirth.Value = athlete.BirthDate;
+                comboPosition.SelectedValue = athlete.PositionId;
+                textRating.Text = athlete.Rating.ToString();
+                textDescription.Text = athlete.Description;
+
+                teamId = athlete.TeamId;
             }
-
-            textSurname.Text = athlete.Surname;
-            textName.Text = athlete.Name;
-            textPatronymic.Text = athlete.Patronymic;
-            comboGender.SelectedValue = athlete.GenderId;
-            textPhoneNumber.Text = athlete.PhoneNumber;
-            dateBirth.Value = athlete.BirthDate;
-            comboPosition.SelectedValue = athlete.PositionId;
-            textRating.Text = athlete.Rating.ToString();
-            textDescription.Text = athlete.Description;
-
-            teamId = athlete.TeamId;
         }
 
         /// <summary>

@@ -26,6 +26,10 @@ namespace GreatSportEventApp.Entities
 
         public DbSet<Viewer> Viewers { get; set; }
 
+        public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)
         {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.PersonForms
 {
-    partial class PersonForm
+    partial class ViewerForm
     {
         /// <summary>
         /// Required designer variable.

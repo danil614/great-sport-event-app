@@ -7,7 +7,7 @@ namespace GreatSportEventApp
         /// <summary>
         ///     Получает режим доступа по логину и паролю.
         /// </summary>
-        public static UserType GetAccessMode(string login, string password, out bool isConnected)
+        public static CurrentUser GetAccessMode(string login, string password, out bool isConnected)
         {
             string query = $"CALL get_access_mode('{login}', '{password}')";
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
@@ -15,20 +15,21 @@ namespace GreatSportEventApp
             if (dataTable == null)
             {
                 isConnected = false;
-                return UserType.Null;
+                return new CurrentUser();
             }
 
             isConnected = true;
 
             if(dataTable.Rows.Count == 1)
             {
-                if (int.TryParse(dataTable.Rows[0][0].ToString(), out int mode))
+                if (int.TryParse(dataTable.Rows[0]["access_mode"].ToString(), out int mode))
                 {
-                    return (UserType)mode;
+                    int.TryParse(dataTable.Rows[0]["employee_id"].ToString(), out int employeeId);
+                    return new CurrentUser((UserType)mode, employeeId);
                 }
             }
 
-            return UserType.Null;
+            return new CurrentUser();
         }
 
         /// <summary>
@@ -52,10 +53,14 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListTickets(out bool isConnected)
         {
-            const string query = "SELECT ticket_id AS 'Номер', " +
-                                 "(SELECT CONCAT(surname, ' ', name, ' ', patronymic) " +
-                                 "FROM Viewers WHERE viewer_id = Tickets.viewer_id) AS 'Зритель'," +
-                                 "sale_date_time AS 'Дата продажи', seat_name AS 'Дата Место', price AS 'Цена' FROM Tickets";
+            const string query =
+                @"SELECT ticket_id AS 'Номер',
+                  (SELECT CONCAT(Viewers.surname, ' ', Viewers.name, ' ', Viewers.patronymic)
+                  FROM Viewers WHERE Viewers.viewer_id = Tickets.viewer_id) AS 'Зритель',
+                  (SELECT CONCAT(Employees.surname, ' ', Employees.name, ' ', Employees.patronymic)
+                  FROM Employees WHERE Employees.employee_id = Tickets.employee_id) AS 'Продавец',
+                  sale_date_time AS 'Дата продажи', seat_name AS 'Место', price AS 'Цена'
+                  FROM Tickets";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;

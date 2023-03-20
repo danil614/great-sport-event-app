@@ -2,11 +2,11 @@
 using System.Data;
 using System.Windows.Forms;
 
-namespace GreatSportEventApp
+namespace GreatSportEventApp.PersonForms
 {
-    public partial class PersonForm : Form
+    public partial class ViewerForm : Form
     {
-        public PersonForm(bool isChanging)
+        public ViewerForm(bool isChanging)
         {
             IsChanging = isChanging;
 

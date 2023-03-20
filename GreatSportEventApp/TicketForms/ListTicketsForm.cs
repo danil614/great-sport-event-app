@@ -5,13 +5,13 @@ using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp.PersonForms
+namespace GreatSportEventApp.TicketForms
 {
-    public partial class ListViewersForm : DockContent
+    public partial class ListTicketsForm : DockContent
     {
         public DataGridViewRow SelectedItem { get; set; }
 
-        public ListViewersForm(bool isSelectionMode)
+        public ListTicketsForm(bool isSelectionMode)
         {
             InitializeComponent();
             UpdateDataGridView();
@@ -30,7 +30,7 @@ namespace GreatSportEventApp.PersonForms
         private void UpdateDataGridView()
         {
             // Получаем запрос со зрителями
-            DataTable dataTable = Query.GetListViewers(out bool isConnected);
+            DataTable dataTable = Query.GetListTickets(out bool isConnected);
 
             if (!isConnected)
             {
@@ -49,8 +49,8 @@ namespace GreatSportEventApp.PersonForms
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
-            ViewerForm personForm = new(false);
-            _ = personForm.ShowDialog();
+            TicketForm ticketForm = new(false, -1);
+            _ = ticketForm.ShowDialog();
             UpdateDataGridView();
         }
 
@@ -62,27 +62,11 @@ namespace GreatSportEventApp.PersonForms
             }
 
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-            DataRow person = Query.GetViewerById(out bool isConnected, currentRowId);
 
-            if (!isConnected)
-            {
-                _ = MessageBox.Show(@"Отсутствует подключение!");
-            }
-            else
-            {
-                ViewerForm personForm = new(true)
-                {
-                    PersonId = currentRowId,
-                    Surname = person["surname"].ToString(),
-                    PersonName = person["name"].ToString(),
-                    Patronymic = person["patronymic"].ToString(),
-                    Gender = person["gender_name"].ToString(),
-                    PhoneNumber = person["phone_number"].ToString(),
-                    BirthDate = (DateTime)person["birth_date"]
-                };
-                _ = personForm.ShowDialog();
-                UpdateDataGridView();
-            }
+            TicketForm ticketForm = new TicketForm(true, currentRowId);
+            ticketForm.ShowDialog();
+
+            UpdateDataGridView();
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)
@@ -95,15 +79,15 @@ namespace GreatSportEventApp.PersonForms
             using (GreatSportEventContext context = new())
             {
                 int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-                var viewer = context.Viewers.Find(currentRowId);
+                var ticket = context.Tickets.Find(currentRowId);
 
-                if (viewer is null)
+                if (ticket is null)
                 {
                     _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                _ = context.Viewers.Remove(viewer);
+                _ = context.Tickets.Remove(ticket);
 
                 try
                 {
@@ -128,7 +112,7 @@ namespace GreatSportEventApp.PersonForms
         {
             if (DataGridView.CurrentRow == null)
             {
-                _ = MessageBox.Show(@"Выделите нужную строку со зрителем!");
+                _ = MessageBox.Show(@"Выделите нужную строку с билетом!");
                 return;
             }
             else
