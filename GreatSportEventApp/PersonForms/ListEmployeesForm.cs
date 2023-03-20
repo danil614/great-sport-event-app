@@ -142,5 +142,18 @@ namespace GreatSportEventApp.PersonForms
         {
             EditToolStripButton_Click(sender, e);
         }
+
+        private void FilterByFullName()
+        {
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = DataGridView.DataSource;
+            bindingSource.Filter = DataGridView.Columns[1].HeaderText.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
+            DataGridView.DataSource = bindingSource;
+        }
+
+        private void ToolStripTextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            FilterByFullName();
+        }
     }
 }

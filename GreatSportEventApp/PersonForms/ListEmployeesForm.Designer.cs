@@ -44,6 +44,9 @@ namespace GreatSportEventApp.PersonForms
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
+            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ((ISupportInitialize)DataGridView).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -59,7 +62,7 @@ namespace GreatSportEventApp.PersonForms
             DataGridView.Margin = new System.Windows.Forms.Padding(4);
             DataGridView.Name = "DataGridView";
             DataGridView.ReadOnly = true;
-            DataGridView.Size = new System.Drawing.Size(809, 445);
+            DataGridView.Size = new System.Drawing.Size(964, 487);
             DataGridView.TabIndex = 0;
             DataGridView.CellMouseDoubleClick += DataGridView_CellMouseDoubleClick;
             DataGridView.CurrentCellChanged += DataGridView_CurrentCellChanged;
@@ -72,7 +75,7 @@ namespace GreatSportEventApp.PersonForms
             labelTitle.Location = new System.Drawing.Point(0, 0);
             labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(809, 40);
+            labelTitle.Size = new System.Drawing.Size(964, 40);
             labelTitle.TabIndex = 1;
             labelTitle.Text = "Сотрудники";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -82,10 +85,10 @@ namespace GreatSportEventApp.PersonForms
             MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5 });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripLabel1, toolStripTextBoxFilter, toolStripSeparator6 });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
-            MainToolStrip.Size = new System.Drawing.Size(809, 25);
+            MainToolStrip.Size = new System.Drawing.Size(964, 25);
             MainToolStrip.TabIndex = 5;
             MainToolStrip.Text = "MainToolStrip";
             // 
@@ -167,10 +170,27 @@ namespace GreatSportEventApp.PersonForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripTextBoxFilter
+            // 
+            toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
+            toolStripTextBoxFilter.Size = new System.Drawing.Size(150, 25);
+            toolStripTextBoxFilter.KeyPress += ToolStripTextBoxFilter_KeyPress;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(99, 22);
+            toolStripLabel1.Text = "Поиск по ФИО:";
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
             // ListEmployeesForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            ClientSize = new System.Drawing.Size(809, 510);
+            ClientSize = new System.Drawing.Size(964, 552);
             Controls.Add(DataGridView);
             Controls.Add(MainToolStrip);
             Controls.Add(labelTitle);
@@ -202,5 +222,8 @@ namespace GreatSportEventApp.PersonForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SelectToolStripButton;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxFilter;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
