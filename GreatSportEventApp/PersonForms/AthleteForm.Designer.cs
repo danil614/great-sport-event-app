@@ -293,11 +293,11 @@ namespace GreatSportEventApp.PersonForms
             // 
             // buttonSave
             // 
-            buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(716, 561);
+            buttonSave.Location = new System.Drawing.Point(645, 561);
             buttonSave.Name = "buttonSave";
-            buttonSave.Size = new System.Drawing.Size(129, 75);
+            buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = true;

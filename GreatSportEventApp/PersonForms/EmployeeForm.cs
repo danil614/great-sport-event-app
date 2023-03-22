@@ -29,8 +29,8 @@ namespace GreatSportEventApp.PersonForms
 
             if (isChanging)
             {
-                Text = @"Изменение спортсмена";
-                labelTitle.Text = @"Изменение спортсмена";
+                Text = @"Изменение сотрудника";
+                labelTitle.Text = @"Изменение сотрудника";
                 GetEmployeeById();
             }
         }
@@ -48,7 +48,7 @@ namespace GreatSportEventApp.PersonForms
                 }
 
                 textSurname.Text = employee.Surname;
-                textName.Text = employee.Name;
+                textSurname.Text = employee.Name;
                 textPatronymic.Text = employee.Patronymic;
                 comboGender.SelectedValue = employee.GenderId;
                 textPhoneNumber.Text = employee.PhoneNumber;
@@ -101,7 +101,7 @@ namespace GreatSportEventApp.PersonForms
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if (textSurname.Text == "" || textName.Text == "" ||
+            if (textSurname.Text == "" || textSurname.Text == "" ||
                 textPatronymic.Text == "" || textPhoneNumber.Text == "")
             {
                 _ = MessageBox.Show(@"Неправильно заполнены поля!");
@@ -123,7 +123,7 @@ namespace GreatSportEventApp.PersonForms
                 }
 
                 employee.Surname = textSurname.Text;
-                employee.Name = textName.Text;
+                employee.Name = textSurname.Text;
                 employee.Patronymic = textPatronymic.Text;
                 employee.GenderId = (int)comboGender.SelectedValue;
                 employee.PhoneNumber = textPhoneNumber.Text;

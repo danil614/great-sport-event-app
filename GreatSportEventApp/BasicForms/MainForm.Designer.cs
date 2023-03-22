@@ -32,10 +32,10 @@ namespace GreatSportEventApp.BasicForms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             MainToolStrip = new System.Windows.Forms.ToolStrip();
             toolStripSeparatorLeft = new System.Windows.Forms.ToolStripSeparator();
-            LoginToolStripButton = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparatorLogin = new System.Windows.Forms.ToolStripSeparator();
             ModeToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             toolStripSeparatorMode = new System.Windows.Forms.ToolStripSeparator();
+            LoginToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparatorLogin = new System.Windows.Forms.ToolStripSeparator();
             TreeFormToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorTreeForm = new System.Windows.Forms.ToolStripSeparator();
             ListLocationsFormToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -70,7 +70,7 @@ namespace GreatSportEventApp.BasicForms
             MainToolStrip.Location = new System.Drawing.Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            MainToolStrip.Size = new System.Drawing.Size(1324, 27);
+            MainToolStrip.Size = new System.Drawing.Size(1263, 27);
             MainToolStrip.TabIndex = 1;
             MainToolStrip.Text = "mainToolStrip";
             // 
@@ -78,6 +78,18 @@ namespace GreatSportEventApp.BasicForms
             // 
             toolStripSeparatorLeft.Name = "toolStripSeparatorLeft";
             toolStripSeparatorLeft.Size = new System.Drawing.Size(6, 27);
+            // 
+            // ModeToolStripLabel
+            // 
+            ModeToolStripLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ModeToolStripLabel.Name = "ModeToolStripLabel";
+            ModeToolStripLabel.Size = new System.Drawing.Size(95, 24);
+            ModeToolStripLabel.Text = "Режим доступа";
+            // 
+            // toolStripSeparatorMode
+            // 
+            toolStripSeparatorMode.Name = "toolStripSeparatorMode";
+            toolStripSeparatorMode.Size = new System.Drawing.Size(6, 27);
             // 
             // LoginToolStripButton
             // 
@@ -92,18 +104,6 @@ namespace GreatSportEventApp.BasicForms
             // 
             toolStripSeparatorLogin.Name = "toolStripSeparatorLogin";
             toolStripSeparatorLogin.Size = new System.Drawing.Size(6, 27);
-            // 
-            // ModeToolStripLabel
-            // 
-            ModeToolStripLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            ModeToolStripLabel.Name = "ModeToolStripLabel";
-            ModeToolStripLabel.Size = new System.Drawing.Size(95, 24);
-            ModeToolStripLabel.Text = "Режим доступа";
-            // 
-            // toolStripSeparatorMode
-            // 
-            toolStripSeparatorMode.Name = "toolStripSeparatorMode";
-            toolStripSeparatorMode.Size = new System.Drawing.Size(6, 27);
             // 
             // TreeFormToolStripButton
             // 
@@ -273,11 +273,13 @@ namespace GreatSportEventApp.BasicForms
             // 
             // mainDockPanel
             // 
+            mainDockPanel.AutoSize = true;
+            mainDockPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             mainDockPanel.Location = new System.Drawing.Point(0, 27);
             mainDockPanel.Margin = new System.Windows.Forms.Padding(4);
             mainDockPanel.Name = "mainDockPanel";
-            mainDockPanel.Size = new System.Drawing.Size(1324, 763);
+            mainDockPanel.Size = new System.Drawing.Size(1263, 588);
             mainDockPanel.TabIndex = 2;
             // 
             // MainForm
@@ -285,7 +287,9 @@ namespace GreatSportEventApp.BasicForms
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new System.Drawing.Size(1324, 790);
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            ClientSize = new System.Drawing.Size(1263, 615);
             Controls.Add(mainDockPanel);
             Controls.Add(MainToolStrip);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
