@@ -104,10 +104,10 @@
             // 
             buttonLogin.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonLogin.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            buttonLogin.Location = new System.Drawing.Point(233, 134);
+            buttonLogin.Location = new System.Drawing.Point(235, 134);
             buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             buttonLogin.Name = "buttonLogin";
-            buttonLogin.Size = new System.Drawing.Size(202, 46);
+            buttonLogin.Size = new System.Drawing.Size(200, 50);
             buttonLogin.TabIndex = 5;
             buttonLogin.Text = "Войти";
             buttonLogin.UseVisualStyleBackColor = true;
@@ -115,6 +115,8 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.AutoSize = true;
+            tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -141,6 +143,8 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             BackColor = System.Drawing.SystemColors.Control;
             ClientSize = new System.Drawing.Size(444, 192);
             Controls.Add(tableLayoutPanel1);
@@ -156,6 +160,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         private System.Windows.Forms.Button buttonLogin;
