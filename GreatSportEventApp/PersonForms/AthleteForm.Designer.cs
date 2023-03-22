@@ -238,6 +238,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             tableLayoutPanel1.RowCount = 12;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -251,7 +252,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(848, 639);
+            tableLayoutPanel1.Size = new System.Drawing.Size(868, 639);
             tableLayoutPanel1.TabIndex = 32;
             // 
             // tableLayoutPanel2
@@ -366,7 +367,7 @@ namespace GreatSportEventApp.PersonForms
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(873, 649);
+            ClientSize = new System.Drawing.Size(878, 649);
             Controls.Add(tableLayoutPanel1);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -374,7 +375,7 @@ namespace GreatSportEventApp.PersonForms
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AthleteForm";
-            Padding = new System.Windows.Forms.Padding(5, 5, 20, 5);
+            Padding = new System.Windows.Forms.Padding(5);
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Добавление спортсмена";
             ((ISupportInitialize)errorProvider1).EndInit();

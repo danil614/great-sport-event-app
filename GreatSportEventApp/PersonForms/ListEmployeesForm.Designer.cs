@@ -44,8 +44,8 @@ namespace GreatSportEventApp.PersonForms
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
             toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ((ISupportInitialize)DataGridView).BeginInit();
             MainToolStrip.SuspendLayout();
@@ -75,6 +75,7 @@ namespace GreatSportEventApp.PersonForms
             labelTitle.Location = new System.Drawing.Point(0, 0);
             labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTitle.Name = "labelTitle";
+            labelTitle.Padding = new System.Windows.Forms.Padding(5);
             labelTitle.Size = new System.Drawing.Size(964, 40);
             labelTitle.TabIndex = 1;
             labelTitle.Text = "Сотрудники";
@@ -170,17 +171,17 @@ namespace GreatSportEventApp.PersonForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripTextBoxFilter
-            // 
-            toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
-            toolStripTextBoxFilter.Size = new System.Drawing.Size(150, 25);
-            toolStripTextBoxFilter.KeyPress += ToolStripTextBoxFilter_KeyPress;
-            // 
             // toolStripLabel1
             // 
             toolStripLabel1.Name = "toolStripLabel1";
             toolStripLabel1.Size = new System.Drawing.Size(99, 22);
             toolStripLabel1.Text = "Поиск по ФИО:";
+            // 
+            // toolStripTextBoxFilter
+            // 
+            toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
+            toolStripTextBoxFilter.Size = new System.Drawing.Size(150, 25);
+            toolStripTextBoxFilter.KeyPress += ToolStripTextBoxFilter_KeyPress;
             // 
             // toolStripSeparator6
             // 

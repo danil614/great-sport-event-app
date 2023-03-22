@@ -66,7 +66,7 @@ namespace GreatSportEventApp.PersonForms
             labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelTitle.Location = new System.Drawing.Point(3, 0);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(645, 46);
+            labelTitle.Size = new System.Drawing.Size(648, 46);
             labelTitle.TabIndex = 2;
             labelTitle.Text = "Добавление спортсмена";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -87,7 +87,7 @@ namespace GreatSportEventApp.PersonForms
             textTeamName.Location = new System.Drawing.Point(3, 3);
             textTeamName.Name = "textTeamName";
             textTeamName.ReadOnly = true;
-            textTeamName.Size = new System.Drawing.Size(361, 26);
+            textTeamName.Size = new System.Drawing.Size(363, 26);
             textTeamName.TabIndex = 5;
             // 
             // comboPosition
@@ -96,7 +96,7 @@ namespace GreatSportEventApp.PersonForms
             comboPosition.FormattingEnabled = true;
             comboPosition.Location = new System.Drawing.Point(158, 241);
             comboPosition.Name = "comboPosition";
-            comboPosition.Size = new System.Drawing.Size(490, 26);
+            comboPosition.Size = new System.Drawing.Size(493, 26);
             comboPosition.TabIndex = 2;
             // 
             // label5
@@ -186,7 +186,7 @@ namespace GreatSportEventApp.PersonForms
             textPatronymic.Dock = System.Windows.Forms.DockStyle.Fill;
             textPatronymic.Location = new System.Drawing.Point(158, 113);
             textPatronymic.Name = "textPatronymic";
-            textPatronymic.Size = new System.Drawing.Size(490, 26);
+            textPatronymic.Size = new System.Drawing.Size(493, 26);
             textPatronymic.TabIndex = 20;
             textPatronymic.Validating += TextLength_Validating;
             // 
@@ -195,7 +195,7 @@ namespace GreatSportEventApp.PersonForms
             textSurname.Dock = System.Windows.Forms.DockStyle.Fill;
             textSurname.Location = new System.Drawing.Point(158, 49);
             textSurname.Name = "textSurname";
-            textSurname.Size = new System.Drawing.Size(490, 26);
+            textSurname.Size = new System.Drawing.Size(493, 26);
             textSurname.TabIndex = 19;
             textSurname.Validating += TextLength_Validating;
             // 
@@ -212,9 +212,9 @@ namespace GreatSportEventApp.PersonForms
             // SelectTeamButton
             // 
             SelectTeamButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            SelectTeamButton.Location = new System.Drawing.Point(370, 3);
+            SelectTeamButton.Location = new System.Drawing.Point(372, 3);
             SelectTeamButton.Name = "SelectTeamButton";
-            SelectTeamButton.Size = new System.Drawing.Size(117, 26);
+            SelectTeamButton.Size = new System.Drawing.Size(118, 26);
             SelectTeamButton.TabIndex = 28;
             SelectTeamButton.Text = "Выбрать";
             SelectTeamButton.UseVisualStyleBackColor = true;
@@ -232,7 +232,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(490, 32);
+            tableLayoutPanel1.Size = new System.Drawing.Size(493, 32);
             tableLayoutPanel1.TabIndex = 29;
             // 
             // tableLayoutPanel2
@@ -264,6 +264,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel2.Location = new System.Drawing.Point(5, 5);
             tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             tableLayoutPanel2.RowCount = 10;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -275,14 +276,14 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel2.Size = new System.Drawing.Size(651, 372);
+            tableLayoutPanel2.Size = new System.Drawing.Size(674, 372);
             tableLayoutPanel2.TabIndex = 30;
             // 
             // buttonSave
             // 
             buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(448, 311);
+            buttonSave.Location = new System.Drawing.Point(451, 311);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
@@ -305,7 +306,7 @@ namespace GreatSportEventApp.PersonForms
             textName.Dock = System.Windows.Forms.DockStyle.Fill;
             textName.Location = new System.Drawing.Point(158, 81);
             textName.Name = "textName";
-            textName.Size = new System.Drawing.Size(490, 26);
+            textName.Size = new System.Drawing.Size(493, 26);
             textName.TabIndex = 31;
             // 
             // EmployeeForm
@@ -314,7 +315,7 @@ namespace GreatSportEventApp.PersonForms
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(676, 382);
+            ClientSize = new System.Drawing.Size(684, 382);
             Controls.Add(tableLayoutPanel2);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -322,7 +323,7 @@ namespace GreatSportEventApp.PersonForms
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "EmployeeForm";
-            Padding = new System.Windows.Forms.Padding(5, 5, 20, 5);
+            Padding = new System.Windows.Forms.Padding(5);
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Добавление сотрудника";
             ((ISupportInitialize)errorProvider1).EndInit();

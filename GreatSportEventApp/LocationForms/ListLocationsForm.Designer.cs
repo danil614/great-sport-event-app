@@ -75,6 +75,7 @@ namespace GreatSportEventApp.LocationForms
             labelTitle.Location = new System.Drawing.Point(0, 0);
             labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTitle.Name = "labelTitle";
+            labelTitle.Padding = new System.Windows.Forms.Padding(5);
             labelTitle.Size = new System.Drawing.Size(809, 40);
             labelTitle.TabIndex = 1;
             labelTitle.Text = "Места расположения";

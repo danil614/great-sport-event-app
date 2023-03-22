@@ -57,7 +57,7 @@ namespace GreatSportEventApp.LocationForms
             textAddress.Dock = System.Windows.Forms.DockStyle.Fill;
             textAddress.Location = new System.Drawing.Point(149, 113);
             textAddress.Name = "textAddress";
-            textAddress.Size = new System.Drawing.Size(641, 26);
+            textAddress.Size = new System.Drawing.Size(644, 26);
             textAddress.TabIndex = 3;
             textAddress.Validating += TextLength_Validating;
             // 
@@ -68,7 +68,7 @@ namespace GreatSportEventApp.LocationForms
             labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelTitle.Location = new System.Drawing.Point(3, 0);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(787, 46);
+            labelTitle.Size = new System.Drawing.Size(790, 46);
             labelTitle.TabIndex = 2;
             labelTitle.Text = "Добавление места";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,7 +78,7 @@ namespace GreatSportEventApp.LocationForms
             textCapacity.Dock = System.Windows.Forms.DockStyle.Fill;
             textCapacity.Location = new System.Drawing.Point(149, 177);
             textCapacity.Name = "textCapacity";
-            textCapacity.Size = new System.Drawing.Size(641, 26);
+            textCapacity.Size = new System.Drawing.Size(644, 26);
             textCapacity.TabIndex = 5;
             textCapacity.Validating += TextCapacity_Validating;
             // 
@@ -126,7 +126,7 @@ namespace GreatSportEventApp.LocationForms
             // 
             buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(590, 434);
+            buttonSave.Location = new System.Drawing.Point(593, 434);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
@@ -140,7 +140,7 @@ namespace GreatSportEventApp.LocationForms
             comboType.FormattingEnabled = true;
             comboType.Location = new System.Drawing.Point(149, 145);
             comboType.Name = "comboType";
-            comboType.Size = new System.Drawing.Size(641, 26);
+            comboType.Size = new System.Drawing.Size(644, 26);
             comboType.TabIndex = 4;
             // 
             // textDescription
@@ -150,7 +150,7 @@ namespace GreatSportEventApp.LocationForms
             textDescription.Multiline = true;
             textDescription.Name = "textDescription";
             textDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            textDescription.Size = new System.Drawing.Size(641, 219);
+            textDescription.Size = new System.Drawing.Size(644, 219);
             textDescription.TabIndex = 6;
             textDescription.Validating += TextDescription_Validating;
             // 
@@ -183,6 +183,7 @@ namespace GreatSportEventApp.LocationForms
             tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             tableLayoutPanel1.RowCount = 8;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -194,7 +195,7 @@ namespace GreatSportEventApp.LocationForms
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new System.Drawing.Size(793, 526);
+            tableLayoutPanel1.Size = new System.Drawing.Size(816, 526);
             tableLayoutPanel1.TabIndex = 15;
             // 
             // label1
@@ -212,7 +213,7 @@ namespace GreatSportEventApp.LocationForms
             textName.Dock = System.Windows.Forms.DockStyle.Fill;
             textName.Location = new System.Drawing.Point(149, 49);
             textName.Name = "textName";
-            textName.Size = new System.Drawing.Size(641, 26);
+            textName.Size = new System.Drawing.Size(644, 26);
             textName.TabIndex = 1;
             textName.Validating += TextLength_Validating;
             // 
@@ -232,7 +233,7 @@ namespace GreatSportEventApp.LocationForms
             comboCity.FormattingEnabled = true;
             comboCity.Location = new System.Drawing.Point(149, 81);
             comboCity.Name = "comboCity";
-            comboCity.Size = new System.Drawing.Size(641, 26);
+            comboCity.Size = new System.Drawing.Size(644, 26);
             comboCity.TabIndex = 2;
             // 
             // LocationForm
@@ -241,7 +242,7 @@ namespace GreatSportEventApp.LocationForms
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(818, 536);
+            ClientSize = new System.Drawing.Size(826, 536);
             Controls.Add(tableLayoutPanel1);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -249,7 +250,7 @@ namespace GreatSportEventApp.LocationForms
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LocationForm";
-            Padding = new System.Windows.Forms.Padding(5, 5, 20, 5);
+            Padding = new System.Windows.Forms.Padding(5);
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Добавление места";
             ((ISupportInitialize)errorProvider1).EndInit();

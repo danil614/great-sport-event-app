@@ -64,13 +64,16 @@ namespace GreatSportEventApp.BasicForms
             // 
             // MainToolStrip
             // 
+            MainToolStrip.BackColor = System.Drawing.Color.White;
+            MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparatorLeft, ModeToolStripLabel, toolStripSeparatorMode, LoginToolStripButton, toolStripSeparatorLogin, TreeFormToolStripButton, toolStripSeparatorTreeForm, ListLocationsFormToolStripButton, toolStripSeparatorLocations, CitiesToolStripButton, toolStripSeparatorCities, PositionsToolStripButton, toolStripSeparatorPositions, TeamsToolStripButton, toolStripSeparatorTeams, ViewersToolStripButton, toolStripSeparatorViewers, TicketsToolStripButton, toolStripSeparatorTickets, EmployeesToolStripButton, toolStripSeparatorEmployees, AthletesToolStripButton, toolStripSeparatorAthletes, UsersToolStripButton, toolStripSeparatorUsers, AboutFormToolStripButton, toolStripSeparatorRight });
             MainToolStrip.Location = new System.Drawing.Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
-            MainToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            MainToolStrip.Size = new System.Drawing.Size(1263, 27);
+            MainToolStrip.Padding = new System.Windows.Forms.Padding(5);
+            MainToolStrip.Size = new System.Drawing.Size(1301, 37);
+            MainToolStrip.Stretch = true;
             MainToolStrip.TabIndex = 1;
             MainToolStrip.Text = "mainToolStrip";
             // 
@@ -81,9 +84,9 @@ namespace GreatSportEventApp.BasicForms
             // 
             // ModeToolStripLabel
             // 
-            ModeToolStripLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ModeToolStripLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             ModeToolStripLabel.Name = "ModeToolStripLabel";
-            ModeToolStripLabel.Size = new System.Drawing.Size(95, 24);
+            ModeToolStripLabel.Size = new System.Drawing.Size(107, 24);
             ModeToolStripLabel.Text = "Режим доступа";
             // 
             // toolStripSeparatorMode
@@ -96,7 +99,7 @@ namespace GreatSportEventApp.BasicForms
             LoginToolStripButton.Image = Properties.Resources.login;
             LoginToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             LoginToolStripButton.Name = "LoginToolStripButton";
-            LoginToolStripButton.Size = new System.Drawing.Size(157, 24);
+            LoginToolStripButton.Size = new System.Drawing.Size(167, 24);
             LoginToolStripButton.Text = "Сменить пользователя";
             LoginToolStripButton.Click += LoginToolStripButton_Click;
             // 
@@ -111,7 +114,7 @@ namespace GreatSportEventApp.BasicForms
             TreeFormToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TreeFormToolStripButton.Image");
             TreeFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             TreeFormToolStripButton.Name = "TreeFormToolStripButton";
-            TreeFormToolStripButton.Size = new System.Drawing.Size(157, 24);
+            TreeFormToolStripButton.Size = new System.Drawing.Size(165, 24);
             TreeFormToolStripButton.Text = "Мероприятия и участники";
             TreeFormToolStripButton.Click += TreeFormToolStripButton_Click;
             // 
@@ -126,7 +129,7 @@ namespace GreatSportEventApp.BasicForms
             ListLocationsFormToolStripButton.Image = (System.Drawing.Image)resources.GetObject("ListLocationsFormToolStripButton.Image");
             ListLocationsFormToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             ListLocationsFormToolStripButton.Name = "ListLocationsFormToolStripButton";
-            ListLocationsFormToolStripButton.Size = new System.Drawing.Size(130, 24);
+            ListLocationsFormToolStripButton.Size = new System.Drawing.Size(138, 24);
             ListLocationsFormToolStripButton.Text = "Места расположения";
             ListLocationsFormToolStripButton.Click += ListLocationsFormToolStripButton_Click;
             // 
@@ -141,7 +144,7 @@ namespace GreatSportEventApp.BasicForms
             CitiesToolStripButton.Image = (System.Drawing.Image)resources.GetObject("CitiesToolStripButton.Image");
             CitiesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             CitiesToolStripButton.Name = "CitiesToolStripButton";
-            CitiesToolStripButton.Size = new System.Drawing.Size(50, 24);
+            CitiesToolStripButton.Size = new System.Drawing.Size(53, 24);
             CitiesToolStripButton.Text = "Города";
             CitiesToolStripButton.Click += CitiesToolStripButton_Click;
             // 
@@ -156,7 +159,7 @@ namespace GreatSportEventApp.BasicForms
             PositionsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("PositionsToolStripButton.Image");
             PositionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             PositionsToolStripButton.Name = "PositionsToolStripButton";
-            PositionsToolStripButton.Size = new System.Drawing.Size(74, 24);
+            PositionsToolStripButton.Size = new System.Drawing.Size(76, 24);
             PositionsToolStripButton.Text = "Должности";
             PositionsToolStripButton.Click += PositionsToolStripButton_Click;
             // 
@@ -171,7 +174,7 @@ namespace GreatSportEventApp.BasicForms
             TeamsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TeamsToolStripButton.Image");
             TeamsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             TeamsToolStripButton.Name = "TeamsToolStripButton";
-            TeamsToolStripButton.Size = new System.Drawing.Size(62, 24);
+            TeamsToolStripButton.Size = new System.Drawing.Size(66, 24);
             TeamsToolStripButton.Text = "Команды";
             TeamsToolStripButton.Click += TeamsToolStripButton_Click;
             // 
@@ -186,7 +189,7 @@ namespace GreatSportEventApp.BasicForms
             ViewersToolStripButton.Image = (System.Drawing.Image)resources.GetObject("ViewersToolStripButton.Image");
             ViewersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             ViewersToolStripButton.Name = "ViewersToolStripButton";
-            ViewersToolStripButton.Size = new System.Drawing.Size(57, 24);
+            ViewersToolStripButton.Size = new System.Drawing.Size(59, 24);
             ViewersToolStripButton.Text = "Зрители";
             ViewersToolStripButton.Click += ViewersToolStripButton_Click;
             // 
@@ -201,7 +204,7 @@ namespace GreatSportEventApp.BasicForms
             TicketsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TicketsToolStripButton.Image");
             TicketsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             TicketsToolStripButton.Name = "TicketsToolStripButton";
-            TicketsToolStripButton.Size = new System.Drawing.Size(52, 24);
+            TicketsToolStripButton.Size = new System.Drawing.Size(55, 24);
             TicketsToolStripButton.Text = "Билеты";
             TicketsToolStripButton.Click += TicketsToolStripButton_Click;
             // 
@@ -216,7 +219,7 @@ namespace GreatSportEventApp.BasicForms
             EmployeesToolStripButton.Image = (System.Drawing.Image)resources.GetObject("EmployeesToolStripButton.Image");
             EmployeesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             EmployeesToolStripButton.Name = "EmployeesToolStripButton";
-            EmployeesToolStripButton.Size = new System.Drawing.Size(77, 24);
+            EmployeesToolStripButton.Size = new System.Drawing.Size(81, 24);
             EmployeesToolStripButton.Text = "Сотрудники";
             EmployeesToolStripButton.ToolTipText = "Сотрудники";
             EmployeesToolStripButton.Click += EmployeesToolStripButton_Click;
@@ -232,7 +235,7 @@ namespace GreatSportEventApp.BasicForms
             AthletesToolStripButton.Image = (System.Drawing.Image)resources.GetObject("AthletesToolStripButton.Image");
             AthletesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             AthletesToolStripButton.Name = "AthletesToolStripButton";
-            AthletesToolStripButton.Size = new System.Drawing.Size(82, 24);
+            AthletesToolStripButton.Size = new System.Drawing.Size(85, 24);
             AthletesToolStripButton.Text = "Спортсмены";
             AthletesToolStripButton.Click += AthletesToolStripButton_Click;
             // 
@@ -247,7 +250,7 @@ namespace GreatSportEventApp.BasicForms
             UsersToolStripButton.Image = (System.Drawing.Image)resources.GetObject("UsersToolStripButton.Image");
             UsersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             UsersToolStripButton.Name = "UsersToolStripButton";
-            UsersToolStripButton.Size = new System.Drawing.Size(89, 24);
+            UsersToolStripButton.Size = new System.Drawing.Size(94, 24);
             UsersToolStripButton.Text = "Пользователи";
             UsersToolStripButton.Click += UsersToolStripButton_Click;
             // 
@@ -274,12 +277,11 @@ namespace GreatSportEventApp.BasicForms
             // mainDockPanel
             // 
             mainDockPanel.AutoSize = true;
-            mainDockPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             mainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            mainDockPanel.Location = new System.Drawing.Point(0, 27);
+            mainDockPanel.Location = new System.Drawing.Point(0, 37);
             mainDockPanel.Margin = new System.Windows.Forms.Padding(4);
             mainDockPanel.Name = "mainDockPanel";
-            mainDockPanel.Size = new System.Drawing.Size(1263, 588);
+            mainDockPanel.Size = new System.Drawing.Size(1301, 624);
             mainDockPanel.TabIndex = 2;
             // 
             // MainForm
@@ -287,9 +289,7 @@ namespace GreatSportEventApp.BasicForms
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoScroll = true;
-            AutoSize = true;
-            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(1263, 615);
+            ClientSize = new System.Drawing.Size(1301, 661);
             Controls.Add(mainDockPanel);
             Controls.Add(MainToolStrip);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
