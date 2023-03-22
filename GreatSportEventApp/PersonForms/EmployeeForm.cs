@@ -48,7 +48,7 @@ namespace GreatSportEventApp.PersonForms
                 }
 
                 textSurname.Text = employee.Surname;
-                textSurname.Text = employee.Name;
+                textName.Text = employee.Name;
                 textPatronymic.Text = employee.Patronymic;
                 comboGender.SelectedValue = employee.GenderId;
                 textPhoneNumber.Text = employee.PhoneNumber;
@@ -123,7 +123,7 @@ namespace GreatSportEventApp.PersonForms
                 }
 
                 employee.Surname = textSurname.Text;
-                employee.Name = textSurname.Text;
+                employee.Name = textName.Text;
                 employee.Patronymic = textPatronymic.Text;
                 employee.GenderId = (int)comboGender.SelectedValue;
                 employee.PhoneNumber = textPhoneNumber.Text;

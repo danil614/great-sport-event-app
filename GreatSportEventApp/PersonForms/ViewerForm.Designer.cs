@@ -167,8 +167,10 @@ namespace GreatSportEventApp.PersonForms
             // 
             buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(291, 241);
+            buttonSave.Location = new System.Drawing.Point(289, 243);
+            buttonSave.Margin = new System.Windows.Forms.Padding(5);
             buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new System.Windows.Forms.Padding(5);
             buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
             buttonSave.Text = "Сохранить";
@@ -207,6 +209,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel1.Controls.Add(textPatronymic, 1, 3);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
+            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
             tableLayoutPanel1.RowCount = 8;

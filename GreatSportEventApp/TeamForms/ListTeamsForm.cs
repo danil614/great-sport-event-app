@@ -71,7 +71,7 @@ namespace GreatSportEventApp.TeamForms
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
             TeamForm teamForm = new(true, currentRowId, -1);
             _ = teamForm.ShowDialog();
-            
+
             UpdateDataGridView();
         }
 

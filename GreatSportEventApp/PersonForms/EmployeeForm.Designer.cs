@@ -68,7 +68,7 @@ namespace GreatSportEventApp.PersonForms
             labelTitle.Name = "labelTitle";
             labelTitle.Size = new System.Drawing.Size(648, 46);
             labelTitle.TabIndex = 2;
-            labelTitle.Text = "Добавление спортсмена";
+            labelTitle.Text = "Добавление сотрудника";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -87,7 +87,7 @@ namespace GreatSportEventApp.PersonForms
             textTeamName.Location = new System.Drawing.Point(3, 3);
             textTeamName.Name = "textTeamName";
             textTeamName.ReadOnly = true;
-            textTeamName.Size = new System.Drawing.Size(363, 26);
+            textTeamName.Size = new System.Drawing.Size(368, 26);
             textTeamName.TabIndex = 5;
             // 
             // comboPosition
@@ -104,7 +104,7 @@ namespace GreatSportEventApp.PersonForms
             label5.Dock = System.Windows.Forms.DockStyle.Fill;
             label5.Location = new System.Drawing.Point(3, 270);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(149, 38);
+            label5.Size = new System.Drawing.Size(149, 32);
             label5.TabIndex = 11;
             label5.Text = "Команда:";
             label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,9 +212,9 @@ namespace GreatSportEventApp.PersonForms
             // SelectTeamButton
             // 
             SelectTeamButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            SelectTeamButton.Location = new System.Drawing.Point(372, 3);
+            SelectTeamButton.Location = new System.Drawing.Point(377, 3);
             SelectTeamButton.Name = "SelectTeamButton";
-            SelectTeamButton.Size = new System.Drawing.Size(118, 26);
+            SelectTeamButton.Size = new System.Drawing.Size(119, 26);
             SelectTeamButton.TabIndex = 28;
             SelectTeamButton.Text = "Выбрать";
             SelectTeamButton.UseVisualStyleBackColor = true;
@@ -228,11 +228,12 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel1.Controls.Add(textTeamName, 0, 0);
             tableLayoutPanel1.Controls.Add(SelectTeamButton, 1, 0);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            tableLayoutPanel1.Location = new System.Drawing.Point(158, 273);
+            tableLayoutPanel1.Location = new System.Drawing.Point(155, 270);
+            tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(493, 32);
+            tableLayoutPanel1.Size = new System.Drawing.Size(499, 32);
             tableLayoutPanel1.TabIndex = 29;
             // 
             // tableLayoutPanel2
@@ -274,7 +275,7 @@ namespace GreatSportEventApp.PersonForms
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel2.Size = new System.Drawing.Size(674, 372);
             tableLayoutPanel2.TabIndex = 30;
@@ -283,7 +284,7 @@ namespace GreatSportEventApp.PersonForms
             // 
             buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(451, 311);
+            buttonSave.Location = new System.Drawing.Point(451, 305);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
