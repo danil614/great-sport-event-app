@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/.vs/GreatSportEventApp/v17/.futdcache.v2
+/.vs/ProjectEvaluation/greatsporteventapp.metadata.v6.1
+/.vs/ProjectEvaluation/greatsporteventapp.projects.v6.1
