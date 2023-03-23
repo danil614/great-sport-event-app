@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using System;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -15,6 +16,7 @@ namespace GreatSportEventApp.UserForms
         {
             InitializeComponent();
             UpdateDataGridView();
+            SetVisibleItems();
 
             if (!isSelectionMode)
             {
@@ -24,12 +26,22 @@ namespace GreatSportEventApp.UserForms
             SelectedItem = null;
         }
 
-        /// <summary>
-        ///     Обновляет список мест.
-        /// </summary>
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
+            }
+        }
+
         private void UpdateDataGridView()
         {
-            // Получаем запрос со зрителями
             DataTable dataTable = Query.GetListUsers(out bool isConnected);
 
             if (!isConnected)

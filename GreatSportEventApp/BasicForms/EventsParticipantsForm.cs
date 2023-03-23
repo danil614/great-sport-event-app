@@ -17,6 +17,36 @@ namespace GreatSportEventApp.BasicForms
         public EventsParticipantsForm()
         {
             InitializeComponent();
+            SetVisibleItems();
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
+
+                DeleteToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
+
+                DeleteToolStripMenuItem.Visible = false;
+            }
+
+            if (MainForm.CurrentUser.UserType == UserType.Athlete)
+            {
+                CreateToolStripButton.Visible = false;
+                toolStripSeparator2.Visible = false;
+
+                CreateToolStripMenuItem.Visible = false;
+
+                EditToolStripButton.Text = "Просмотр";
+                EditToolStripMenuItem.Text = "Просмотр";
+            }
         }
 
         private void TreeForm_Load(object sender, EventArgs e)
@@ -319,7 +349,8 @@ namespace GreatSportEventApp.BasicForms
         {
             bool isEnabled = MainTreeView.SelectedNode != null;
 
-            CreateToolStripMenuItem.Enabled = isEnabled;
+            CreateToolStripMenuItem.Enabled = isEnabled && 
+                (MainTreeView.SelectedNode.Level == 0 || MainTreeView.SelectedNode.Level == 1);
             EditToolStripMenuItem.Enabled = isEnabled;
             DeleteToolStripMenuItem.Enabled = isEnabled;
         }
@@ -333,7 +364,6 @@ namespace GreatSportEventApp.BasicForms
         {
             bool isEnabled = MainTreeView.SelectedNode != null;
 
-            CreateToolStripButton.Enabled = isEnabled;
             EditToolStripButton.Enabled = isEnabled;
             DeleteToolStripButton.Enabled = isEnabled;
         }

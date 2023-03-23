@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using GreatSportEventApp.LocationForms;
 using System;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace GreatSportEventApp.SportEventForms
         public SportEventForm(bool isChanging, int _sportEventId)
         {
             InitializeComponent();
+            SetVisibleItems();
 
             SportEventId = _sportEventId;
             SportEventString = "";
@@ -38,6 +40,20 @@ namespace GreatSportEventApp.SportEventForms
             duration.Format = DateTimePickerFormat.Custom;
             duration.CustomFormat = "HH:mm";
             duration.ShowUpDown = true;
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Trainer ||
+                MainForm.CurrentUser.UserType == UserType.Athlete)
+            {
+                comboType.Enabled = false;
+                SelectLocationButton.Enabled = false;
+                dateTimeEvent.Enabled = false;
+                duration.Enabled = false;
+                textDescription.ReadOnly = true;
+                buttonSave.Enabled = false;
+            }
         }
 
         private void GetSportEventById(int sportEventId)

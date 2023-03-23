@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using GreatSportEventApp.TeamForms;
 using System;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace GreatSportEventApp.PersonForms
         public AthleteForm(bool isChanging, int _athleteId, int _teamId)
         {
             InitializeComponent();
+            SetVisibleItems();
 
             teamId = _teamId;
             AthleteId = _athleteId;
@@ -39,6 +41,27 @@ namespace GreatSportEventApp.PersonForms
                 Text = @"Изменение спортсмена";
                 labelTitle.Text = @"Изменение спортсмена";
                 GetAthleteById();
+            }
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Athlete)
+            {
+                textSurname.ReadOnly = true;
+                textName.ReadOnly = true;
+                textPatronymic.ReadOnly = true;
+
+                comboGender.Enabled = false;
+                dateBirth.Enabled = false;
+                comboPosition.Enabled = false;
+
+                textPhoneNumber.ReadOnly = true;
+                textRating.ReadOnly = true;
+                SelectTeamButton.Enabled = false;
+                textDescription.ReadOnly = true;
+
+                buttonSave.Enabled = false;
             }
         }
 

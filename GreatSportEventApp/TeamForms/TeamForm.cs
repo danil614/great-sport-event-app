@@ -1,4 +1,6 @@
-﻿using GreatSportEventApp.Entities;
+﻿using Google.Protobuf.WellKnownTypes;
+using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using GreatSportEventApp.LocationForms;
 using System;
 using System.ComponentModel;
@@ -18,6 +20,7 @@ namespace GreatSportEventApp.TeamForms
         public TeamForm(bool isChanging, int _teamId, int _sportEventId)
         {
             InitializeComponent();
+            SetVisibleItems();
 
             TeamId = _teamId;
             sportEventId = _sportEventId;
@@ -39,6 +42,20 @@ namespace GreatSportEventApp.TeamForms
             {
                 textScore.Visible = true;
                 label2.Visible = true;
+            }
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Athlete)
+            {
+                textTeamName.ReadOnly = true;
+                SelectLocationButton.Enabled = false;
+                textComeFrom.ReadOnly = true;
+                textRating.ReadOnly = true;
+                textScore.ReadOnly = true;
+                textDescription.ReadOnly = true;
+                buttonSave.Enabled = false;
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.TeamForms;
 using System;
@@ -20,6 +21,7 @@ namespace GreatSportEventApp.TrainingForms
         public TrainingForm(bool isChanging, int _trainingId)
         {
             InitializeComponent();
+            SetVisibleItems();
 
             locationId = -1;
             teamId = -1;
@@ -39,6 +41,21 @@ namespace GreatSportEventApp.TrainingForms
             duration.Format = DateTimePickerFormat.Custom;
             duration.CustomFormat = "HH:mm";
             duration.ShowUpDown = true;
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Athlete)
+            {
+                SelectTeamButton.Enabled = false;
+                SelectLocationButton.Enabled = false;
+
+                dateTimeEvent.Enabled = false;
+                duration.Enabled = false;
+
+                textDescription.ReadOnly = true;
+                buttonSave.Enabled = false;
+            }
         }
 
         private void GetTrainingById(int trainingId)

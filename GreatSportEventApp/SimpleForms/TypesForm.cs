@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using System;
 using System.Data;
 using System.Data.Entity.Infrastructure;
@@ -14,15 +15,26 @@ namespace GreatSportEventApp.SimpleForms
         {
             InitializeComponent();
             UpdateListTypes();
+            SetVisibleItems();
             dataView.EditMode = DataGridViewEditMode.EditOnKeystroke;
         }
 
-        /// <summary>
-        ///     Обновляет список должностей.
-        /// </summary>
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
+            }
+        }
+
         private void UpdateListTypes()
         {
-            // Получаем запрос со зрителями
             DataTable listTypes = Query.GetListTypesIdName(out bool isConnected);
 
             if (!isConnected)

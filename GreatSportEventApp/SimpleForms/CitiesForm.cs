@@ -1,4 +1,5 @@
-﻿using GreatSportEventApp.Entities;
+﻿using GreatSportEventApp.BasicForms;
+using GreatSportEventApp.Entities;
 using System;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
@@ -12,7 +13,22 @@ namespace GreatSportEventApp.SimpleForms
         {
             InitializeComponent();
             UpdateListCities();
+            SetVisibleItems();
             dataView.EditMode = DataGridViewEditMode.EditOnKeystroke;
+        }
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
+            }
         }
 
         /// <summary>
@@ -20,7 +36,6 @@ namespace GreatSportEventApp.SimpleForms
         /// </summary>
         private void UpdateListCities()
         {
-            // Получаем запрос со зрителями
             System.Data.DataTable listCities = Query.GetListCitiesAndId(out bool isConnected);
 
             if (!isConnected)

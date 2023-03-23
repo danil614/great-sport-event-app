@@ -17,6 +17,26 @@ namespace GreatSportEventApp.BasicForms
         public EventsEmployeesForm()
         {
             InitializeComponent();
+            SetVisibleItems();
+        }
+
+
+        private void SetVisibleItems()
+        {
+            if (MainForm.CurrentUser.UserType == UserType.Admin)
+            {
+                DeleteToolStripButton.Visible = true;
+                toolStripSeparator4.Visible = true;
+
+                DeleteToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                DeleteToolStripButton.Visible = false;
+                toolStripSeparator4.Visible = false;
+
+                DeleteToolStripMenuItem.Visible = false;
+            }
         }
 
         private void TreeForm_Load(object sender, EventArgs e)
