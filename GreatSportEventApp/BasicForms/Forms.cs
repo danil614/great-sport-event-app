@@ -1,6 +1,7 @@
 ﻿using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.PersonForms;
 using GreatSportEventApp.SimpleForms;
+using GreatSportEventApp.SportEventForms;
 using GreatSportEventApp.TeamForms;
 using GreatSportEventApp.TicketForms;
 using GreatSportEventApp.UserForms;
@@ -125,6 +126,15 @@ namespace GreatSportEventApp.BasicForms
         {
             EventsEmployeesForm employeesForm = new();
             employeesForm.Show(dockPanel, DockState.Document);
+        }
+
+        /// <summary>
+        /// Открывает форму спортивных мероприятий.
+        /// </summary>
+        public static void OpenSportEventsForm(DockPanel dockPanel)
+        {
+            ListSportEventsForm sportEventsForm = new(false);
+            sportEventsForm.Show(dockPanel, DockState.Document);
         }
     }
 }

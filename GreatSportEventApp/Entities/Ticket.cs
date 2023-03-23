@@ -19,15 +19,11 @@ namespace GreatSportEventApp.Entities
         public int? EmployeeId { get; set; }
 
         [Required]
+        [Column("seat_id")]
+        public int SeatId { get; set; }
+
+        [Required]
         [Column("sale_date_time")]
         public DateTime SaleDateTime { get; set; }
-
-        [Required]
-        [Column("seat_name")]
-        public string SeatName { get; set; }
-
-        [Required]
-        [Column("price")]
-        public decimal Price { get; set; }
     }
 }

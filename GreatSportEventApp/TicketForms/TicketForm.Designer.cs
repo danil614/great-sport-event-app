@@ -47,9 +47,14 @@ namespace GreatSportEventApp.TicketForms
             textSeat = new System.Windows.Forms.TextBox();
             saleDateTime = new System.Windows.Forms.DateTimePicker();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            SelectSeatButton = new System.Windows.Forms.Button();
             tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            label5 = new System.Windows.Forms.Label();
+            textSportEventName = new System.Windows.Forms.TextBox();
             ((ISupportInitialize)errorProvider1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,7 +75,7 @@ namespace GreatSportEventApp.TicketForms
             labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelTitle.Location = new System.Drawing.Point(3, 0);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(649, 46);
+            labelTitle.Size = new System.Drawing.Size(677, 46);
             labelTitle.TabIndex = 2;
             labelTitle.Text = "Добавление билета";
             // 
@@ -80,13 +85,13 @@ namespace GreatSportEventApp.TicketForms
             textViewerName.Location = new System.Drawing.Point(3, 3);
             textViewerName.Name = "textViewerName";
             textViewerName.ReadOnly = true;
-            textViewerName.Size = new System.Drawing.Size(361, 26);
+            textViewerName.Size = new System.Drawing.Size(382, 26);
             textViewerName.TabIndex = 1;
             // 
             // label3
             // 
             label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            label3.Location = new System.Drawing.Point(3, 110);
+            label3.Location = new System.Drawing.Point(3, 142);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(159, 32);
             label3.TabIndex = 6;
@@ -106,7 +111,7 @@ namespace GreatSportEventApp.TicketForms
             // label6
             // 
             label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            label6.Location = new System.Drawing.Point(3, 174);
+            label6.Location = new System.Drawing.Point(3, 206);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(159, 32);
             label6.TabIndex = 13;
@@ -117,8 +122,10 @@ namespace GreatSportEventApp.TicketForms
             // 
             buttonSave.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSave.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSave.Location = new System.Drawing.Point(452, 209);
+            buttonSave.Location = new System.Drawing.Point(473, 248);
+            buttonSave.Margin = new System.Windows.Forms.Padding(10);
             buttonSave.Name = "buttonSave";
+            buttonSave.Padding = new System.Windows.Forms.Padding(10);
             buttonSave.Size = new System.Drawing.Size(200, 50);
             buttonSave.TabIndex = 14;
             buttonSave.Text = "Сохранить";
@@ -128,9 +135,9 @@ namespace GreatSportEventApp.TicketForms
             // SelectViewerButton
             // 
             SelectViewerButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            SelectViewerButton.Location = new System.Drawing.Point(370, 3);
+            SelectViewerButton.Location = new System.Drawing.Point(391, 3);
             SelectViewerButton.Name = "SelectViewerButton";
-            SelectViewerButton.Size = new System.Drawing.Size(117, 26);
+            SelectViewerButton.Size = new System.Drawing.Size(124, 26);
             SelectViewerButton.TabIndex = 17;
             SelectViewerButton.Text = "Выбрать";
             SelectViewerButton.UseVisualStyleBackColor = true;
@@ -142,14 +149,15 @@ namespace GreatSportEventApp.TicketForms
             textEmployeeName.Location = new System.Drawing.Point(168, 49);
             textEmployeeName.Name = "textEmployeeName";
             textEmployeeName.ReadOnly = true;
-            textEmployeeName.Size = new System.Drawing.Size(484, 26);
+            textEmployeeName.Size = new System.Drawing.Size(512, 26);
             textEmployeeName.TabIndex = 18;
             // 
             // textPrice
             // 
             textPrice.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            textPrice.Location = new System.Drawing.Point(168, 177);
+            textPrice.Location = new System.Drawing.Point(168, 209);
             textPrice.Name = "textPrice";
+            textPrice.ReadOnly = true;
             textPrice.Size = new System.Drawing.Size(152, 26);
             textPrice.TabIndex = 19;
             textPrice.Validating += TextPrice_Validating;
@@ -161,7 +169,7 @@ namespace GreatSportEventApp.TicketForms
             // label2
             // 
             label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            label2.Location = new System.Drawing.Point(3, 142);
+            label2.Location = new System.Drawing.Point(3, 174);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(159, 32);
             label2.TabIndex = 20;
@@ -170,10 +178,11 @@ namespace GreatSportEventApp.TicketForms
             // 
             // textSeat
             // 
-            textSeat.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            textSeat.Location = new System.Drawing.Point(168, 145);
+            textSeat.Dock = System.Windows.Forms.DockStyle.Fill;
+            textSeat.Location = new System.Drawing.Point(3, 3);
             textSeat.Name = "textSeat";
-            textSeat.Size = new System.Drawing.Size(152, 26);
+            textSeat.ReadOnly = true;
+            textSeat.Size = new System.Drawing.Size(382, 26);
             textSeat.TabIndex = 21;
             textSeat.Validating += TextSeat_Validating;
             // 
@@ -182,7 +191,7 @@ namespace GreatSportEventApp.TicketForms
             saleDateTime.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             saleDateTime.Enabled = false;
             saleDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            saleDateTime.Location = new System.Drawing.Point(168, 113);
+            saleDateTime.Location = new System.Drawing.Point(168, 145);
             saleDateTime.Name = "saleDateTime";
             saleDateTime.Size = new System.Drawing.Size(206, 26);
             saleDateTime.TabIndex = 22;
@@ -192,24 +201,26 @@ namespace GreatSportEventApp.TicketForms
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel3, 1, 5);
             tableLayoutPanel1.Controls.Add(labelTitle, 0, 0);
-            tableLayoutPanel1.Controls.Add(buttonSave, 1, 6);
-            tableLayoutPanel1.Controls.Add(textPrice, 1, 5);
-            tableLayoutPanel1.Controls.Add(textSeat, 1, 4);
-            tableLayoutPanel1.Controls.Add(saleDateTime, 1, 3);
-            tableLayoutPanel1.Controls.Add(label6, 0, 5);
-            tableLayoutPanel1.Controls.Add(label2, 0, 4);
+            tableLayoutPanel1.Controls.Add(buttonSave, 1, 7);
+            tableLayoutPanel1.Controls.Add(textPrice, 1, 6);
+            tableLayoutPanel1.Controls.Add(saleDateTime, 1, 4);
+            tableLayoutPanel1.Controls.Add(label6, 0, 6);
+            tableLayoutPanel1.Controls.Add(label2, 0, 5);
             tableLayoutPanel1.Controls.Add(textEmployeeName, 1, 1);
             tableLayoutPanel1.Controls.Add(label4, 0, 1);
             tableLayoutPanel1.Controls.Add(label1, 0, 2);
-            tableLayoutPanel1.Controls.Add(label3, 0, 3);
+            tableLayoutPanel1.Controls.Add(label3, 0, 4);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 2);
+            tableLayoutPanel1.Controls.Add(label5, 0, 3);
+            tableLayoutPanel1.Controls.Add(textSportEventName, 1, 3);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            tableLayoutPanel1.RowCount = 7;
+            tableLayoutPanel1.RowCount = 8;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -217,8 +228,35 @@ namespace GreatSportEventApp.TicketForms
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(675, 283);
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(703, 313);
             tableLayoutPanel1.TabIndex = 23;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            tableLayoutPanel3.Controls.Add(SelectSeatButton, 1, 0);
+            tableLayoutPanel3.Controls.Add(textSeat, 0, 0);
+            tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            tableLayoutPanel3.Location = new System.Drawing.Point(165, 174);
+            tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            tableLayoutPanel3.Size = new System.Drawing.Size(518, 32);
+            tableLayoutPanel3.TabIndex = 24;
+            // 
+            // SelectSeatButton
+            // 
+            SelectSeatButton.Location = new System.Drawing.Point(391, 3);
+            SelectSeatButton.Name = "SelectSeatButton";
+            SelectSeatButton.Size = new System.Drawing.Size(122, 26);
+            SelectSeatButton.TabIndex = 27;
+            SelectSeatButton.Text = "Выбрать";
+            SelectSeatButton.UseVisualStyleBackColor = true;
+            SelectSeatButton.Click += SelectSeatButton_Click;
             // 
             // tableLayoutPanel2
             // 
@@ -233,14 +271,33 @@ namespace GreatSportEventApp.TicketForms
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel2.Size = new System.Drawing.Size(490, 32);
+            tableLayoutPanel2.Size = new System.Drawing.Size(518, 32);
             tableLayoutPanel2.TabIndex = 24;
+            // 
+            // label5
+            // 
+            label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            label5.Location = new System.Drawing.Point(3, 110);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(159, 32);
+            label5.TabIndex = 25;
+            label5.Text = "Мероприятие:";
+            label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textSportEventName
+            // 
+            textSportEventName.Dock = System.Windows.Forms.DockStyle.Fill;
+            textSportEventName.Location = new System.Drawing.Point(168, 113);
+            textSportEventName.Name = "textSportEventName";
+            textSportEventName.ReadOnly = true;
+            textSportEventName.Size = new System.Drawing.Size(512, 26);
+            textSportEventName.TabIndex = 26;
             // 
             // TicketForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(685, 293);
+            ClientSize = new System.Drawing.Size(713, 323);
             Controls.Add(tableLayoutPanel1);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -254,6 +311,8 @@ namespace GreatSportEventApp.TicketForms
             ((ISupportInitialize)errorProvider1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             ResumeLayout(false);
@@ -277,5 +336,9 @@ namespace GreatSportEventApp.TicketForms
         private System.Windows.Forms.DateTimePicker saleDateTime;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textSportEventName;
+        private System.Windows.Forms.Button SelectSeatButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }

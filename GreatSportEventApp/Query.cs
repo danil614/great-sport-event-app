@@ -48,10 +48,11 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListViewers(out bool isConnected)
         {
-            const string query = "SELECT viewer_id AS 'Номер', CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО'," +
-                                 "(SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS 'Пол'," +
-                                 "phone_number AS 'Номер телефона', birth_date AS 'Дата рождения', " +
-                                 "number_purchases AS 'Количество покупок' FROM Viewers";
+            const string query = 
+                @"SELECT viewer_id AS 'Номер', CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО',
+                  (SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS 'Пол',
+                  phone_number AS 'Номер телефона', birth_date AS 'Дата рождения',
+                  number_purchases AS 'Количество покупок' FROM Viewers";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -84,13 +85,68 @@ namespace GreatSportEventApp
         public static DataTable GetListTickets(out bool isConnected)
         {
             const string query =
-                @"SELECT ticket_id AS 'Номер',
-                  (SELECT CONCAT(Viewers.surname, ' ', Viewers.name, ' ', Viewers.patronymic)
-                  FROM Viewers WHERE Viewers.viewer_id = Tickets.viewer_id) AS 'Зритель',
-                  (SELECT CONCAT(Employees.surname, ' ', Employees.name, ' ', Employees.patronymic)
-                  FROM Employees WHERE Employees.employee_id = Tickets.employee_id) AS 'Продавец',
-                  sale_date_time AS 'Дата продажи', seat_name AS 'Место', price AS 'Цена'
-                  FROM Tickets";
+                  @"SELECT
+                    ticket_id AS 'Номер',
+                    (
+                        SELECT
+                            CONCAT(
+                                Viewers.surname,
+                                ' ',
+                                Viewers.name,
+                                ' ',
+                                Viewers.patronymic
+                            )
+                        FROM
+                            Viewers
+                        WHERE
+                        Viewers.viewer_id = Tickets.viewer_id
+                    ) AS 'Зритель',
+                    (
+                        SELECT
+                            CONCAT(
+                                Employees.surname,
+                                ' ',
+                                Employees.name,
+                                ' ',
+                                Employees.patronymic
+                            )
+                        FROM
+                            Employees
+                        WHERE
+                            Employees.employee_id = Tickets.employee_id
+                    ) AS 'Продавец',
+                    Seats.seat_name AS 'Место',
+                    Seats.seat_price AS 'Цена',
+                    (
+                        SELECT
+                            CONCAT(
+                                Types.type_name,
+                                ': ',
+                                Cities.city_name,
+                                ', ',
+                                Locations.location_name,
+                                ', начало: ',
+                                DATE_FORMAT(
+                                    Sport_events.sport_event_date_time,
+                                    '%d.%m.%Y %H:%i'
+                                )
+                            )
+                        FROM
+                            Sport_events,
+                            Cities,
+                            Locations,
+                            Types
+                        WHERE
+                            Sport_events.sport_event_id = Seats.sport_event_id AND
+                            Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND
+                            Sport_events.type_id = Types.type_id
+                    ) AS 'Мероприятие',
+                    sale_date_time AS 'Дата продажи'
+                    FROM
+                        Tickets,
+                        Seats
+                    WHERE
+                        Seats.seat_id = Tickets.seat_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -116,14 +172,25 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        ///     Получает все места расположения c группировкой.
+        ///     Получает все спортивные мероприятия.
         /// </summary>
-        public static DataTable GetListLocationsGroup(out bool isConnected)
+        public static DataTable GetListSportEvents(out bool isConnected)
         {
-            const string query = "SELECT location_id AS 'Номер', " +
-                                 "(SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS 'Город', " +
-                                 "COUNT(*) AS 'Количество', AVG(capacity) AS 'Средняя вместимость' " +
-                                 "FROM Locations GROUP BY Locations.city_id";
+            const string query =
+                @"SELECT
+                   Sport_events.sport_event_id AS id,
+                   Types.type_name AS 'Тип мероприятия',
+                   CONCAT(Cities.city_name, ', ', Locations.location_name) AS 'Место',
+                   DATE_FORMAT(Sport_events.sport_event_date_time, '%d.%m.%Y %H:%i') AS 'Начало',
+                   TIME_FORMAT(Sport_events.duration, '%H ч. %i мин.') AS 'Длительность'
+                  FROM
+                   Sport_events, Cities, Locations, Types
+                  WHERE
+                   Cities.city_id = Locations.city_id AND
+                   Locations.location_id = Sport_events.location_id AND
+                   Sport_events.type_id = Types.type_id
+                  ORDER BY
+                   Sport_events.sport_event_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -134,22 +201,23 @@ namespace GreatSportEventApp
         /// <summary>
         ///     Получает все спортивные мероприятия с командами.
         /// </summary>
-        public static DataTable GetListSportEvents(out bool isConnected)
+        public static DataTable GetListSportEventsTeams(out bool isConnected)
         {
-            const string query = @"SELECT
-                                    Sport_events.sport_event_id AS id,
-                                    CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
-                                    Locations.location_name, ', начало: ',
-                                    DATE_FORMAT(sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
-                                    TIME_FORMAT(duration, '%H ч. %i мин.')) AS name,
-                                    (SELECT Teams.team_id FROM Teams, Participation_events
-                                     WHERE Teams.team_id = Participation_events.team_id AND Participation_events.sport_event_id = Sport_events.sport_event_id
-                                     LIMIT 1) AS teams
-                                    FROM
-                                    Sport_events, Cities, Locations, Types
-                                    WHERE
-                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
-                                    ORDER BY Sport_events.sport_event_id";
+            const string query = 
+                @"SELECT
+                  Sport_events.sport_event_id AS id,
+                  CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
+                  Locations.location_name, ', начало: ',
+                  DATE_FORMAT(sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
+                  TIME_FORMAT(duration, '%H ч. %i мин.')) AS name,
+                  (SELECT Teams.team_id FROM Teams, Participation_events
+                   WHERE Teams.team_id = Participation_events.team_id AND Participation_events.sport_event_id = Sport_events.sport_event_id
+                   LIMIT 1) AS teams
+                  FROM
+                  Sport_events, Cities, Locations, Types
+                  WHERE
+                  Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                  ORDER BY Sport_events.sport_event_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -189,22 +257,100 @@ namespace GreatSportEventApp
         /// </summary>
         public static string GetSportEventStringById(out bool isConnected, int sportEventId)
         {
-            string query = $@"SELECT
-                                    CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
-                                    Locations.location_name, ', начало: ',
-                                    DATE_FORMAT(Sport_events.sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
-                                    TIME_FORMAT(Sport_events.duration, '%H ч. %i мин.')) AS name
-                                    FROM
-                                    Sport_events, Cities, Locations, Types
-                                    WHERE
-                                    Sport_events.sport_event_id = {sportEventId} AND
-                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
-                                    ORDER BY Sport_events.sport_event_id";
+            string query = 
+                $@"SELECT
+                   CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
+                   Locations.location_name, ', начало: ',
+                   DATE_FORMAT(Sport_events.sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
+                   TIME_FORMAT(Sport_events.duration, '%H ч. %i мин.')) AS name
+                   FROM
+                   Sport_events, Cities, Locations, Types
+                   WHERE
+                   Sport_events.sport_event_id = {sportEventId} AND
+                   Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                   ORDER BY Sport_events.sport_event_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
 
             return isConnected && dataTable.Rows.Count == 1 ? dataTable.Rows[0]["name"].ToString() : "";
+        }
+
+        /// <summary>
+        ///     Получает билет строкой по индексу.
+        /// </summary>
+        public static DataRow GetTicketById(out bool isConnected, int ticketId)
+        {
+            string query =
+                 $@"SELECT
+                    (
+                        SELECT
+                            CONCAT(
+                                Viewers.surname,
+                                ' ',
+                                Viewers.name,
+                                ' ',
+                                Viewers.patronymic
+                            )
+                        FROM
+                            Viewers
+                        WHERE
+                        Viewers.viewer_id = Tickets.viewer_id
+                    ) AS viewer_name,
+                    Tickets.viewer_id AS viewer_id,
+                    (
+                        SELECT
+                            CONCAT(
+                                Employees.surname,
+                                ' ',
+                                Employees.name,
+                                ' ',
+                                Employees.patronymic
+                            )
+                        FROM
+                            Employees
+                        WHERE
+                            Employees.employee_id = Tickets.employee_id
+                    ) AS employee_name,
+                    Tickets.employee_id AS employee_id,
+                    Seats.seat_name AS seat,
+                    Seats.seat_price AS price,
+                    (
+                        SELECT
+                            CONCAT(
+                                Types.type_name,
+                                ': ',
+                                Cities.city_name,
+                                ', ',
+                                Locations.location_name,
+                                ', начало: ',
+                                DATE_FORMAT(
+                                    Sport_events.sport_event_date_time,
+                                    '%d.%m.%Y %H:%i'
+                                )
+                            )
+                        FROM
+                            Sport_events,
+                            Cities,
+                            Locations,
+                            Types
+                        WHERE
+                            Sport_events.sport_event_id = Seats.sport_event_id AND
+                            Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND
+                            Sport_events.type_id = Types.type_id
+                    ) AS sport_event_name,
+                    Tickets.sale_date_time AS sale_date_time,
+                    Tickets.seat_id AS seat_id
+                    FROM
+                        Tickets,
+                        Seats
+                    WHERE
+                        Tickets.ticket_id = {ticketId} AND Seats.seat_id = Tickets.seat_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return isConnected && dataTable.Rows.Count == 1 ? dataTable.Rows[0] : null;
         }
 
         /// <summary>
@@ -503,32 +649,6 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        ///     Вставляет новую запись в пользователей.
-        /// </summary>
-        public static bool InsertUser(string login, string password, string mode)
-        {
-            string query =
-                $"INSERT INTO Users (login, password, access_mode) VALUES ('{login}', md5('{password}'), '{mode}')";
-
-            bool isConnected = DatabaseConnection.RunQuery(query);
-
-            return isConnected;
-        }
-
-        /// <summary>
-        ///     Вставляет новую запись в билеты.
-        /// </summary>
-        public static bool InsertTicket(int viewerId, string seat, decimal price)
-        {
-            string query =
-                $"INSERT INTO Tickets (viewer_id, seat_name, price) VALUES({viewerId}, '{seat}', {price})";
-
-            bool isConnected = DatabaseConnection.RunQuery(query);
-
-            return isConnected;
-        }
-
-        /// <summary>
         ///     Изменяет место по id.
         /// </summary>
         public static bool UpdateLocation(int id, string name, string city, string address, string type,
@@ -556,20 +676,6 @@ namespace GreatSportEventApp
                 $"gender_id=(SELECT gender_id FROM Gender WHERE gender_name='{genderName}'), " +
                 $"phone_number='{phoneNumber}', birth_date='{birthDate}'" +
                 $"WHERE viewer_id={id}";
-
-            bool isConnected = DatabaseConnection.RunQuery(query);
-
-            return isConnected;
-        }
-
-        /// <summary>
-        ///     Изменяет пользователя по логину.
-        /// </summary>
-        public static bool UpdateUser(string login, string password, string mode)
-        {
-            string query =
-                $"UPDATE Users SET password=md5('{password}'), access_mode='{mode}' " +
-                $"WHERE login='{login}'";
 
             bool isConnected = DatabaseConnection.RunQuery(query);
 
@@ -688,22 +794,9 @@ namespace GreatSportEventApp
         public static DataRow GetLocationById(out bool isConnected, int id)
         {
             string query =
-                "SELECT location_name, (SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS city_name, address, " +
-                "(SELECT type_name FROM Types WHERE type_id = Locations.location_type_id) AS location_type, " +
-                $"capacity, description FROM Locations WHERE location_id={id}";
-
-            DataTable dataTable = DatabaseConnection.GetDataTable(query);
-            isConnected = dataTable != null;
-
-            return dataTable != null && dataTable.Rows.Count == 1 ? dataTable.Rows[0] : null;
-        }
-
-        /// <summary>
-        ///     Получает пользователя по логину.
-        /// </summary>
-        public static DataRow GetUserByLogin(out bool isConnected, string login)
-        {
-            string query = $"SELECT access_mode FROM Users WHERE login='{login}'";
+                $@"SELECT location_name, (SELECT city_name FROM Cities WHERE city_id = Locations.city_id) AS city_name, address,
+                   (SELECT type_name FROM Types WHERE type_id = Locations.location_type_id) AS location_type,
+                   capacity, description FROM Locations WHERE location_id={id}";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;

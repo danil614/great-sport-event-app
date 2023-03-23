@@ -27,7 +27,7 @@ namespace GreatSportEventApp.BasicForms
         private void UpdateTreeView()
         {
             MainTreeView.Nodes.Clear();
-            EnumerableRowCollection<DataRow> sportEvents = Query.GetListSportEvents(out bool isConnected).AsEnumerable();
+            EnumerableRowCollection<DataRow> sportEvents = Query.GetListSportEventsTeams(out bool isConnected).AsEnumerable();
 
             if (!isConnected)
             {

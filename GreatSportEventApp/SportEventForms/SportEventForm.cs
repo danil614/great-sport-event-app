@@ -134,7 +134,8 @@ namespace GreatSportEventApp.SportEventForms
                 _ = MessageBox.Show(@"Отсутствует подключение!");
                 return;
             }
-
+            
+            DialogResult = DialogResult.OK;
             Close();
         }
 

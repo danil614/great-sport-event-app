@@ -5,13 +5,13 @@ using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp.TicketForms
+namespace GreatSportEventApp.SportEventForms
 {
-    public partial class ListTicketsForm : DockContent
+    public partial class ListSportEventsForm : DockContent
     {
         public DataGridViewRow SelectedItem { get; set; }
 
-        public ListTicketsForm(bool isSelectionMode)
+        public ListSportEventsForm(bool isSelectionMode)
         {
             InitializeComponent();
             UpdateDataGridView();
@@ -30,7 +30,7 @@ namespace GreatSportEventApp.TicketForms
         private void UpdateDataGridView()
         {
             // Получаем запрос со зрителями
-            DataTable dataTable = Query.GetListTickets(out bool isConnected);
+            DataTable dataTable = Query.GetListSportEvents(out bool isConnected);
 
             if (!isConnected)
             {
@@ -40,7 +40,7 @@ namespace GreatSportEventApp.TicketForms
             else
             {
                 DataGridView.DataSource = dataTable;
-                DataGridView.Columns["Номер"].Visible = false;
+                DataGridView.Columns["id"].Visible = false;
             }
 
             // Растягиваем колонки
@@ -49,9 +49,9 @@ namespace GreatSportEventApp.TicketForms
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
-            TicketForm ticketForm = new(false, -1);
-            var dialogResult = ticketForm.ShowDialog();
-            
+            SportEventForm sportEventForm = new(false, -1);
+            var dialogResult = sportEventForm.ShowDialog();
+
             if (dialogResult == DialogResult.OK)
             {
                 UpdateDataGridView();
@@ -67,8 +67,8 @@ namespace GreatSportEventApp.TicketForms
 
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
 
-            TicketForm ticketForm = new TicketForm(true, currentRowId);
-            var dialogResult = ticketForm.ShowDialog();
+            SportEventForm sportEventForm = new(true, currentRowId);
+            var dialogResult = sportEventForm.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
             {
@@ -86,15 +86,15 @@ namespace GreatSportEventApp.TicketForms
             using (GreatSportEventContext context = new())
             {
                 int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-                var ticket = context.Tickets.Find(currentRowId);
+                var sportEvent = context.SportEvents.Find(currentRowId);
 
-                if (ticket is null)
+                if (sportEvent is null)
                 {
                     _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                _ = context.Tickets.Remove(ticket);
+                _ = context.SportEvents.Remove(sportEvent);
 
                 try
                 {
@@ -119,7 +119,7 @@ namespace GreatSportEventApp.TicketForms
         {
             if (DataGridView.CurrentRow == null)
             {
-                _ = MessageBox.Show(@"Выделите нужную строку с билетом!");
+                _ = MessageBox.Show(@"Выделите нужную строку со спортивным мероприятием!");
                 return;
             }
             else

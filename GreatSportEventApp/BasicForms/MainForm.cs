@@ -151,6 +151,10 @@ namespace GreatSportEventApp.BasicForms
                         // Спортсмены
                         AthletesToolStripButton.Visible = true;
                         toolStripSeparatorAthletes.Visible = true;
+
+                        // Спортивные мероприятия
+                        SportEventsToolStripButton.Visible = true;
+                        toolStripSeparatorSportEvent.Visible = true;
                         break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");
@@ -222,6 +226,11 @@ namespace GreatSportEventApp.BasicForms
         private void EventsEmployeesToolStripButton_Click(object sender, EventArgs e)
         {
             Forms.OpenEventsEmployeesForm(mainDockPanel);
+        }
+
+        private void SportEventsToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenSportEventsForm(mainDockPanel);
         }
 
         #endregion

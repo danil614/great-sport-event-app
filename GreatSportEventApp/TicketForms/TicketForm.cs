@@ -14,6 +14,7 @@ namespace GreatSportEventApp.TicketForms
     {
         private int viewerId;
         private int? employeeId;
+        private int seatId;
 
         public int TicketId { get; set; }
 
@@ -25,6 +26,7 @@ namespace GreatSportEventApp.TicketForms
 
             viewerId = -1;
             employeeId = MainForm.CurrentUser.EmployeeId;
+            seatId = -1;
 
             if (isChanging)
             {
@@ -38,27 +40,24 @@ namespace GreatSportEventApp.TicketForms
 
         private void GetTicketById()
         {
-            using (GreatSportEventContext context = new())
+            DataRow dataRow = Query.GetTicketById(out bool isConnected, TicketId);
+
+            if (!isConnected)
             {
-                var ticket = context.Tickets.Find(TicketId);
-
-                if (ticket is null)
-                {
-                    _ = MessageBox.Show(@"Отсутствует подключение!");
-                    return;
-                }
-
-                viewerId = ticket.ViewerId;
-                employeeId = ticket.EmployeeId;
-
-                var employee = context.Employees.Find(employeeId);
-                textEmployeeName.Text = employee is null ? "" : employee.ToString();
-
-                textViewerName.Text = context.Viewers.Find(viewerId).ToString();
-                saleDateTime.Value = ticket.SaleDateTime;
-                textSeat.Text = ticket.SeatName;
-                textPrice.Text = ticket.Price.ToString();
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+                return;
             }
+
+            viewerId = (int)dataRow["viewer_id"];
+            employeeId = dataRow["employee_id"] is DBNull ? null : (int)dataRow["employee_id"];
+            seatId = (int)dataRow["seat_id"];
+
+            textViewerName.Text = dataRow["viewer_name"].ToString();
+            textEmployeeName.Text = dataRow["employee_name"].ToString();
+            textSportEventName.Text = dataRow["sport_event_name"].ToString();
+            saleDateTime.Value = (DateTime)dataRow["sale_date_time"];
+            textSeat.Text = dataRow["seat"].ToString();
+            textPrice.Text = dataRow["price"].ToString();
         }
 
         private void SelectViewerButton_Click(object sender, EventArgs e)
@@ -75,6 +74,11 @@ namespace GreatSportEventApp.TicketForms
 
             viewerId = (int)selectedViewer.Cells["Номер"].Value;
             textViewerName.Text = selectedViewer.Cells["ФИО"].Value.ToString();
+        }
+
+        private void SelectSeatButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -102,16 +106,14 @@ namespace GreatSportEventApp.TicketForms
 
                 ticket.ViewerId = viewerId;
                 ticket.EmployeeId = employeeId > 0 ? employeeId : null;
-                ticket.SeatName = textSeat.Text;
-
-                _ = decimal.TryParse(textPrice.Text, out decimal price);
-                ticket.Price = price;
+                ticket.SeatId = seatId;
 
                 _ = context.SaveChanges();
 
                 TicketId = ticket.Id;
             }
 
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -128,5 +130,6 @@ namespace GreatSportEventApp.TicketForms
         }
 
         #endregion
+
     }
 }
