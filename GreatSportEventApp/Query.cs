@@ -544,14 +544,25 @@ namespace GreatSportEventApp
         /// </summary>
         public static DataTable GetListTeams(out bool isConnected)
         {
-            string query = $@"SELECT Teams.team_id AS team_id, Teams.team_name AS team_name,
-                              CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_name,
-                              Teams.rating AS rating
-                              FROM
-                              Teams, Cities, Locations
-                              WHERE
-                              Cities.city_id = Locations.city_id AND Locations.location_id = Teams.location_id
-                              ORDER BY Teams.team_id";
+            string query =
+                $@"SELECT
+                       Teams.team_id AS team_id,
+                       Teams.team_name AS team_name,
+                       CONCAT(
+                           Cities.city_name,
+                           ', ',
+                           Locations.location_name
+                       ) AS location_name,
+                       Teams.come_from AS come_from,
+                       Teams.rating AS rating
+                   FROM
+                       Teams,
+                       Cities,
+                       Locations
+                   WHERE
+                       Cities.city_id = Locations.city_id AND Locations.location_id = Teams.location_id
+                   ORDER BY
+                       Teams.team_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -568,31 +579,54 @@ namespace GreatSportEventApp
 
             if (sportEventId == -1)
             {
-                query = $@"SELECT Teams.team_name AS team_name,
-                           CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
+                query = 
+                    $@"SELECT
+                           Teams.team_name AS team_name,
+                           CONCAT(
+                               Cities.city_name,
+                               ', ',
+                               Locations.location_name
+                           ) AS location_full_name,
                            Teams.location_id AS location_id,
+                           Teams.come_from AS come_from,
                            Teams.rating AS rating,
                            Teams.description AS description
-                           FROM
-                           Teams, Cities, Locations
-                           WHERE Teams.team_id = {teamId} AND
-                           Cities.city_id = Locations.city_id AND Locations.location_id = Teams.location_id
-                           ORDER BY Teams.team_id";
+                       FROM
+                           Teams,
+                           Cities,
+                           Locations
+                       WHERE
+                           Teams.team_id = {teamId} AND Cities.city_id = Locations.city_id AND
+                           Locations.location_id = Teams.location_id
+                       ORDER BY
+                           Teams.team_id";
             }
             else
             {
-                query = $@"SELECT Teams.team_name AS team_name,
-                           CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
+                query =
+                    $@"SELECT
+                           Teams.team_name AS team_name,
+                           CONCAT(
+                               Cities.city_name,
+                               ', ',
+                               Locations.location_name
+                           ) AS location_full_name,
                            Teams.location_id AS location_id,
+                           Teams.come_from AS come_from,
                            Teams.rating AS rating,
                            Teams.description AS description,
                            Participation_events.score AS score
-                           FROM
-                           Teams, Cities, Locations, Participation_events
-                           WHERE Teams.team_id = {teamId} AND
-                           Cities.city_id = Locations.city_id AND Locations.location_id = Teams.location_id
-                           AND Participation_events.team_id = Teams.team_id AND Participation_events.sport_event_id = {sportEventId}
-                           ORDER BY Teams.team_id";
+                       FROM
+                           Teams,
+                           Cities,
+                           Locations,
+                           Participation_events
+                       WHERE
+                           Teams.team_id = {teamId} AND Cities.city_id = Locations.city_id AND
+                           Locations.location_id = Teams.location_id AND Participation_events.team_id = Teams.team_id AND
+                           Participation_events.sport_event_id = {sportEventId}
+                       ORDER BY
+                           Teams.team_id";
             }
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);

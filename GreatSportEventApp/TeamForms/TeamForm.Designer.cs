@@ -236,6 +236,7 @@ namespace GreatSportEventApp.TeamForms
             textComeFrom.Name = "textComeFrom";
             textComeFrom.Size = new System.Drawing.Size(656, 26);
             textComeFrom.TabIndex = 25;
+            textComeFrom.Validating += TextComeFrom_Validating;
             // 
             // label5
             // 

@@ -73,6 +73,7 @@ namespace GreatSportEventApp.TeamForms
             textLocationName.Text = dataTable["location_full_name"].ToString();
             locationId = (int)dataTable["location_id"];
             textRating.Text = dataTable["rating"].ToString();
+            textComeFrom.Text = dataTable["come_from"].ToString();
 
             if (sportEventId != -1)
             {
@@ -124,6 +125,8 @@ namespace GreatSportEventApp.TeamForms
 
                 team.LocationId = locationId;
                 team.Name = textTeamName.Text;
+
+                team.ComeFrom = textComeFrom.Text;
 
                 _ = int.TryParse(textRating.Text, out int rating);
                 team.Rating = rating;
@@ -194,6 +197,12 @@ namespace GreatSportEventApp.TeamForms
             ValidatingControls.SetIntError(sender, errorProvider1);
         }
 
+        private void TextComeFrom_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatingControls.SetTextLengthError(sender, errorProvider1, 60);
+        }
+
         #endregion
+
     }
 }

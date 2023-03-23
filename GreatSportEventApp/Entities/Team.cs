@@ -19,6 +19,10 @@ namespace GreatSportEventApp.Entities
         public string Name { get; set; }
 
         [Required]
+        [Column("come_from")]
+        public string ComeFrom { get; set; }
+
+        [Required]
         [Column("rating")]
         public int Rating { get; set; }
 

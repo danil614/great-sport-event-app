@@ -56,6 +56,7 @@ namespace GreatSportEventApp.TeamForms
                 DataGridView.Columns["team_name"].HeaderText = "Название";
                 DataGridView.Columns["location_name"].HeaderText = "Место расположения";
                 DataGridView.Columns["rating"].HeaderText = "Рейтинг";
+                DataGridView.Columns["come_from"].HeaderText = "Откуда";
             }
 
             // Растягиваем колонки
