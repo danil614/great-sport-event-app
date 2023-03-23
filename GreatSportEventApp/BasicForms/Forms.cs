@@ -1,5 +1,6 @@
 ﻿using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.PersonForms;
+using GreatSportEventApp.SeatForms;
 using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.SportEventForms;
 using GreatSportEventApp.TeamForms;
@@ -135,6 +136,15 @@ namespace GreatSportEventApp.BasicForms
         {
             ListSportEventsForm sportEventsForm = new(false);
             sportEventsForm.Show(dockPanel, DockState.Document);
+        }
+
+        /// <summary>
+        /// Открывает форму посадочных мест.
+        /// </summary>
+        public static void OpenSeatsForm(DockPanel dockPanel)
+        {
+            ListSeatsForm seatsForm = new(false);
+            seatsForm.Show(dockPanel, DockState.Document);
         }
     }
 }

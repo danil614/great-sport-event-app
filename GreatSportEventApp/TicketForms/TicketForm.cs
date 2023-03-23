@@ -2,6 +2,7 @@
 using GreatSportEventApp.Entities;
 using GreatSportEventApp.LocationForms;
 using GreatSportEventApp.PersonForms;
+using GreatSportEventApp.SeatForms;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -78,7 +79,21 @@ namespace GreatSportEventApp.TicketForms
 
         private void SelectSeatButton_Click(object sender, EventArgs e)
         {
+            ListSeatsForm seatsForm = new(true);
+            seatsForm.ShowDialog();
 
+            var selectedSeat = seatsForm.SelectedItem;
+
+            if (selectedSeat == null)
+            {
+                return;
+            }
+
+            seatId = (int)selectedSeat.Cells["Номер"].Value;
+
+            textSportEventName.Text = selectedSeat.Cells["Мероприятие"].Value.ToString();
+            textSeat.Text = selectedSeat.Cells["Место"].Value.ToString();
+            textPrice.Text = selectedSeat.Cells["Цена"].Value.ToString();
         }
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -116,20 +131,6 @@ namespace GreatSportEventApp.TicketForms
             DialogResult = DialogResult.OK;
             Close();
         }
-
-        #region Validating
-
-        private void TextSeat_Validating(object sender, CancelEventArgs e)
-        {
-            ValidatingControls.SetTextLengthError(sender, errorProvider1, 10);
-        }
-
-        private void TextPrice_Validating(object sender, CancelEventArgs e)
-        {
-            ValidatingControls.SetDecimalError(sender, errorProvider1);
-        }
-
-        #endregion
 
     }
 }

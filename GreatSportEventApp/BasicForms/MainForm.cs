@@ -96,6 +96,10 @@ namespace GreatSportEventApp.BasicForms
                         // Зрители
                         ViewersToolStripButton.Visible = true;
                         toolStripSeparatorViewers.Visible = true;
+
+                        // Посадочные места
+                        SeatsToolStripButton.Visible = true;
+                        toolStripSeparatorSeats.Visible = true;
                         break;
                     case UserType.Organizer:
                         // Создаем форму организатора
@@ -233,6 +237,12 @@ namespace GreatSportEventApp.BasicForms
             Forms.OpenSportEventsForm(mainDockPanel);
         }
 
+        private void SeatsToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenSeatsForm(mainDockPanel);
+        }
+
         #endregion
+
     }
 }

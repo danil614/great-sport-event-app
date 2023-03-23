@@ -155,6 +155,50 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает все посадочные места.
+        /// </summary>
+        public static DataTable GetListSeats(out bool isConnected)
+        {
+            const string query =
+                  @"SELECT
+                    Seats.seat_id AS 'Номер',
+                    Seats.seat_name AS 'Место',
+                    (
+                        SELECT
+                            CONCAT(
+                                Types.type_name,
+                                ': ',
+                                Cities.city_name,
+                                ', ',
+                                Locations.location_name,
+                                ', начало: ',
+                                DATE_FORMAT(
+                                    Sport_events.sport_event_date_time,
+                                    '%d.%m.%Y %H:%i'
+                                )
+                            )
+                        FROM
+                            Sport_events,
+                            Cities,
+                            Locations,
+                            Types
+                        WHERE
+                            Sport_events.sport_event_id = Seats.sport_event_id AND
+                            Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND
+                            Sport_events.type_id = Types.type_id
+                    ) AS 'Мероприятие',
+                    Seats.seat_price AS 'Цена',
+                    Seats.is_occupied AS 'Занято'
+                    FROM
+                        Seats";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает все места расположения.
         /// </summary>
         public static DataTable GetListLocations(out bool isConnected)
@@ -346,6 +390,52 @@ namespace GreatSportEventApp
                         Seats
                     WHERE
                         Tickets.ticket_id = {ticketId} AND Seats.seat_id = Tickets.seat_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return isConnected && dataTable.Rows.Count == 1 ? dataTable.Rows[0] : null;
+        }
+
+        /// <summary>
+        ///     Получает посадочное место строкой по индексу.
+        /// </summary>
+        public static DataRow GetSeatById(out bool isConnected, int seatId)
+        {
+            string query =
+                $@"SELECT
+                    Seats.seat_name AS seat_name,
+                    Seats.sport_event_id AS sport_event_id,
+                    (
+                        SELECT
+                            CONCAT(
+                                Types.type_name,
+                                ': ',
+                                Cities.city_name,
+                                ', ',
+                                Locations.location_name,
+                                ', начало: ',
+                                DATE_FORMAT(
+                                    Sport_events.sport_event_date_time,
+                                    '%d.%m.%Y %H:%i'
+                                )
+                            )
+                        FROM
+                            Sport_events,
+                            Cities,
+                            Locations,
+                            Types
+                        WHERE
+                            Sport_events.sport_event_id = Seats.sport_event_id AND
+                            Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND
+                            Sport_events.type_id = Types.type_id
+                    ) AS sport_event_name,
+                    Seats.seat_price AS seat_price,
+                    Seats.is_occupied AS is_occupied
+                    FROM
+                        Seats
+                    WHERE
+                        Seats.seat_id = {seatId}";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
