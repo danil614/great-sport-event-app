@@ -1,27 +1,29 @@
 ﻿using GreatSportEventApp.Entities;
 using System;
+using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Type = GreatSportEventApp.Entities.Type;
 
 namespace GreatSportEventApp.SimpleForms
 {
-    public partial class PositionsForm : DockContent
+    public partial class TypesForm : DockContent
     {
-        public PositionsForm()
+        public TypesForm()
         {
             InitializeComponent();
-            UpdateListPositions();
+            UpdateListTypes();
             dataView.EditMode = DataGridViewEditMode.EditOnKeystroke;
         }
 
         /// <summary>
         ///     Обновляет список должностей.
         /// </summary>
-        private void UpdateListPositions()
+        private void UpdateListTypes()
         {
             // Получаем запрос со зрителями
-            System.Data.DataTable listPositions = Query.GetListPositions(out bool isConnected);
+            DataTable listTypes = Query.GetListTypesIdName(out bool isConnected);
 
             if (!isConnected)
             {
@@ -30,19 +32,19 @@ namespace GreatSportEventApp.SimpleForms
             }
             else
             {
-                dataView.DataSource = listPositions;
+                dataView.DataSource = listTypes;
             }
 
             // Растягиваем колонки
             dataView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            dataView.Columns["position_id"].Visible = false;
-            dataView.Columns["position_name"].HeaderText = "Название";
+            dataView.Columns["type_id"].Visible = false;
+            dataView.Columns["type_name"].HeaderText = "Название";
         }
 
         private void UpdateToolStripButton_Click(object sender, EventArgs e)
         {
-            UpdateListPositions();
+            UpdateListTypes();
         }
 
         private void DataView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -58,18 +60,18 @@ namespace GreatSportEventApp.SimpleForms
             if (name != "")
             {
                 using GreatSportEventContext context = new();
-                Position position = context.Positions.Find(id);
+                Type type = context.Types.Find(id);
 
-                if (position is null)
+                if (type is null)
                 {
-                    position = new Position();
-                    _ = context.Positions.Add(position);
+                    type = new Type();
+                    _ = context.Types.Add(type);
                 }
 
-                position.Name = name;
+                type.Name = name;
                 _ = context.SaveChanges();
 
-                UpdateListPositions();
+                UpdateListTypes();
             }
         }
 
@@ -99,15 +101,15 @@ namespace GreatSportEventApp.SimpleForms
 
             if (isIdFill && name != "")
             {
-                Position position = context.Positions.Find(id);
+                Type type = context.Types.Find(id);
 
-                if (position is null)
+                if (type is null)
                 {
                     _ = MessageBox.Show(@"Невозможно удалить запись!");
                 }
                 else
                 {
-                    _ = context.Positions.Remove(position);
+                    _ = context.Types.Remove(type);
 
                     try
                     {
@@ -118,7 +120,7 @@ namespace GreatSportEventApp.SimpleForms
                         _ = MessageBox.Show(@"Невозможно удалить запись!");
                     }
 
-                    UpdateListPositions();
+                    UpdateListTypes();
                 }
             }
         }

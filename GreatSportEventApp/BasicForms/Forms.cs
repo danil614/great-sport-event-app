@@ -108,5 +108,14 @@ namespace GreatSportEventApp.BasicForms
             ListUsersForm usersForm = new(false);
             usersForm.Show(dockPanel, DockState.Document);
         }
+
+        /// <summary>
+        /// Открывает форму типов.
+        /// </summary>
+        public static void OpenTypesForm(DockPanel dockPanel)
+        {
+            TypesForm typesForm = new();
+            typesForm.Show(dockPanel, DockState.Document);
+        }
     }
 }

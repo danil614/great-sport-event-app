@@ -577,6 +577,19 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает все типы.
+        /// </summary>
+        public static DataTable GetListTypesIdName(out bool isConnected)
+        {
+            const string query = "SELECT type_id, type_name FROM Types ORDER BY type_name";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает все типы мест.
         /// </summary>
         public static DataTable GetListTypes(out bool isConnected)
