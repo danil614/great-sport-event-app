@@ -784,27 +784,89 @@ namespace GreatSportEventApp
         public static DataTable GetListUsers(out bool isConnected)
         {
             const string query =
-              @"SELECT login AS 'Логин', access_mode AS 'Режим доступа',
-                CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО',
-                (SELECT gender_name FROM Gender WHERE gender_id = Employees.gender_id) AS 'Пол',
-                phone_number AS 'Номер телефона', birth_date AS 'Дата рождения'
-                FROM Users INNER JOIN Employees USING(employee_id)
-                UNION
-                SELECT login AS 'Логин', access_mode AS 'Режим доступа',
-                CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО',
-                (SELECT gender_name FROM Gender WHERE gender_id = Viewers.gender_id) AS 'Пол',
-                phone_number AS 'Номер телефона', birth_date AS 'Дата рождения'
-                FROM Users INNER JOIN Viewers USING(viewer_id)
-                UNION
-                SELECT login AS 'Логин', access_mode AS 'Режим доступа',
-                CONCAT(surname, ' ', name, ' ', patronymic) AS 'ФИО',
-                (SELECT gender_name FROM Gender WHERE gender_id = Athletes.gender_id) AS 'Пол',
-                phone_number AS 'Номер телефона', birth_date AS 'Дата рождения'
-                FROM Users INNER JOIN Athletes USING(athlete_id)
-                UNION
-                SELECT login AS 'Логин', access_mode AS 'Режим доступа',
-                '' AS 'ФИО', '' AS 'Пол', '' AS 'Номер телефона', '' AS 'Дата рождения'
-                FROM Users WHERE athlete_id IS NULL AND employee_id IS NULL AND viewer_id IS NULL";
+                @"SELECT
+                      login AS 'Логин',
+                      access_mode AS 'Режим доступа',
+                      CONCAT(
+                          surname,
+                          ' ',
+                          NAME,
+                          ' ',
+                          patronymic
+                      ) AS 'ФИО',
+                      (
+                      SELECT
+                          gender_name
+                      FROM
+                          Gender
+                      WHERE
+                          gender_id = Employees.gender_id
+                  ) AS 'Пол',
+                  phone_number AS 'Номер телефона',
+                  birth_date AS 'Дата рождения'
+                  FROM
+                      Users
+                  INNER JOIN Employees USING(employee_id)
+                  UNION
+                  SELECT
+                      login AS 'Логин',
+                      access_mode AS 'Режим доступа',
+                      CONCAT(
+                          surname,
+                          ' ',
+                          NAME,
+                          ' ',
+                          patronymic
+                      ) AS 'ФИО',
+                      (
+                      SELECT
+                          gender_name
+                      FROM
+                          Gender
+                      WHERE
+                          gender_id = Viewers.gender_id
+                  ) AS 'Пол',
+                  phone_number AS 'Номер телефона',
+                  birth_date AS 'Дата рождения'
+                  FROM
+                      Users
+                  INNER JOIN Viewers USING(viewer_id)
+                  UNION
+                  SELECT
+                      login AS 'Логин',
+                      access_mode AS 'Режим доступа',
+                      CONCAT(
+                          surname,
+                          ' ',
+                          NAME,
+                          ' ',
+                          patronymic
+                      ) AS 'ФИО',
+                      (
+                      SELECT
+                          gender_name
+                      FROM
+                          Gender
+                      WHERE
+                          gender_id = Athletes.gender_id
+                  ) AS 'Пол',
+                  phone_number AS 'Номер телефона',
+                  birth_date AS 'Дата рождения'
+                  FROM
+                      Users
+                  INNER JOIN Athletes USING(athlete_id)
+                  UNION
+                  SELECT
+                      login AS 'Логин',
+                      access_mode AS 'Режим доступа',
+                      '' AS 'ФИО',
+                      '' AS 'Пол',
+                      '' AS 'Номер телефона',
+                      '' AS 'Дата рождения'
+                  FROM
+                      Users
+                  WHERE
+                      athlete_id IS NULL AND employee_id IS NULL AND viewer_id IS NULL";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
