@@ -12,6 +12,7 @@ namespace GreatSportEventApp.PersonForms
         private int? teamId;
 
         public int EmployeeId { get; set; }
+        public string EmployeeString { get; set; }
 
         public EmployeeForm(bool isChanging, int _employeeId)
         {
@@ -19,6 +20,7 @@ namespace GreatSportEventApp.PersonForms
 
             teamId = null;
             EmployeeId = _employeeId;
+            EmployeeString = "";
 
             // Запрещаем редактирование пола и должности
             comboGender.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -108,6 +110,8 @@ namespace GreatSportEventApp.PersonForms
                 return;
             }
 
+            bool isConnected;
+
             using (GreatSportEventContext context = new())
             {
                 Employee employee;
@@ -134,6 +138,13 @@ namespace GreatSportEventApp.PersonForms
                 _ = context.SaveChanges();
 
                 EmployeeId = employee.Id;
+                EmployeeString = Query.GetEmployeeStringById(out isConnected, EmployeeId);
+            }
+
+            if (!isConnected)
+            {
+                _ = MessageBox.Show(@"Отсутствует подключение!");
+                return;
             }
 
             DialogResult = DialogResult.OK;

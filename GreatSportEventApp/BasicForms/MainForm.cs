@@ -133,6 +133,14 @@ namespace GreatSportEventApp.BasicForms
                         // Сотрудники
                         EmployeesToolStripButton.Visible = true;
                         toolStripSeparatorEmployees.Visible = true;
+
+                        // Мероприятия и сотрудники
+                        EventsEmployeesToolStripButton.Visible = true;
+                        toolStripSeparatorEventsEmployees.Visible = true;
+
+                        // Пользователи
+                        UsersToolStripButton.Visible = true;
+                        toolStripSeparatorUsers.Visible = true;
                         break;
                     case UserType.Trainer:
                         ModeToolStripLabel.Text = "Тренер";
@@ -210,6 +218,10 @@ namespace GreatSportEventApp.BasicForms
         private void TypesToolStripButton_Click(object sender, EventArgs e)
         {
             Forms.OpenTypesForm(mainDockPanel);
+        }
+        private void EventsEmployeesToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenEventsEmployeesForm(mainDockPanel);
         }
 
         #endregion

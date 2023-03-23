@@ -117,5 +117,14 @@ namespace GreatSportEventApp.BasicForms
             TypesForm typesForm = new();
             typesForm.Show(dockPanel, DockState.Document);
         }
+
+        /// <summary>
+        /// Открывает форму мероприятий и сотрудников.
+        /// </summary>
+        public static void OpenEventsEmployeesForm(DockPanel dockPanel)
+        {
+            EventsEmployeesForm employeesForm = new();
+            employeesForm.Show(dockPanel, DockState.Document);
+        }
     }
 }

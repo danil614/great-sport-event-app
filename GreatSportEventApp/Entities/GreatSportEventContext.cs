@@ -34,6 +34,8 @@ namespace GreatSportEventApp.Entities
 
         public DbSet<Type> Types { get; set; }
 
+        public DbSet<OrganisationEvent> OrganisationEvents { get; set; }
+
         public GreatSportEventContext(DbConnection existingConnection, bool contextOwnsConnection)
                : base(existingConnection, contextOwnsConnection)
         {

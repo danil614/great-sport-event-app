@@ -132,7 +132,7 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
-        ///     Получает все спортивные мероприятия.
+        ///     Получает все спортивные мероприятия с командами.
         /// </summary>
         public static DataTable GetListSportEvents(out bool isConnected)
         {
@@ -150,6 +150,33 @@ namespace GreatSportEventApp
                                     WHERE
                                     Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
                                     ORDER BY Sport_events.sport_event_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
+        ///     Получает все спортивные мероприятия с сотрудниками.
+        /// </summary>
+        public static DataTable GetListSportEventsEmployees(out bool isConnected)
+        {
+            const string query =
+                @"SELECT
+                  Sport_events.sport_event_id AS id,
+                  CONCAT(Types.type_name, ': ', Cities.city_name, ', ',
+                  Locations.location_name, ', начало: ',
+                  DATE_FORMAT(sport_event_date_time, '%d.%m.%Y %H:%i'), ', длительность: ',
+                  TIME_FORMAT(duration, '%H ч. %i мин.')) AS name,
+                  (SELECT Organisation_events.employee_id FROM Organisation_events
+                   WHERE Organisation_events.sport_event_id = Sport_events.sport_event_id
+                   LIMIT 1) AS employees
+                  FROM
+                  Sport_events, Cities, Locations, Types
+                  WHERE
+                  Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                  ORDER BY Sport_events.sport_event_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
@@ -284,6 +311,25 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает всех сотрудников.
+        /// </summary>
+        public static DataTable GetListEmployeesBySportEvent(out bool isConnected, int sportEventId)
+        {
+            string query = 
+                $@"SELECT Employees.employee_id AS id,
+                   CONCAT((SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Employees.position_id), ': ',
+                    Employees.surname, ' ', Employees.name, ' ', Employees.patronymic, ', дата рождения: ',
+                    DATE_FORMAT(Employees.birth_date, '%d.%m.%Y')) AS name
+                   FROM Employees, Organisation_events
+                   WHERE Employees.employee_id = Organisation_events.employee_id AND Organisation_events.sport_event_id = {sportEventId}";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает строку команды по индексу.
         /// </summary>
         public static string GetTeamStringById(out bool isConnected, int teamId, int sportEventId)
@@ -353,6 +399,25 @@ namespace GreatSportEventApp
                               FROM Athletes
                               WHERE Athletes.athlete_id = {athleteId}
                               ORDER BY Athletes.athlete_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return isConnected && dataTable.Rows.Count == 1 ? dataTable.Rows[0]["name"].ToString() : "";
+        }
+
+        /// <summary>
+        ///     Получает строку спортсмена по индексу.
+        /// </summary>
+        public static string GetEmployeeStringById(out bool isConnected, int employeeId)
+        {
+            string query = 
+                $@"SELECT CONCAT((SELECT Positions.position_name FROM Positions WHERE Positions.position_id = Employees.position_id), ': ',
+                   Employees.surname, ' ', Employees.name, ' ', Employees.patronymic, ', дата рождения: ',
+                   DATE_FORMAT(Employees.birth_date, '%d.%m.%Y')) AS name
+                   FROM Employees
+                   WHERE Employees.employee_id = {employeeId}
+                   ORDER BY Employees.employee_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;
