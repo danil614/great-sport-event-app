@@ -129,7 +129,9 @@ namespace GreatSportEventApp.BasicForms
                         toolStripSeparatorTypes.Visible = true;
                         break;
                     case UserType.HR:
+                        // Создаем форму менеджера по персоналу
                         ModeToolStripLabel.Text = "HR менеджер";
+
                         // Должности
                         PositionsToolStripButton.Visible = true;
                         toolStripSeparatorPositions.Visible = true;
@@ -147,7 +149,9 @@ namespace GreatSportEventApp.BasicForms
                         toolStripSeparatorUsers.Visible = true;
                         break;
                     case UserType.Trainer:
+                        // Создаем форму тренера
                         ModeToolStripLabel.Text = "Тренер";
+
                         // Команды
                         TeamsToolStripButton.Visible = true;
                         toolStripSeparatorTeams.Visible = true;
@@ -159,6 +163,22 @@ namespace GreatSportEventApp.BasicForms
                         // Спортивные мероприятия
                         SportEventsToolStripButton.Visible = true;
                         toolStripSeparatorSportEvent.Visible = true;
+
+                        // Тренировки
+                        TrainingsToolStripButton.Visible = true;
+                        toolStripSeparatorTrainings.Visible = true;
+                        break;
+                    case UserType.Athlete:
+                        // Создаем форму спортсмена
+                        ModeToolStripLabel.Text = "Спортсмен";
+
+                        // Мероприятия и участники
+                        TreeFormToolStripButton.Visible = true;
+                        toolStripSeparatorTreeForm.Visible = true;
+
+                        // Тренировки
+                        TrainingsToolStripButton.Visible = true;
+                        toolStripSeparatorTrainings.Visible = true;
                         break;
                     default:
                         _ = MessageBox.Show($@"Неправильный логин или пароль!");

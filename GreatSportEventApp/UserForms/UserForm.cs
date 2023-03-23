@@ -92,7 +92,7 @@ namespace GreatSportEventApp.UserForms
                 user.Login = textLogin.Text;
                 user.Password = Query.GetHash(textPassword.Text);
                 user.AccessMode = (comboMode.SelectedIndex + 1).ToString();
-                user.AthleteId = athleteId > 0 ? user.AthleteId : null;
+                user.AthleteId = athleteId > 0 ? athleteId : null;
                 user.EmployeeId = employeeId > 0 ? employeeId : null;
                 user.ViewerId = viewerId > 0 ? viewerId : null;
 

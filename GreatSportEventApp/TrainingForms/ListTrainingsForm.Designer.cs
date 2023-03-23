@@ -75,7 +75,7 @@ namespace GreatSportEventApp.TrainingForms
             labelTitle.Padding = new System.Windows.Forms.Padding(5);
             labelTitle.Size = new System.Drawing.Size(809, 40);
             labelTitle.TabIndex = 1;
-            labelTitle.Text = "Спортивные мероприятия";
+            labelTitle.Text = "Тренировки";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainToolStrip
@@ -168,7 +168,7 @@ namespace GreatSportEventApp.TrainingForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // ListSportEventsForm
+            // ListTrainingsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             ClientSize = new System.Drawing.Size(809, 510);
@@ -177,9 +177,9 @@ namespace GreatSportEventApp.TrainingForms
             Controls.Add(labelTitle);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             Margin = new System.Windows.Forms.Padding(4);
-            Name = "ListSportEventsForm";
+            Name = "ListTrainingsForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "Спортивные мероприятия";
+            Text = "Тренировки";
             ((ISupportInitialize)DataGridView).EndInit();
             MainToolStrip.ResumeLayout(false);
             MainToolStrip.PerformLayout();
