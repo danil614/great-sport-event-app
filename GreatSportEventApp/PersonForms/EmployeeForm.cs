@@ -175,7 +175,7 @@ namespace GreatSportEventApp.PersonForms
             using (GreatSportEventContext context = new())
             {
                 teamId = (int)teamsForm.SelectedItem.Cells[0].Value;
-                textTeamName.Text = teamId == null ? "" : context.Teams.Find(teamId).ToString();
+                textTeamName.Text = teamId == -1 ? "" : teamsForm.SelectedItem.Cells["team_name"].Value.ToString();
             }
         }
     }

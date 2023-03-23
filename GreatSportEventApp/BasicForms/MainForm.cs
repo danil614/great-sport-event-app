@@ -242,7 +242,11 @@ namespace GreatSportEventApp.BasicForms
             Forms.OpenSeatsForm(mainDockPanel);
         }
 
-        #endregion
+        private void TrainingsToolStripButton_Click(object sender, EventArgs e)
+        {
+            Forms.OpenTrainingForm(mainDockPanel);
+        }
 
+        #endregion
     }
 }

@@ -46,12 +46,12 @@ namespace GreatSportEventApp.LocationForms
         private void UpdateListLocations()
         {
             // Получаем запрос со зрителями
-            System.Data.DataTable listLocations = Query.GetListLocations(out bool isConnected);
+            DataTable listLocations = Query.GetListLocations(out bool isConnected);
 
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
-                Close();
+                return;
             }
             else
             {

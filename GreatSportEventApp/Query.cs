@@ -243,6 +243,44 @@ namespace GreatSportEventApp
         }
 
         /// <summary>
+        ///     Получает все тренировки.
+        /// </summary>
+        public static DataTable GetListTrainings(out bool isConnected)
+        {
+            const string query =
+                @"SELECT
+                      Trainings.training_id AS id,
+                      CONCAT(
+                          Cities.city_name,
+                          ', ',
+                          Locations.location_name
+                      ) AS 'Место',
+                      Teams.team_name AS 'Команда',
+                      DATE_FORMAT(
+                          Trainings.training_date_time,
+                          '%d.%m.%Y %H:%i'
+                      ) AS 'Начало',
+                      TIME_FORMAT(
+                          Trainings.duration,
+                          '%H ч. %i мин.'
+                      ) AS 'Длительность'
+                  FROM
+                      Trainings,
+                      Cities,
+                      Locations,
+                      Teams
+                  WHERE
+                      Cities.city_id = Locations.city_id AND Locations.location_id = Trainings.location_id AND Teams.team_id = Trainings.team_id
+                  ORDER BY
+                      Trainings.training_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable;
+        }
+
+        /// <summary>
         ///     Получает все спортивные мероприятия с командами.
         /// </summary>
         public static DataTable GetListSportEventsTeams(out bool isConnected)
@@ -449,16 +487,51 @@ namespace GreatSportEventApp
         public static DataRow GetSportEventById(out bool isConnected, int sportEventId)
         {
             string query = $@"SELECT Types.type_name AS type_name,
-                                    CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
-                                    Locations.location_id AS location_id,
-                                    Sport_events.sport_event_date_time AS dateTimeEvent,
-                                    Sport_events.duration AS duration,
-                                    Sport_events.description AS description
-                                    FROM
-                                    Sport_events, Cities, Locations, Types
-                                    WHERE Sport_events.sport_event_id = {sportEventId} AND
-                                    Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
-                                    ORDER BY Sport_events.sport_event_id";
+                              CONCAT(Cities.city_name, ', ', Locations.location_name) AS location_full_name,
+                              Locations.location_id AS location_id,
+                              Sport_events.sport_event_date_time AS dateTimeEvent,
+                              Sport_events.duration AS duration,
+                              Sport_events.description AS description
+                              FROM
+                              Sport_events, Cities, Locations, Types
+                              WHERE Sport_events.sport_event_id = {sportEventId} AND
+                              Cities.city_id = Locations.city_id AND Locations.location_id = Sport_events.location_id AND Sport_events.type_id = Types.type_id
+                              ORDER BY Sport_events.sport_event_id";
+
+            DataTable dataTable = DatabaseConnection.GetDataTable(query);
+            isConnected = dataTable != null;
+
+            return dataTable != null && dataTable.Rows.Count == 1 ? dataTable.Rows[0] : null;
+        }
+
+        /// <summary>
+        ///     Получает тренировку по индексу.
+        /// </summary>
+        public static DataRow GetTrainingById(out bool isConnected, int trainingId)
+        {
+            string query = 
+                $@"SELECT
+                       CONCAT(
+                           Cities.city_name,
+                           ', ',
+                           Locations.location_name
+                       ) AS location_name,
+                       Locations.location_id AS location_id,
+                       Teams.team_name AS team_name,
+                       Trainings.team_id AS team_id,
+                       Trainings.training_date_time AS date_time,
+                       Trainings.duration AS duration,
+                       Trainings.description AS description
+                   FROM
+                       Trainings,
+                       Cities,
+                       Locations,
+                       Teams
+                   WHERE
+                       Trainings.training_id = {trainingId} AND Cities.city_id = Locations.city_id AND
+                       Locations.location_id = Trainings.location_id AND Teams.team_id = Trainings.team_id
+                   ORDER BY
+                       Trainings.training_id";
 
             DataTable dataTable = DatabaseConnection.GetDataTable(query);
             isConnected = dataTable != null;

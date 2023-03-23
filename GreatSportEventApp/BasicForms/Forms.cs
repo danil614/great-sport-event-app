@@ -5,6 +5,7 @@ using GreatSportEventApp.SimpleForms;
 using GreatSportEventApp.SportEventForms;
 using GreatSportEventApp.TeamForms;
 using GreatSportEventApp.TicketForms;
+using GreatSportEventApp.TrainingForms;
 using GreatSportEventApp.UserForms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -145,6 +146,15 @@ namespace GreatSportEventApp.BasicForms
         {
             ListSeatsForm seatsForm = new(false);
             seatsForm.Show(dockPanel, DockState.Document);
+        }
+
+        /// <summary>
+        /// Открывает форму тренировок.
+        /// </summary>
+        public static void OpenTrainingForm(DockPanel dockPanel)
+        {
+            ListTrainingsForm trainingsForm = new(false);
+            trainingsForm.Show(dockPanel, DockState.Document);
         }
     }
 }

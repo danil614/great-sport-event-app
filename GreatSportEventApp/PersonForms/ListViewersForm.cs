@@ -24,9 +24,6 @@ namespace GreatSportEventApp.PersonForms
             SelectedItem = null;
         }
 
-        /// <summary>
-        ///     Обновляет список мест.
-        /// </summary>
         private void UpdateDataGridView()
         {
             // Получаем запрос со зрителями
@@ -35,7 +32,7 @@ namespace GreatSportEventApp.PersonForms
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
-                Close();
+                return;
             }
             else
             {

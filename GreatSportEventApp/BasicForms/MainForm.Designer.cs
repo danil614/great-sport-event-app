@@ -54,10 +54,14 @@ namespace GreatSportEventApp.BasicForms
             toolStripSeparatorTeams = new System.Windows.Forms.ToolStripSeparator();
             ViewersToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorViewers = new System.Windows.Forms.ToolStripSeparator();
+            SeatsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparatorSeats = new System.Windows.Forms.ToolStripSeparator();
             TicketsToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorTickets = new System.Windows.Forms.ToolStripSeparator();
             EmployeesToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorEmployees = new System.Windows.Forms.ToolStripSeparator();
+            TrainingsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparatorTrainings = new System.Windows.Forms.ToolStripSeparator();
             AthletesToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorAthletes = new System.Windows.Forms.ToolStripSeparator();
             UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -65,8 +69,6 @@ namespace GreatSportEventApp.BasicForms
             AboutFormToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparatorRight = new System.Windows.Forms.ToolStripSeparator();
             mainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            SeatsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparatorSeats = new System.Windows.Forms.ToolStripSeparator();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,11 +78,11 @@ namespace GreatSportEventApp.BasicForms
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparatorLeft, ModeToolStripLabel, toolStripSeparatorMode, LoginToolStripButton, toolStripSeparatorLogin, TreeFormToolStripButton, toolStripSeparatorTreeForm, EventsEmployeesToolStripButton, toolStripSeparatorEventsEmployees, ListLocationsFormToolStripButton, toolStripSeparatorLocations, CitiesToolStripButton, toolStripSeparatorCities, PositionsToolStripButton, toolStripSeparatorPositions, TypesToolStripButton, toolStripSeparatorTypes, SportEventsToolStripButton, toolStripSeparatorSportEvent, TeamsToolStripButton, toolStripSeparatorTeams, ViewersToolStripButton, toolStripSeparatorViewers, SeatsToolStripButton, toolStripSeparatorSeats, TicketsToolStripButton, toolStripSeparatorTickets, EmployeesToolStripButton, toolStripSeparatorEmployees, AthletesToolStripButton, toolStripSeparatorAthletes, UsersToolStripButton, toolStripSeparatorUsers, AboutFormToolStripButton, toolStripSeparatorRight });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparatorLeft, ModeToolStripLabel, toolStripSeparatorMode, LoginToolStripButton, toolStripSeparatorLogin, TreeFormToolStripButton, toolStripSeparatorTreeForm, EventsEmployeesToolStripButton, toolStripSeparatorEventsEmployees, ListLocationsFormToolStripButton, toolStripSeparatorLocations, CitiesToolStripButton, toolStripSeparatorCities, PositionsToolStripButton, toolStripSeparatorPositions, TypesToolStripButton, toolStripSeparatorTypes, SportEventsToolStripButton, toolStripSeparatorSportEvent, TeamsToolStripButton, toolStripSeparatorTeams, ViewersToolStripButton, toolStripSeparatorViewers, SeatsToolStripButton, toolStripSeparatorSeats, TicketsToolStripButton, toolStripSeparatorTickets, EmployeesToolStripButton, toolStripSeparatorEmployees, TrainingsToolStripButton, toolStripSeparatorTrainings, AthletesToolStripButton, toolStripSeparatorAthletes, UsersToolStripButton, toolStripSeparatorUsers, AboutFormToolStripButton, toolStripSeparatorRight });
             MainToolStrip.Location = new System.Drawing.Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Padding = new System.Windows.Forms.Padding(5);
-            MainToolStrip.Size = new System.Drawing.Size(1859, 37);
+            MainToolStrip.Size = new System.Drawing.Size(1609, 37);
             MainToolStrip.Stretch = true;
             MainToolStrip.TabIndex = 1;
             MainToolStrip.Text = "mainToolStrip";
@@ -251,6 +253,21 @@ namespace GreatSportEventApp.BasicForms
             toolStripSeparatorViewers.Name = "toolStripSeparatorViewers";
             toolStripSeparatorViewers.Size = new System.Drawing.Size(6, 27);
             // 
+            // SeatsToolStripButton
+            // 
+            SeatsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            SeatsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("SeatsToolStripButton.Image");
+            SeatsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            SeatsToolStripButton.Name = "SeatsToolStripButton";
+            SeatsToolStripButton.Size = new System.Drawing.Size(125, 24);
+            SeatsToolStripButton.Text = "Посадочные места";
+            SeatsToolStripButton.Click += SeatsToolStripButton_Click;
+            // 
+            // toolStripSeparatorSeats
+            // 
+            toolStripSeparatorSeats.Name = "toolStripSeparatorSeats";
+            toolStripSeparatorSeats.Size = new System.Drawing.Size(6, 27);
+            // 
             // TicketsToolStripButton
             // 
             TicketsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -281,6 +298,21 @@ namespace GreatSportEventApp.BasicForms
             // 
             toolStripSeparatorEmployees.Name = "toolStripSeparatorEmployees";
             toolStripSeparatorEmployees.Size = new System.Drawing.Size(6, 27);
+            // 
+            // TrainingsToolStripButton
+            // 
+            TrainingsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            TrainingsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("TrainingsToolStripButton.Image");
+            TrainingsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            TrainingsToolStripButton.Name = "TrainingsToolStripButton";
+            TrainingsToolStripButton.Size = new System.Drawing.Size(79, 24);
+            TrainingsToolStripButton.Text = "Тренировки";
+            TrainingsToolStripButton.Click += TrainingsToolStripButton_Click;
+            // 
+            // toolStripSeparatorTrainings
+            // 
+            toolStripSeparatorTrainings.Name = "toolStripSeparatorTrainings";
+            toolStripSeparatorTrainings.Size = new System.Drawing.Size(6, 27);
             // 
             // AthletesToolStripButton
             // 
@@ -334,30 +366,15 @@ namespace GreatSportEventApp.BasicForms
             mainDockPanel.Location = new System.Drawing.Point(0, 37);
             mainDockPanel.Margin = new System.Windows.Forms.Padding(4);
             mainDockPanel.Name = "mainDockPanel";
-            mainDockPanel.Size = new System.Drawing.Size(1859, 699);
+            mainDockPanel.Size = new System.Drawing.Size(1609, 699);
             mainDockPanel.TabIndex = 2;
-            // 
-            // SeatsToolStripButton
-            // 
-            SeatsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            SeatsToolStripButton.Image = (System.Drawing.Image)resources.GetObject("SeatsToolStripButton.Image");
-            SeatsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            SeatsToolStripButton.Name = "SeatsToolStripButton";
-            SeatsToolStripButton.Size = new System.Drawing.Size(125, 24);
-            SeatsToolStripButton.Text = "Посадочные места";
-            SeatsToolStripButton.Click += SeatsToolStripButton_Click;
-            // 
-            // toolStripSeparatorSeats
-            // 
-            toolStripSeparatorSeats.Name = "toolStripSeparatorSeats";
-            toolStripSeparatorSeats.Size = new System.Drawing.Size(6, 27);
             // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new System.Drawing.Size(1859, 736);
+            ClientSize = new System.Drawing.Size(1609, 736);
             Controls.Add(mainDockPanel);
             Controls.Add(MainToolStrip);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -410,5 +427,7 @@ namespace GreatSportEventApp.BasicForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorSportEvent;
         private System.Windows.Forms.ToolStripButton SeatsToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparatorSeats;
+        private System.Windows.Forms.ToolStripButton TrainingsToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparatorTrainings;
     }
 }

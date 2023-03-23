@@ -1,5 +1,6 @@
 ﻿using GreatSportEventApp.Entities;
 using System;
+using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -20,13 +21,12 @@ namespace GreatSportEventApp.SimpleForms
         /// </summary>
         private void UpdateListPositions()
         {
-            // Получаем запрос со зрителями
-            System.Data.DataTable listPositions = Query.GetListPositions(out bool isConnected);
+            DataTable listPositions = Query.GetListPositions(out bool isConnected);
 
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
-                Close();
+                return;
             }
             else
             {

@@ -5,13 +5,13 @@ using System.Data.Entity.Infrastructure;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace GreatSportEventApp.SportEventForms
+namespace GreatSportEventApp.TrainingForms
 {
-    public partial class ListSportEventsForm : DockContent
+    public partial class ListTrainingsForm : DockContent
     {
         public DataGridViewRow SelectedItem { get; set; }
 
-        public ListSportEventsForm(bool isSelectionMode)
+        public ListTrainingsForm(bool isSelectionMode)
         {
             InitializeComponent();
             UpdateDataGridView();
@@ -24,13 +24,10 @@ namespace GreatSportEventApp.SportEventForms
             SelectedItem = null;
         }
 
-        /// <summary>
-        ///     Обновляет список мест.
-        /// </summary>
         private void UpdateDataGridView()
         {
             // Получаем запрос со зрителями
-            DataTable dataTable = Query.GetListSportEvents(out bool isConnected);
+            DataTable dataTable = Query.GetListTrainings(out bool isConnected);
 
             if (!isConnected)
             {
@@ -49,8 +46,8 @@ namespace GreatSportEventApp.SportEventForms
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
-            SportEventForm sportEventForm = new(false, -1);
-            var dialogResult = sportEventForm.ShowDialog();
+            TrainingForm trainingForm = new(false, -1);
+            var dialogResult = trainingForm.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
             {
@@ -67,8 +64,8 @@ namespace GreatSportEventApp.SportEventForms
 
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
 
-            SportEventForm sportEventForm = new(true, currentRowId);
-            var dialogResult = sportEventForm.ShowDialog();
+            TrainingForm trainingForm = new(true, currentRowId);
+            var dialogResult = trainingForm.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
             {
@@ -86,15 +83,15 @@ namespace GreatSportEventApp.SportEventForms
             using (GreatSportEventContext context = new())
             {
                 int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
-                var sportEvent = context.SportEvents.Find(currentRowId);
+                var training = context.Trainings.Find(currentRowId);
 
-                if (sportEvent is null)
+                if (training is null)
                 {
                     _ = MessageBox.Show(@"Невозможно удалить запись!");
                     return;
                 }
 
-                _ = context.SportEvents.Remove(sportEvent);
+                _ = context.Trainings.Remove(training);
 
                 try
                 {
@@ -119,7 +116,7 @@ namespace GreatSportEventApp.SportEventForms
         {
             if (DataGridView.CurrentRow == null)
             {
-                _ = MessageBox.Show(@"Выделите нужную строку со спортивным мероприятием!");
+                _ = MessageBox.Show(@"Выделите нужную строку с тренировкой!");
                 return;
             }
             else

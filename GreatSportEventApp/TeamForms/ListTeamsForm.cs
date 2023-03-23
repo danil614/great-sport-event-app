@@ -35,7 +35,7 @@ namespace GreatSportEventApp.TeamForms
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
-                Close();
+                return;
             }
             else
             {

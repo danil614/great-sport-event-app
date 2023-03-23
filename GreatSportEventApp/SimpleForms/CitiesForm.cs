@@ -26,7 +26,7 @@ namespace GreatSportEventApp.SimpleForms
             if (!isConnected)
             {
                 _ = MessageBox.Show(@"Отсутствует подключение!");
-                Close();
+                return;
             }
             else
             {
