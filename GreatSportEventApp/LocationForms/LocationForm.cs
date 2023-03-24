@@ -124,6 +124,7 @@ namespace GreatSportEventApp.LocationForms
                 return;
             }
 
+            DialogResult = DialogResult.OK;
             Close();
         }
 

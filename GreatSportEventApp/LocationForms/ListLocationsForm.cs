@@ -73,8 +73,12 @@ namespace GreatSportEventApp.LocationForms
         private void CreateToolStripButton_Click(object sender, EventArgs e)
         {
             LocationForm locationForm = new(false);
-            _ = locationForm.ShowDialog();
-            UpdateListLocations();
+            var dialogResult = locationForm.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                UpdateListLocations();
+            }
         }
 
         private void EditToolStripButton_Click(object sender, EventArgs e)
@@ -85,7 +89,7 @@ namespace GreatSportEventApp.LocationForms
             }
 
             int currentRowId = (int)dataLocations.CurrentRow.Cells[0].Value;
-            System.Data.DataRow location = Query.GetLocationById(out bool isConnected, currentRowId);
+            DataRow location = Query.GetLocationById(out bool isConnected, currentRowId);
 
             if (!isConnected)
             {
@@ -103,8 +107,13 @@ namespace GreatSportEventApp.LocationForms
                     Capacity = (int)location["capacity"],
                     Description = location["description"].ToString()
                 };
-                _ = locationForm.ShowDialog();
-                UpdateListLocations();
+
+                var dialogResult = locationForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    UpdateListLocations();
+                }
             }
         }
 

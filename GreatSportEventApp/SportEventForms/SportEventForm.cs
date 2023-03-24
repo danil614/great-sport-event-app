@@ -4,6 +4,7 @@ using GreatSportEventApp.LocationForms;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp.SportEventForms
@@ -139,6 +140,13 @@ namespace GreatSportEventApp.SportEventForms
                 sportEvent.DateTime = dateTimeEvent.Value;
                 sportEvent.Duration = new TimeSpan(duration.Value.Hour, duration.Value.Minute, 0);
                 sportEvent.Description = textDescription.Text;
+
+                if (IsDuplicate(context, sportEvent, SportEventId == -1))
+                {
+                    MessageBox.Show(@"Спортивное мероприятие с такими данными уже существует!");
+                    return;
+                }
+
                 _ = context.SaveChanges();
 
                 SportEventId = sportEvent.Id;
@@ -153,6 +161,26 @@ namespace GreatSportEventApp.SportEventForms
             
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private static bool IsDuplicate(GreatSportEventContext context, SportEvent sportEvent, bool isNew)
+        {
+            if (isNew)
+            {
+                var foundSportEvents = context.SportEvents.Where(
+                    item =>
+                    item.LocationId == sportEvent.LocationId &&
+                    item.TypeId == sportEvent.TypeId &&
+                    item.DateTime == sportEvent.DateTime &&
+                    item.Duration == sportEvent.Duration);
+
+                if (foundSportEvents.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #region Validating
