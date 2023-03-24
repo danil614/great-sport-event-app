@@ -83,9 +83,12 @@ namespace GreatSportEventApp.TeamForms
 
             int currentRowId = (int)DataGridView.CurrentRow.Cells[0].Value;
             TeamForm teamForm = new(true, currentRowId, -1);
-            _ = teamForm.ShowDialog();
+            var dialogResult = teamForm.ShowDialog();
 
-            UpdateDataGridView();
+            if (dialogResult == DialogResult.OK)
+            {
+                UpdateDataGridView();
+            }
         }
 
         private void DeleteToolStripButton_Click(object sender, EventArgs e)

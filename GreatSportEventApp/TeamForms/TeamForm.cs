@@ -5,6 +5,7 @@ using GreatSportEventApp.LocationForms;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp.TeamForms
@@ -132,6 +133,13 @@ namespace GreatSportEventApp.TeamForms
                 team.Rating = rating;
 
                 team.Description = textDescription.Text;
+
+                if (IsDuplicate(context, team, TeamId == -1))
+                {
+                    MessageBox.Show(@"Команда с такими данными уже существует!");
+                    return;
+                }
+
                 _ = context.SaveChanges();
 
                 TeamId = team.Id;
@@ -150,7 +158,29 @@ namespace GreatSportEventApp.TeamForms
                 }
             }
 
+            DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private static bool IsDuplicate(GreatSportEventContext context, Team team, bool isNew)
+        {
+            if (isNew)
+            {
+                var foundDuplicates = context.Teams.Where(
+                    item =>
+                    item.LocationId == team.LocationId &&
+                    item.Name == team.Name &&
+                    item.ComeFrom == team.ComeFrom &&
+                    item.Rating == team.Rating
+                    );
+
+                if (foundDuplicates.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static bool UpdateParticipationEvent(GreatSportEventContext context, int sportEventId, int teamId, int score)

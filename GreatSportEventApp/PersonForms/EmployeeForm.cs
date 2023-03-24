@@ -3,6 +3,7 @@ using GreatSportEventApp.TeamForms;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp.PersonForms
@@ -135,6 +136,12 @@ namespace GreatSportEventApp.PersonForms
                 employee.PositionId = (int)comboPosition.SelectedValue;
                 employee.TeamId = teamId;
 
+                if (IsDuplicate(context, employee, EmployeeId == -1))
+                {
+                    MessageBox.Show(@"Сотрудник с такими данными уже существует!");
+                    return;
+                }
+
                 _ = context.SaveChanges();
 
                 EmployeeId = employee.Id;
@@ -149,6 +156,28 @@ namespace GreatSportEventApp.PersonForms
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private static bool IsDuplicate(GreatSportEventContext context, Employee employee, bool isNew)
+        {
+            if (isNew)
+            {
+                var foundDuplicates = context.Employees.Where(
+                    item =>
+                    item.Surname == employee.Surname &&
+                    item.Name == employee.Name &&
+                    item.Patronymic == employee.Patronymic &&
+                    item.GenderId == employee.GenderId &&
+                    item.BirthDate == employee.BirthDate
+                    );
+
+                if (foundDuplicates.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #region Validating

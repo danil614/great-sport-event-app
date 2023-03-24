@@ -4,6 +4,7 @@ using GreatSportEventApp.TeamForms;
 using System;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp.PersonForms
@@ -171,6 +172,12 @@ namespace GreatSportEventApp.PersonForms
 
                 athlete.TeamId = teamId;
 
+                if (IsDuplicate(context, athlete, AthleteId == -1))
+                {
+                    MessageBox.Show(@"Спортсмен с такими данными уже существует!");
+                    return;
+                }
+
                 _ = context.SaveChanges();
 
                 AthleteId = athlete.Id;
@@ -185,6 +192,28 @@ namespace GreatSportEventApp.PersonForms
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private static bool IsDuplicate(GreatSportEventContext context, Athlete athlete, bool isNew)
+        {
+            if (isNew)
+            {
+                var foundDuplicates = context.Athletes.Where(
+                    item =>
+                    item.Surname == athlete.Surname &&
+                    item.Name == athlete.Name &&
+                    item.Patronymic == athlete.Patronymic &&
+                    item.GenderId == athlete.GenderId &&
+                    item.BirthDate == athlete.BirthDate
+                    );
+
+                if (foundDuplicates.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #region Validating

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GreatSportEventApp.Entities;
+using System;
 using System.ComponentModel;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GreatSportEventApp.LocationForms
@@ -113,6 +115,12 @@ namespace GreatSportEventApp.LocationForms
                 return;
             }
 
+            if (IsDuplicate(!IsChanging))
+            {
+                MessageBox.Show(@"Место расположения с такими данными уже существует!");
+                return;
+            }
+
             bool isConnected = IsChanging
                 ? Query.UpdateLocation(LocationId, textName.Text, comboCity.Text, textAddress.Text,
                     comboType.Text, Capacity, textDescription.Text)
@@ -126,6 +134,28 @@ namespace GreatSportEventApp.LocationForms
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private bool IsDuplicate(bool isNew)
+        {
+            if (isNew)
+            {
+                using (GreatSportEventContext context = new())
+                {
+                    var foundDuplicates = context.Locations.Where(
+                    item =>
+                    item.Name == textName.Text &&
+                    item.Address == textAddress.Text
+                    );
+
+                    if (foundDuplicates.Any())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         #region Validating
