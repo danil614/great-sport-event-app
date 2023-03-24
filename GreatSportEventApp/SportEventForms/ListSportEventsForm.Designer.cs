@@ -44,6 +44,8 @@ namespace GreatSportEventApp.SportEventForms
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ((ISupportInitialize)DataGridView).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -83,7 +85,7 @@ namespace GreatSportEventApp.SportEventForms
             MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5 });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripButtonSearch, toolStripSeparator6 });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Size = new System.Drawing.Size(809, 25);
@@ -168,6 +170,21 @@ namespace GreatSportEventApp.SportEventForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButtonSearch
+            // 
+            toolStripButtonSearch.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            toolStripButtonSearch.Image = Properties.Resources.search;
+            toolStripButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButtonSearch.Name = "toolStripButtonSearch";
+            toolStripButtonSearch.Size = new System.Drawing.Size(162, 22);
+            toolStripButtonSearch.Text = "Расширенный поиск";
+            toolStripButtonSearch.Click += ToolStripButtonSearch_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
             // ListSportEventsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -203,5 +220,7 @@ namespace GreatSportEventApp.SportEventForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SelectToolStripButton;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
     }
 }
