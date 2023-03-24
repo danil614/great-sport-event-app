@@ -179,8 +179,9 @@ namespace GreatSportEventApp.PersonForms
             // 
             // toolStripTextBoxFilter
             // 
+            toolStripTextBoxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
-            toolStripTextBoxFilter.Size = new System.Drawing.Size(150, 25);
+            toolStripTextBoxFilter.Size = new System.Drawing.Size(160, 25);
             toolStripTextBoxFilter.KeyPress += ToolStripTextBoxFilter_KeyPress;
             // 
             // toolStripSeparator6

@@ -3,6 +3,7 @@ using GreatSportEventApp.Entities;
 using System;
 using System.Data;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -75,18 +76,45 @@ namespace GreatSportEventApp.SimpleForms
             {
                 using GreatSportEventContext context = new();
                 Position position = context.Positions.Find(id);
+                bool isNew = false;
 
                 if (position is null)
                 {
+                    isNew = true;
                     position = new Position();
                     _ = context.Positions.Add(position);
                 }
 
                 position.Name = name;
+
+                if (IsDuplicate(context, position, isNew))
+                {
+                    MessageBox.Show(@"Должность с таким названием уже существует!");
+                    int currentRowIndex = dataView.CurrentRow.Index;
+                    dataView.Rows.Remove(dataView.Rows[currentRowIndex]);
+                    return;
+                }
+
                 _ = context.SaveChanges();
 
                 UpdateListPositions();
             }
+        }
+
+        private static bool IsDuplicate(GreatSportEventContext context, Position position, bool isNew)
+        {
+            if (isNew)
+            {
+                var foundDuplicates = context.Positions.Where(
+                    item => item.Name == position.Name);
+
+                if (foundDuplicates.Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
@@ -137,6 +165,19 @@ namespace GreatSportEventApp.SimpleForms
                     UpdateListPositions();
                 }
             }
+        }
+
+        private void FilterByFullName()
+        {
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = dataView.DataSource;
+            bindingSource.Filter = dataView.Columns[1].Name.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
+            dataView.DataSource = bindingSource;
+        }
+
+        private void ToolStripTextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            FilterByFullName();
         }
     }
 }

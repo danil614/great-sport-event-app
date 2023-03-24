@@ -163,7 +163,7 @@ namespace GreatSportEventApp.PersonForms
         {
             var bindingSource = new BindingSource();
             bindingSource.DataSource = DataGridView.DataSource;
-            bindingSource.Filter = DataGridView.Columns[1].HeaderText.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
+            bindingSource.Filter = DataGridView.Columns[1].Name.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
             DataGridView.DataSource = bindingSource;
         }
 

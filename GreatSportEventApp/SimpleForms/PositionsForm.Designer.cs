@@ -43,6 +43,8 @@ namespace GreatSportEventApp.SimpleForms
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
             ((ISupportInitialize)dataView).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -82,7 +84,7 @@ namespace GreatSportEventApp.SimpleForms
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             MainToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5 });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripLabel1, toolStripTextBoxFilter });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Size = new System.Drawing.Size(809, 27);
@@ -154,6 +156,19 @@ namespace GreatSportEventApp.SimpleForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(127, 24);
+            toolStripLabel1.Text = "Поиск по названию:";
+            // 
+            // toolStripTextBoxFilter
+            // 
+            toolStripTextBoxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
+            toolStripTextBoxFilter.Size = new System.Drawing.Size(160, 27);
+            toolStripTextBoxFilter.KeyPress += ToolStripTextBoxFilter_KeyPress;
+            // 
             // PositionsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -188,5 +203,7 @@ namespace GreatSportEventApp.SimpleForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxFilter;
     }
 }
