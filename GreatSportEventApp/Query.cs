@@ -225,7 +225,7 @@ namespace GreatSportEventApp
                    Sport_events.sport_event_id AS id,
                    Types.type_name AS 'Тип мероприятия',
                    CONCAT(Cities.city_name, ', ', Locations.location_name) AS 'Место',
-                   DATE_FORMAT(Sport_events.sport_event_date_time, '%d.%m.%Y %H:%i') AS 'Начало',
+                   Sport_events.sport_event_date_time AS 'Начало',
                    TIME_FORMAT(Sport_events.duration, '%H ч. %i мин.') AS 'Длительность'
                   FROM
                    Sport_events, Cities, Locations, Types

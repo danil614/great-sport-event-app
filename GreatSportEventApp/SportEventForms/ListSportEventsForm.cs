@@ -13,6 +13,9 @@ namespace GreatSportEventApp.SportEventForms
     {
         public DataGridViewRow SelectedItem { get; set; }
 
+        private SearchSportEventForm searchForm;
+        private BindingSource bindingSource;
+
         public ListSportEventsForm(bool isSelectionMode)
         {
             InitializeComponent();
@@ -70,6 +73,14 @@ namespace GreatSportEventApp.SportEventForms
 
             // Растягиваем колонки
             DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            bindingSource = new BindingSource();
+            bindingSource.DataSource = DataGridView.DataSource;
+            bindingSource.Filter = "";
+            DataGridView.DataSource = bindingSource;
+
+            searchForm = new SearchSportEventForm();
+            searchForm.BindingSource = bindingSource;
         }
 
         private void CreateToolStripButton_Click(object sender, EventArgs e)
@@ -170,22 +181,7 @@ namespace GreatSportEventApp.SportEventForms
 
         private void ToolStripButtonSearch_Click(object sender, EventArgs e)
         {
-            var searchForm = new SearchSportEventForm();
-            var dialogResult = searchForm.ShowDialog();
-
-            BindingSource bindingSource = new();
-
-            if (dialogResult == DialogResult.OK)
-            {
-                bindingSource = searchForm.BindingSource;
-            }
-            else
-            {
-                bindingSource.Filter = "";
-            }
-
-            bindingSource.DataSource = DataGridView.DataSource;
-            DataGridView.DataSource = bindingSource;
+            searchForm.ShowDialog();
         }
     }
 }

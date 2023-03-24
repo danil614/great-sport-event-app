@@ -45,6 +45,12 @@ namespace GreatSportEventApp.SearchForms
             SelectLocationButton = new System.Windows.Forms.Button();
             errorProvider1 = new System.Windows.Forms.ErrorProvider(components);
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            logicDuration = new System.Windows.Forms.ComboBox();
+            logicDateStop = new System.Windows.Forms.ComboBox();
+            logicDateStart = new System.Windows.Forms.ComboBox();
+            logicLocation = new System.Windows.Forms.ComboBox();
+            comparisonDuration = new System.Windows.Forms.ComboBox();
+            comparisonDateStop = new System.Windows.Forms.ComboBox();
             comparisonDateStart = new System.Windows.Forms.ComboBox();
             comparisonLocation = new System.Windows.Forms.ComboBox();
             label5 = new System.Windows.Forms.Label();
@@ -59,7 +65,7 @@ namespace GreatSportEventApp.SearchForms
             // label1
             // 
             label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            label1.Location = new System.Drawing.Point(3, 78);
+            label1.Location = new System.Drawing.Point(3, 110);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(132, 32);
             label1.TabIndex = 0;
@@ -73,7 +79,7 @@ namespace GreatSportEventApp.SearchForms
             labelTitle.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelTitle.Location = new System.Drawing.Point(3, 0);
             labelTitle.Name = "labelTitle";
-            labelTitle.Size = new System.Drawing.Size(827, 46);
+            labelTitle.Size = new System.Drawing.Size(974, 46);
             labelTitle.TabIndex = 2;
             labelTitle.Text = "Поиск спортивного мероприятия";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,7 +87,7 @@ namespace GreatSportEventApp.SearchForms
             // label2
             // 
             label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            label2.Location = new System.Drawing.Point(3, 177);
+            label2.Location = new System.Drawing.Point(3, 305);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(132, 32);
             label2.TabIndex = 3;
@@ -94,13 +100,13 @@ namespace GreatSportEventApp.SearchForms
             textLocationName.Location = new System.Drawing.Point(3, 3);
             textLocationName.Name = "textLocationName";
             textLocationName.ReadOnly = true;
-            textLocationName.Size = new System.Drawing.Size(425, 26);
+            textLocationName.Size = new System.Drawing.Size(535, 26);
             textLocationName.TabIndex = 1;
             // 
             // label3
             // 
             label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            label3.Location = new System.Drawing.Point(3, 110);
+            label3.Location = new System.Drawing.Point(3, 174);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(132, 32);
             label3.TabIndex = 6;
@@ -121,7 +127,7 @@ namespace GreatSportEventApp.SearchForms
             // 
             buttonSearch.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             buttonSearch.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonSearch.Location = new System.Drawing.Point(630, 212);
+            buttonSearch.Location = new System.Drawing.Point(777, 340);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new System.Drawing.Size(200, 50);
             buttonSearch.TabIndex = 14;
@@ -132,10 +138,11 @@ namespace GreatSportEventApp.SearchForms
             // comboType
             // 
             comboType.Dock = System.Windows.Forms.DockStyle.Fill;
+            comboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comboType.FormattingEnabled = true;
             comboType.Location = new System.Drawing.Point(261, 49);
             comboType.Name = "comboType";
-            comboType.Size = new System.Drawing.Size(569, 26);
+            comboType.Size = new System.Drawing.Size(716, 26);
             comboType.TabIndex = 4;
             // 
             // dateTimeStart
@@ -143,7 +150,7 @@ namespace GreatSportEventApp.SearchForms
             dateTimeStart.AllowDrop = true;
             dateTimeStart.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             dateTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dateTimeStart.Location = new System.Drawing.Point(261, 113);
+            dateTimeStart.Location = new System.Drawing.Point(261, 177);
             dateTimeStart.Name = "dateTimeStart";
             dateTimeStart.Size = new System.Drawing.Size(207, 26);
             dateTimeStart.TabIndex = 15;
@@ -153,7 +160,7 @@ namespace GreatSportEventApp.SearchForms
             // 
             duration.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             duration.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            duration.Location = new System.Drawing.Point(261, 180);
+            duration.Location = new System.Drawing.Point(261, 308);
             duration.Name = "duration";
             duration.Size = new System.Drawing.Size(125, 26);
             duration.TabIndex = 16;
@@ -163,9 +170,9 @@ namespace GreatSportEventApp.SearchForms
             // 
             SelectLocationButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             SelectLocationButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            SelectLocationButton.Location = new System.Drawing.Point(434, 3);
+            SelectLocationButton.Location = new System.Drawing.Point(544, 3);
             SelectLocationButton.Name = "SelectLocationButton";
-            SelectLocationButton.Size = new System.Drawing.Size(138, 26);
+            SelectLocationButton.Size = new System.Drawing.Size(175, 26);
             SelectLocationButton.TabIndex = 17;
             SelectLocationButton.Text = "Выбрать";
             SelectLocationButton.UseVisualStyleBackColor = true;
@@ -183,43 +190,120 @@ namespace GreatSportEventApp.SearchForms
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            tableLayoutPanel1.Controls.Add(comparisonDateStart, 0, 3);
-            tableLayoutPanel1.Controls.Add(comparisonLocation, 1, 2);
-            tableLayoutPanel1.Controls.Add(label5, 0, 4);
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 3, 2);
-            tableLayoutPanel1.Controls.Add(duration, 2, 5);
-            tableLayoutPanel1.Controls.Add(dateTimeStart, 2, 3);
+            tableLayoutPanel1.Controls.Add(logicDuration, 0, 8);
+            tableLayoutPanel1.Controls.Add(logicDateStop, 0, 6);
+            tableLayoutPanel1.Controls.Add(logicDateStart, 0, 4);
+            tableLayoutPanel1.Controls.Add(logicLocation, 0, 2);
+            tableLayoutPanel1.Controls.Add(comparisonDuration, 1, 9);
+            tableLayoutPanel1.Controls.Add(comparisonDateStop, 1, 7);
+            tableLayoutPanel1.Controls.Add(comparisonDateStart, 1, 5);
+            tableLayoutPanel1.Controls.Add(comparisonLocation, 1, 3);
+            tableLayoutPanel1.Controls.Add(label5, 0, 7);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 3, 3);
+            tableLayoutPanel1.Controls.Add(duration, 2, 9);
+            tableLayoutPanel1.Controls.Add(dateTimeStart, 2, 5);
             tableLayoutPanel1.Controls.Add(comboType, 2, 1);
             tableLayoutPanel1.Controls.Add(label4, 0, 1);
-            tableLayoutPanel1.Controls.Add(label2, 0, 5);
-            tableLayoutPanel1.Controls.Add(label1, 0, 2);
-            tableLayoutPanel1.Controls.Add(label3, 0, 3);
+            tableLayoutPanel1.Controls.Add(label2, 0, 9);
+            tableLayoutPanel1.Controls.Add(label1, 0, 3);
+            tableLayoutPanel1.Controls.Add(label3, 0, 5);
             tableLayoutPanel1.Controls.Add(labelTitle, 0, 0);
-            tableLayoutPanel1.Controls.Add(buttonSearch, 2, 6);
-            tableLayoutPanel1.Controls.Add(dateTimeStop, 2, 4);
+            tableLayoutPanel1.Controls.Add(buttonSearch, 2, 10);
+            tableLayoutPanel1.Controls.Add(dateTimeStop, 2, 7);
             tableLayoutPanel1.Controls.Add(comparisonType, 1, 1);
             tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tableLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            tableLayoutPanel1.RowCount = 7;
+            tableLayoutPanel1.RowCount = 11;
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel1.Size = new System.Drawing.Size(833, 283);
+            tableLayoutPanel1.Size = new System.Drawing.Size(1000, 413);
             tableLayoutPanel1.TabIndex = 18;
+            // 
+            // logicDuration
+            // 
+            logicDuration.Dock = System.Windows.Forms.DockStyle.Fill;
+            logicDuration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            logicDuration.FormattingEnabled = true;
+            logicDuration.Items.AddRange(new object[] { "И", "ИЛИ" });
+            logicDuration.Location = new System.Drawing.Point(3, 276);
+            logicDuration.Name = "logicDuration";
+            logicDuration.Size = new System.Drawing.Size(132, 26);
+            logicDuration.TabIndex = 30;
+            // 
+            // logicDateStop
+            // 
+            logicDateStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            logicDateStop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            logicDateStop.FormattingEnabled = true;
+            logicDateStop.Items.AddRange(new object[] { "И", "ИЛИ" });
+            logicDateStop.Location = new System.Drawing.Point(3, 209);
+            logicDateStop.Name = "logicDateStop";
+            logicDateStop.Size = new System.Drawing.Size(132, 26);
+            logicDateStop.TabIndex = 29;
+            // 
+            // logicDateStart
+            // 
+            logicDateStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            logicDateStart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            logicDateStart.FormattingEnabled = true;
+            logicDateStart.Items.AddRange(new object[] { "И", "ИЛИ" });
+            logicDateStart.Location = new System.Drawing.Point(3, 145);
+            logicDateStart.Name = "logicDateStart";
+            logicDateStart.Size = new System.Drawing.Size(132, 26);
+            logicDateStart.TabIndex = 28;
+            // 
+            // logicLocation
+            // 
+            logicLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            logicLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            logicLocation.FormattingEnabled = true;
+            logicLocation.Items.AddRange(new object[] { "И", "ИЛИ" });
+            logicLocation.Location = new System.Drawing.Point(3, 81);
+            logicLocation.Name = "logicLocation";
+            logicLocation.Size = new System.Drawing.Size(132, 26);
+            logicLocation.TabIndex = 27;
+            // 
+            // comparisonDuration
+            // 
+            comparisonDuration.Dock = System.Windows.Forms.DockStyle.Fill;
+            comparisonDuration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comparisonDuration.FormattingEnabled = true;
+            comparisonDuration.Items.AddRange(new object[] { " ", "равно", "не равно" });
+            comparisonDuration.Location = new System.Drawing.Point(141, 308);
+            comparisonDuration.Name = "comparisonDuration";
+            comparisonDuration.Size = new System.Drawing.Size(114, 26);
+            comparisonDuration.TabIndex = 26;
+            // 
+            // comparisonDateStop
+            // 
+            comparisonDateStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            comparisonDateStop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            comparisonDateStop.FormattingEnabled = true;
+            comparisonDateStop.Items.AddRange(new object[] { " ", ">=", ">", "<=", "<" });
+            comparisonDateStop.Location = new System.Drawing.Point(141, 241);
+            comparisonDateStop.Name = "comparisonDateStop";
+            comparisonDateStop.Size = new System.Drawing.Size(114, 26);
+            comparisonDateStop.TabIndex = 25;
             // 
             // comparisonDateStart
             // 
             comparisonDateStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            comparisonDateStart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comparisonDateStart.FormattingEnabled = true;
             comparisonDateStart.Items.AddRange(new object[] { " ", ">=", ">", "<=", "<" });
-            comparisonDateStart.Location = new System.Drawing.Point(141, 113);
+            comparisonDateStart.Location = new System.Drawing.Point(141, 177);
             comparisonDateStart.Name = "comparisonDateStart";
             comparisonDateStart.Size = new System.Drawing.Size(114, 26);
             comparisonDateStart.TabIndex = 24;
@@ -227,9 +311,10 @@ namespace GreatSportEventApp.SearchForms
             // comparisonLocation
             // 
             comparisonLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            comparisonLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comparisonLocation.FormattingEnabled = true;
             comparisonLocation.Items.AddRange(new object[] { " ", "равно", "не равно" });
-            comparisonLocation.Location = new System.Drawing.Point(141, 81);
+            comparisonLocation.Location = new System.Drawing.Point(141, 113);
             comparisonLocation.Name = "comparisonLocation";
             comparisonLocation.Size = new System.Drawing.Size(114, 26);
             comparisonLocation.TabIndex = 23;
@@ -237,7 +322,7 @@ namespace GreatSportEventApp.SearchForms
             // label5
             // 
             label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            label5.Location = new System.Drawing.Point(3, 142);
+            label5.Location = new System.Drawing.Point(3, 238);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(132, 35);
             label5.TabIndex = 21;
@@ -253,12 +338,12 @@ namespace GreatSportEventApp.SearchForms
             tableLayoutPanel2.Controls.Add(textLocationName, 0, 0);
             tableLayoutPanel2.Controls.Add(SelectLocationButton, 1, 0);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            tableLayoutPanel2.Location = new System.Drawing.Point(258, 78);
+            tableLayoutPanel2.Location = new System.Drawing.Point(258, 110);
             tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            tableLayoutPanel2.Size = new System.Drawing.Size(575, 32);
+            tableLayoutPanel2.Size = new System.Drawing.Size(722, 32);
             tableLayoutPanel2.TabIndex = 19;
             // 
             // dateTimeStop
@@ -266,7 +351,7 @@ namespace GreatSportEventApp.SearchForms
             dateTimeStop.AllowDrop = true;
             dateTimeStop.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             dateTimeStop.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dateTimeStop.Location = new System.Drawing.Point(261, 145);
+            dateTimeStop.Location = new System.Drawing.Point(261, 241);
             dateTimeStop.Name = "dateTimeStop";
             dateTimeStop.Size = new System.Drawing.Size(207, 26);
             dateTimeStop.TabIndex = 20;
@@ -275,6 +360,7 @@ namespace GreatSportEventApp.SearchForms
             // comparisonType
             // 
             comparisonType.Dock = System.Windows.Forms.DockStyle.Fill;
+            comparisonType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             comparisonType.FormattingEnabled = true;
             comparisonType.Items.AddRange(new object[] { " ", "равно", "не равно" });
             comparisonType.Location = new System.Drawing.Point(141, 49);
@@ -288,7 +374,7 @@ namespace GreatSportEventApp.SearchForms
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(843, 293);
+            ClientSize = new System.Drawing.Size(1010, 423);
             Controls.Add(tableLayoutPanel1);
             Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -329,5 +415,11 @@ namespace GreatSportEventApp.SearchForms
         private System.Windows.Forms.ComboBox comparisonType;
         private System.Windows.Forms.ComboBox comparisonLocation;
         private System.Windows.Forms.ComboBox comparisonDateStart;
+        private System.Windows.Forms.ComboBox comparisonDateStop;
+        private System.Windows.Forms.ComboBox comparisonDuration;
+        private System.Windows.Forms.ComboBox logicDuration;
+        private System.Windows.Forms.ComboBox logicDateStop;
+        private System.Windows.Forms.ComboBox logicDateStart;
+        private System.Windows.Forms.ComboBox logicLocation;
     }
 }
