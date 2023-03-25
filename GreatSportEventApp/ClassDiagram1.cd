@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GreatSportEventApp.Entities.Athlete" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAgAAAEAAAAQAQCBACAEAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Athlete.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.City" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\City.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Employee" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAEAAAAQAQCBACAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.GreatSportEventContext" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EgQBKCAAAAIAAAggAgIAAAAAGAACAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Entities\GreatSportEventContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Location" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAABAAAgAAAEAAAAAAQCAAAAAAAiAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.OrganisationEvent" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Entities\OrganisationEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.ParticipationEvent" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAACAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ParticipationEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Position" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Seat" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAABAAAQAAAAgAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Seat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.SportEvent" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAiAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\SportEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Team" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAgAAAEAAAAAAQAAAAAAAEAAAACAAAAAAA=</HashCode>
+      <FileName>Entities\Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Ticket" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAARAAAAIAAAAACAAA=</HashCode>
+      <FileName>Entities\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Training" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAiAAAAAAAAAAACAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Training.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Type" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Type.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.User" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAKAAAAAAAAAAAAAAAAAAAAQAACAAAQAAQCAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.Entities.Viewer" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAEAEAAAAQAQABAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Viewer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.AthleteForm" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ckCEAAAQQKAAABEAAACFAAESACAADgTAIEBAMAQQEGA=</HashCode>
+      <FileName>PersonForms\AthleteForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.EmployeeForm" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MgCEAAAQAKAAABEEAACBIAECAAAADgTAIEAAEAASECA=</HashCode>
+      <FileName>PersonForms\EmployeeForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.ListAthletesForm" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>PersonForms\ListAthletesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.ListEmployeesForm" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAL0CQCAAYDAAAADAEAAaAIAADAAABBgAAAgAgIA=</HashCode>
+      <FileName>PersonForms\ListEmployeesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.ListViewersForm" Collapsed="true">
+    <Position X="5.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>PersonForms\ListViewersForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.PersonForms.ViewerForm" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEBCAAAKAAABGEAACIQAQCBAAABASAIEAAAAAQACA=</HashCode>
+      <FileName>PersonForms\ViewerForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SportEventForms.ListSportEventsForm" Collapsed="true">
+    <Position X="9.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAL0CQCAAYDAAAADAAAASAIAADAAAABgAAAgB0IA=</HashCode>
+      <FileName>SportEventForms\ListSportEventsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SportEventForms.SportEventForm" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAAACIQCCJAABAAAACEAAASAECABCAAIACAEAAACCA=</HashCode>
+      <FileName>SportEventForms\SportEventForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.BasicForms.AboutForm" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kIAAAAgAACAgCAUAAACAAAADAAAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>BasicForms\AboutForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.BasicForms.EventsEmployeesForm" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BigOBL0iACAAIBCAAACAgAASAIABLAAAAAAFIAAggIA=</HashCode>
+      <FileName>BasicForms\EventsEmployeesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.BasicForms.EventsParticipantsForm" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BigOBL0iACAAIBAAAACAgAASAICBLAAAAAAFMAAwgIA=</HashCode>
+      <FileName>BasicForms\EventsParticipantsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.BasicForms.LoginForm" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAACAAABAAAACAAAASAAAAAAACAEAQAAABACA=</HashCode>
+      <FileName>BasicForms\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.BasicForms.MainForm" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>goQFANAAwKEA5QMAgECAEKQC0zACAJiBEICCIApQAQQ=</HashCode>
+      <FileName>BasicForms\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SimpleForms.CitiesForm" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0KACAAIBAAAACAAAQSAIAADAAAAAEAAIAAgIE=</HashCode>
+      <FileName>SimpleForms\CitiesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SimpleForms.PositionsForm" Collapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0KACAAIBAAAACAEAQeAIAADAAABAAAEAAAgIA=</HashCode>
+      <FileName>SimpleForms\PositionsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SimpleForms.TypesForm" Collapsed="true">
+    <Position X="4" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0KACAAJBAAAACAAAQSAIAADAAAAAAAAAAAgIA=</HashCode>
+      <FileName>SimpleForms\TypesForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.UserForms.ListUsersForm" Collapsed="true">
+    <Position X="4" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>UserForms\ListUsersForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.UserForms.UserForm" Collapsed="true">
+    <Position X="5.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FgAgCAQYICAAQBkAAICAAAECAAEABAIAoEIACAAAACg=</HashCode>
+      <FileName>UserForms\UserForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SearchForms.SearchSportEventForm" Collapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkEAkAISCqJAABAAEACAAAICAEAAIAAgAIACAAAACCA=</HashCode>
+      <FileName>SearchForms\SearchSportEventForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TrainingForms.ListTrainingsForm" Collapsed="true">
+    <Position X="2.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>TrainingForms\ListTrainingsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TrainingForms.TrainingForm" Collapsed="true">
+    <Position X="2.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkGAACIQCCIAABAAAACEAAESAEAEDgAAoAAAAAAAACA=</HashCode>
+      <FileName>TrainingForms\TrainingForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SeatForms.ListSeatsForm" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>SeatForms\ListSeatsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.SeatForms.SeatForm" Collapsed="true">
+    <Position X="5.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAJaACBAABABAAKACAACAAAABAAAoIAAAAAAICA=</HashCode>
+      <FileName>SeatForms\SeatForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TeamForms.ListTeamsForm" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>TeamForms\ListTeamsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TeamForms.TeamForm" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkCAAAASCCIABBAAgACEAAASAGACBAIAoAACsAAIACA=</HashCode>
+      <FileName>TeamForms\TeamForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.LocationForms.ListLocationsForm" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAACD0CADAAIDBAAACCABASAIAADAgAAAgAAABAgIA=</HashCode>
+      <FileName>LocationForms\ListLocationsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.LocationForms.LocationForm" Collapsed="true">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAIBAAAAKBgABRIAAaEQAADAAAABABCIQAAEAAACCA=</HashCode>
+      <FileName>LocationForms\LocationForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TicketForms.ListTicketsForm" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAD0CQCAAYDAAAADAAAASAIAADAAAABgAAAgAgIA=</HashCode>
+      <FileName>TicketForms\ListTicketsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GreatSportEventApp.TicketForms.TicketForm" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAYACBAQBhAAICAEgAGAAEABBAAoAIAAgCAACg=</HashCode>
+      <FileName>TicketForms\TicketForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

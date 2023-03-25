@@ -46,6 +46,7 @@ namespace GreatSportEventApp.SportEventForms
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            ExportToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((ISupportInitialize)DataGridView).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -61,7 +62,7 @@ namespace GreatSportEventApp.SportEventForms
             DataGridView.Margin = new System.Windows.Forms.Padding(4);
             DataGridView.Name = "DataGridView";
             DataGridView.ReadOnly = true;
-            DataGridView.Size = new System.Drawing.Size(809, 445);
+            DataGridView.Size = new System.Drawing.Size(912, 452);
             DataGridView.TabIndex = 0;
             DataGridView.CellMouseDoubleClick += DataGridView_CellMouseDoubleClick;
             DataGridView.CurrentCellChanged += DataGridView_CurrentCellChanged;
@@ -75,7 +76,7 @@ namespace GreatSportEventApp.SportEventForms
             labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTitle.Name = "labelTitle";
             labelTitle.Padding = new System.Windows.Forms.Padding(5);
-            labelTitle.Size = new System.Drawing.Size(809, 40);
+            labelTitle.Size = new System.Drawing.Size(912, 40);
             labelTitle.TabIndex = 1;
             labelTitle.Text = "Спортивные мероприятия";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,10 +86,10 @@ namespace GreatSportEventApp.SportEventForms
             MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripButtonSearch, toolStripSeparator6 });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripButtonSearch, toolStripSeparator6, ExportToolStripButton });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
-            MainToolStrip.Size = new System.Drawing.Size(809, 25);
+            MainToolStrip.Size = new System.Drawing.Size(912, 25);
             MainToolStrip.TabIndex = 5;
             MainToolStrip.Text = "MainToolStrip";
             // 
@@ -185,10 +186,20 @@ namespace GreatSportEventApp.SportEventForms
             toolStripSeparator6.Name = "toolStripSeparator6";
             toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
+            // ExportToolStripButton
+            // 
+            ExportToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            ExportToolStripButton.Image = Properties.Resources.export;
+            ExportToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            ExportToolStripButton.Name = "ExportToolStripButton";
+            ExportToolStripButton.Size = new System.Drawing.Size(80, 22);
+            ExportToolStripButton.Text = "Экспорт";
+            ExportToolStripButton.Click += ExportToolStripButton_Click;
+            // 
             // ListSportEventsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            ClientSize = new System.Drawing.Size(809, 510);
+            ClientSize = new System.Drawing.Size(912, 517);
             Controls.Add(DataGridView);
             Controls.Add(MainToolStrip);
             Controls.Add(labelTitle);
@@ -222,5 +233,6 @@ namespace GreatSportEventApp.SportEventForms
         private System.Windows.Forms.ToolStripButton SelectToolStripButton;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton ExportToolStripButton;
     }
 }

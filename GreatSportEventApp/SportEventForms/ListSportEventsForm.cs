@@ -183,5 +183,10 @@ namespace GreatSportEventApp.SportEventForms
         {
             searchForm.ShowDialog();
         }
+
+        private void ExportToolStripButton_Click(object sender, EventArgs e)
+        {
+            ExportToExcel.Do(DataGridView);
+        }
     }
 }
