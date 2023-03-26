@@ -159,7 +159,7 @@ namespace GreatSportEventApp.PersonForms
             EditToolStripButton_Click(sender, e);
         }
 
-        private void FilterByFullName()
+        private void ToolStripTextBoxFilter_TextChanged(object sender, EventArgs e)
         {
             var bindingSource = new BindingSource();
             bindingSource.DataSource = DataGridView.DataSource;
@@ -167,9 +167,10 @@ namespace GreatSportEventApp.PersonForms
             DataGridView.DataSource = bindingSource;
         }
 
-        private void ToolStripTextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
+        private void ExportToolStripButton_Click(object sender, EventArgs e)
         {
-            FilterByFullName();
+            ExportToExcel.Do(DataGridView);
         }
+
     }
 }

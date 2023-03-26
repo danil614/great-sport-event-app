@@ -47,6 +47,7 @@ namespace GreatSportEventApp.SportEventForms
             toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ExportToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             ((ISupportInitialize)DataGridView).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -86,7 +87,7 @@ namespace GreatSportEventApp.SportEventForms
             MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripButtonSearch, toolStripSeparator6, ExportToolStripButton });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripButtonSearch, toolStripSeparator6, ExportToolStripButton, toolStripSeparator7 });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Size = new System.Drawing.Size(912, 25);
@@ -196,6 +197,11 @@ namespace GreatSportEventApp.SportEventForms
             ExportToolStripButton.Text = "Экспорт";
             ExportToolStripButton.Click += ExportToolStripButton_Click;
             // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
             // ListSportEventsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -234,5 +240,6 @@ namespace GreatSportEventApp.SportEventForms
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton ExportToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }

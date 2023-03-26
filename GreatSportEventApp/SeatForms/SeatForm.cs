@@ -118,6 +118,14 @@ namespace GreatSportEventApp.SeatForms
             ValidatingControls.SetDecimalError(sender, errorProvider1);
         }
 
+        private void TextPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.')
+            {
+                e.KeyChar = ',';
+            }
+        }
+
         #endregion
     }
 }

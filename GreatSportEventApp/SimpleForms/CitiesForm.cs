@@ -161,5 +161,18 @@ namespace GreatSportEventApp.SimpleForms
                 }
             }
         }
+
+        private void ExportToolStripButton_Click(object sender, EventArgs e)
+        {
+            ExportToExcel.Do(dataView);
+        }
+
+        private void ToolStripTextBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = dataView.DataSource;
+            bindingSource.Filter = dataView.Columns[1].Name.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
+            dataView.DataSource = bindingSource;
+        }
     }
 }

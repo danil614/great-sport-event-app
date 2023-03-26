@@ -143,6 +143,7 @@ namespace GreatSportEventApp.SeatForms
             textPrice.Name = "textPrice";
             textPrice.Size = new System.Drawing.Size(152, 26);
             textPrice.TabIndex = 19;
+            textPrice.KeyPress += TextPrice_KeyPress;
             textPrice.Validating += TextPrice_Validating;
             // 
             // errorProvider1

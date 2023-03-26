@@ -167,7 +167,7 @@ namespace GreatSportEventApp.SimpleForms
             }
         }
 
-        private void FilterByFullName()
+        private void ToolStripTextBoxFilter_TextChanged(object sender, EventArgs e)
         {
             var bindingSource = new BindingSource();
             bindingSource.DataSource = dataView.DataSource;
@@ -175,9 +175,9 @@ namespace GreatSportEventApp.SimpleForms
             dataView.DataSource = bindingSource;
         }
 
-        private void ToolStripTextBoxFilter_KeyPress(object sender, KeyPressEventArgs e)
+        private void ExportToolStripButton_Click(object sender, EventArgs e)
         {
-            FilterByFullName();
+            ExportToExcel.Do(dataView);
         }
     }
 }

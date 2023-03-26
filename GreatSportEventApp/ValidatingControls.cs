@@ -22,7 +22,7 @@ namespace GreatSportEventApp
 
             if (!int.TryParse(textBox.Text, out int result) || result < 0)
             {
-                errorProvider.SetError(textBox, "Ожидается положительное число!");
+                errorProvider.SetError(textBox, "Ожидается положительное целое число! Например: 26");
             }
         }
 
@@ -33,7 +33,7 @@ namespace GreatSportEventApp
 
             if (!decimal.TryParse(textBox.Text, out decimal result) || result < 0)
             {
-                errorProvider.SetError(textBox, "Ожидается положительное число!");
+                errorProvider.SetError(textBox, "Ожидается положительное число! Например: 1990,25");
             }
         }
     }

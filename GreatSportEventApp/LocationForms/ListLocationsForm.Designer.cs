@@ -31,7 +31,6 @@ namespace GreatSportEventApp.LocationForms
         /// </summary>
         private void InitializeComponent()
         {
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(ListLocationsForm));
             dataLocations = new System.Windows.Forms.DataGridView();
             labelTitle = new System.Windows.Forms.Label();
             MainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -45,7 +44,11 @@ namespace GreatSportEventApp.LocationForms
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             UpdateToolStripButton = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ExportToolStripButton = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             ((ISupportInitialize)dataLocations).BeginInit();
             MainToolStrip.SuspendLayout();
             SuspendLayout();
@@ -61,7 +64,7 @@ namespace GreatSportEventApp.LocationForms
             dataLocations.Margin = new System.Windows.Forms.Padding(4);
             dataLocations.Name = "dataLocations";
             dataLocations.ReadOnly = true;
-            dataLocations.Size = new System.Drawing.Size(809, 445);
+            dataLocations.Size = new System.Drawing.Size(1034, 454);
             dataLocations.TabIndex = 0;
             dataLocations.CellMouseDoubleClick += DataLocations_CellMouseDoubleClick;
             dataLocations.CurrentCellChanged += DataLocations_CurrentCellChanged;
@@ -76,7 +79,7 @@ namespace GreatSportEventApp.LocationForms
             labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelTitle.Name = "labelTitle";
             labelTitle.Padding = new System.Windows.Forms.Padding(5);
-            labelTitle.Size = new System.Drawing.Size(809, 40);
+            labelTitle.Size = new System.Drawing.Size(1034, 40);
             labelTitle.TabIndex = 1;
             labelTitle.Text = "Места расположения";
             labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -86,10 +89,10 @@ namespace GreatSportEventApp.LocationForms
             MainToolStrip.BackColor = System.Drawing.SystemColors.Control;
             MainToolStrip.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             MainToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, ExportToolStripButton });
+            MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { SelectToolStripButton, toolStripSeparator1, CreateToolStripButton, toolStripSeparator2, EditToolStripButton, toolStripSeparator3, DeleteToolStripButton, toolStripSeparator4, UpdateToolStripButton, toolStripSeparator5, toolStripLabel1, toolStripTextBoxFilter, toolStripSeparator6, ExportToolStripButton, toolStripSeparator7 });
             MainToolStrip.Location = new System.Drawing.Point(0, 40);
             MainToolStrip.Name = "MainToolStrip";
-            MainToolStrip.Size = new System.Drawing.Size(809, 25);
+            MainToolStrip.Size = new System.Drawing.Size(1034, 25);
             MainToolStrip.TabIndex = 5;
             MainToolStrip.Text = "MainToolStrip";
             // 
@@ -171,21 +174,45 @@ namespace GreatSportEventApp.LocationForms
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(140, 22);
+            toolStripLabel1.Text = "Поиск по названию:";
+            // 
+            // toolStripTextBoxFilter
+            // 
+            toolStripTextBoxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            toolStripTextBoxFilter.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
+            toolStripTextBoxFilter.Size = new System.Drawing.Size(160, 25);
+            toolStripTextBoxFilter.TextChanged += ToolStripTextBoxFilter_TextChanged;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
             // ExportToolStripButton
             // 
-            ExportToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             ExportToolStripButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            ExportToolStripButton.Image = (System.Drawing.Image)resources.GetObject("ExportToolStripButton.Image");
+            ExportToolStripButton.Image = Properties.Resources.export;
             ExportToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             ExportToolStripButton.Name = "ExportToolStripButton";
-            ExportToolStripButton.Size = new System.Drawing.Size(64, 22);
+            ExportToolStripButton.Size = new System.Drawing.Size(80, 22);
             ExportToolStripButton.Text = "Экспорт";
             ExportToolStripButton.Click += ExportToolStripButton_Click;
+            // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
             // ListLocationsForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            ClientSize = new System.Drawing.Size(809, 510);
+            ClientSize = new System.Drawing.Size(1034, 519);
             Controls.Add(dataLocations);
             Controls.Add(MainToolStrip);
             Controls.Add(labelTitle);
@@ -218,5 +245,9 @@ namespace GreatSportEventApp.LocationForms
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton SelectToolStripButton;
         private System.Windows.Forms.ToolStripButton ExportToolStripButton;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxFilter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }

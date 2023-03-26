@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GreatSportEventApp
 {
@@ -11,6 +12,16 @@ namespace GreatSportEventApp
     {
         public static void Do(DataGridView dataGridView)
         {
+            SaveFileDialog saveFileDialog = new();
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            var dialogResult = saveFileDialog.ShowDialog();
+
+            if (dialogResult != DialogResult.OK)
+                return;
+
+            // Получаем выбранный файл
+            string filename = saveFileDialog.FileName;
+
             // Приложение
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
@@ -22,7 +33,12 @@ namespace GreatSportEventApp
             // Таблица
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
 
-            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            for (int j = 0; j < dataGridView.ColumnCount; j++)
+            {
+                ExcelApp.Cells[1, j + 1] = dataGridView.Columns[j].HeaderText.ToString();
+            }
+
+            for (int i = 1; i < dataGridView.Rows.Count; i++)
             {
                 for (int j = 0; j < dataGridView.ColumnCount; j++)
                 {
@@ -30,9 +46,14 @@ namespace GreatSportEventApp
                 }
             }
 
-            //Вызываем нашу созданную эксельку.
-            ExcelApp.Visible = true;
-            ExcelApp.UserControl = true;
+            // Вызываем нашу созданную эксельку.
+            // ExcelApp.Visible = true;
+            // ExcelApp.UserControl = true;
+
+            ExcelWorkBook.SaveAs(filename);
+            ExcelWorkBook.Close();
+
+            MessageBox.Show(@"Файл Excel сохранен!");
         }
     }
 }

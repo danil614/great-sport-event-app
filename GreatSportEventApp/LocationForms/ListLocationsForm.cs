@@ -186,6 +186,14 @@ namespace GreatSportEventApp.LocationForms
             }
         }
 
+        private void ToolStripTextBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            var bindingSource = new BindingSource();
+            bindingSource.DataSource = dataLocations.DataSource;
+            bindingSource.Filter = dataLocations.Columns[1].Name.ToString() + " LIKE '%" + toolStripTextBoxFilter.Text + "%'";
+            dataLocations.DataSource = bindingSource;
+        }
+
         private void ExportToolStripButton_Click(object sender, EventArgs e)
         {
             ExportToExcel.Do(dataLocations);
